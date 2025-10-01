@@ -128,17 +128,9 @@ function toggleMenu() {
     isMenuOpen = !isMenuOpen;
     
     if (isMenuOpen) {
-        navMenu.style.display = 'flex';
-        navMenu.style.flexDirection = 'column';
-        navMenu.style.position = 'absolute';
-        navMenu.style.top = '100%';
-        navMenu.style.left = '0';
-        navMenu.style.width = '100%';
-        navMenu.style.padding = '1rem';
         navMenu.classList.add('mobile-open');
         hamburger.classList.add('active');
     } else {
-        navMenu.style.display = '';
         navMenu.classList.remove('mobile-open');
         hamburger.classList.remove('active');
     }
