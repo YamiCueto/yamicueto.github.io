@@ -1202,10 +1202,6 @@ html {
     font-size: var(--font-base);
   }
   
-  .about-content {
-    grid-template-columns: 1fr;
-  }
-  
   .about-stats {
     grid-template-columns: 1fr;
   }
@@ -1278,6 +1274,7 @@ html {
   }
   
   .about-content {
+    grid-template-columns: 1fr;
     text-align: center;
   }
   
