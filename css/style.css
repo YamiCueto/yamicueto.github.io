@@ -1152,11 +1152,6 @@ html {
    RESPONSIVE DESIGN
    ========================================================================== */
 @media (max-width: 768px) {
-  /* Prevenir overflow horizontal en mobile */
-  * {
-    max-width: 100% !important;
-  }
-  
   .nav-container {
     padding: 0 var(--space-4);
   }
