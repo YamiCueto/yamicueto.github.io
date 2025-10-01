@@ -18,10 +18,14 @@ function initializeApp() {
     setupShareButton();
     setupTypingEffect();
     setupScrollAnimations();
+    setupAdvancedSectionAnimations();
     setupSkillBars();
     setupProjectFilters();
     setupSmoothScrolling();
     setupLoadingAnimations();
+    
+    // Inicializar animaciones de página
+    initPageAnimations();
 }
 
 // ==========================================================================
@@ -364,6 +368,200 @@ function setupScrollAnimations() {
 }
 
 // ==========================================================================
+// ANIMACIONES AVANZADAS DE SECCIONES
+// ==========================================================================
+function setupAdvancedSectionAnimations() {
+    const sections = document.querySelectorAll('.section-animate');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Configuración del Intersection Observer para animaciones
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const section = entry.target;
+                
+                // Agregar delay antes de la animación
+                setTimeout(() => {
+                    section.classList.add('animate-in');
+                    
+                    // Tracking de animación ejecutada
+                    trackEvent('section_animated', { 
+                        section: section.classList[0],
+                        trigger: 'scroll'
+                    });
+                    
+                    // Animar elementos hijos con delay escalonado
+                    animateChildElements(section);
+                }, 100);
+                
+                // No desconectar el observer para permitir re-animaciones
+            } else {
+                // Opcional: remover animación cuando sale del viewport
+                entry.target.classList.remove('animate-in');
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -10% 0px'
+    });
+    
+    // Observar todas las secciones
+    sections.forEach(section => {
+        animationObserver.observe(section);
+    });
+    
+    // Mejorar navegación suave con animaciones
+    enhanceSmoothNavigation();
+}
+
+function animateChildElements(section) {
+    // Definir selectores de elementos hijos para cada sección
+    const childSelectors = {
+        'hero': ['.hero-text', '.hero-visual', '.hero-buttons a'],
+        'about': ['.section-header', '.about-text', '.about-image', '.stat'],
+        'skills': ['.section-header', '.skills-category'],
+        'projects': ['.section-header', '.projects-filter', '.project-card'],
+        'experience': ['.section-header', '.timeline-item'],
+        'contact': ['.section-header', '.contact-item', '.social-link']
+    };
+    
+    // Determinar el tipo de sección
+    const sectionType = section.classList[0]; // primera clase es el tipo
+    const selectors = childSelectors[sectionType];
+    
+    if (selectors) {
+        selectors.forEach((selector, index) => {
+            const elements = section.querySelectorAll(selector);
+            elements.forEach((element, elementIndex) => {
+                // Calcular delay basado en el índice
+                const delay = (index * 100) + (elementIndex * 50);
+                
+                setTimeout(() => {
+                    // Elegir animación según el tipo de elemento y sección
+                    const animationClass = getAnimationClass(sectionType, selector);
+                    element.classList.add(animationClass);
+                }, delay);
+            });
+        });
+    }
+}
+
+function getAnimationClass(sectionType, selector) {
+    // Mapeo de animaciones específicas por sección y elemento
+    const animationMap = {
+        'hero': {
+            '.hero-text': 'animate-slide-in-rotate',
+            '.hero-visual': 'animate-fade-in-scale',
+            '.hero-buttons a': 'animate-bounce-in'
+        },
+        'about': {
+            '.section-header': 'animate-fade-in-up',
+            '.about-text': 'animate-slide-in-bottom',
+            '.about-image': 'animate-flip-in-y',
+            '.stat': 'animate-zoom-in-left'
+        },
+        'skills': {
+            '.section-header': 'animate-fade-in-up',
+            '.skills-category': 'animate-slide-in-bottom'
+        },
+        'projects': {
+            '.section-header': 'animate-fade-in-up',
+            '.projects-filter': 'animate-slide-in-top',
+            '.project-card': 'animate-fade-in-scale'
+        },
+        'experience': {
+            '.section-header': 'animate-fade-in-up',
+            '.timeline-item': 'animate-slide-in-rotate'
+        },
+        'contact': {
+            '.section-header': 'animate-fade-in-up',
+            '.contact-item': 'animate-slide-in-bottom',
+            '.social-link': 'animate-bounce-in'
+        }
+    };
+    
+    return animationMap[sectionType]?.[selector] || 'animate-fade-in-up';
+}
+
+function enhanceSmoothNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Remover animaciones activas de todas las secciones
+                document.querySelectorAll('.section-animate').forEach(section => {
+                    section.classList.remove('animate-in');
+                });
+                
+                // Scroll suave a la sección
+                const offsetTop = targetSection.offsetTop - 70;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+                
+                // Activar animación de la sección objetivo después del scroll
+                setTimeout(() => {
+                    targetSection.classList.add('animate-in');
+                    animateChildElements(targetSection);
+                    
+                    // Tracking de navegación con animación
+                    trackEvent('section_animated', { 
+                        section: targetSection.classList[0],
+                        trigger: 'navigation'
+                    });
+                }, 400);
+                
+                // Tracking del evento
+                trackEvent('navigation_click', { section: targetId.replace('#', '') });
+            }
+        });
+    });
+}
+
+// Función para trigger animaciones manuales
+function triggerSectionAnimation(sectionId) {
+    const section = document.querySelector(sectionId);
+    if (section) {
+        section.classList.remove('animate-in');
+        
+        // Remover clases de animación de elementos hijos
+        const animatedChildren = section.querySelectorAll('[class*="animate-"]');
+        animatedChildren.forEach(child => {
+            child.classList.remove(...Array.from(child.classList).filter(cls => cls.startsWith('animate-')));
+        });
+        
+        setTimeout(() => {
+            section.classList.add('animate-in');
+            animateChildElements(section);
+            
+            // Tracking de animación manual
+            trackEvent('section_animated', { 
+                section: section.classList[0],
+                trigger: 'manual'
+            });
+        }, 50);
+    }
+}
+
+// Función para animar todas las secciones (útil para demos)
+function animateAllSections() {
+    const sections = document.querySelectorAll('.section-animate');
+    sections.forEach((section, index) => {
+        setTimeout(() => {
+            triggerSectionAnimation(`#${section.classList[0]}`);
+        }, index * 200);
+    });
+}
+
+// ==========================================================================
 // BARRAS DE HABILIDADES
 // ==========================================================================
 function setupSkillBars() {
@@ -467,6 +665,58 @@ function setupLoadingAnimations() {
             }, index * 100);
         });
     }, 300);
+}
+
+// ==========================================================================
+// ANIMACIONES INICIALES DE PÁGINA
+// ==========================================================================
+function initPageAnimations() {
+    // Animar el hero inmediatamente después de cargar
+    setTimeout(() => {
+        const heroSection = document.querySelector('.hero.section-animate');
+        if (heroSection) {
+            heroSection.classList.add('animate-in');
+            animateChildElements(heroSection);
+        }
+    }, 500);
+    
+    // Precargar animaciones para mejor performance
+    preloadAnimations();
+    
+    // Configurar observer para elementos ya visibles
+    checkInitiallyVisibleSections();
+}
+
+function preloadAnimations() {
+    // Forzar la carga de CSS animations creando elementos invisibles
+    const tempDiv = document.createElement('div');
+    tempDiv.style.cssText = `
+        position: absolute;
+        visibility: hidden;
+        animation: slideInFromBottom 0.01s;
+    `;
+    document.body.appendChild(tempDiv);
+    
+    setTimeout(() => {
+        document.body.removeChild(tempDiv);
+    }, 100);
+}
+
+function checkInitiallyVisibleSections() {
+    // Verificar secciones que ya están en viewport al cargar
+    const sections = document.querySelectorAll('.section-animate');
+    
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const isVisible = (rect.top < window.innerHeight * 0.8) && (rect.bottom > 0);
+        
+        if (isVisible && !section.classList.contains('animate-in')) {
+            setTimeout(() => {
+                section.classList.add('animate-in');
+                animateChildElements(section);
+            }, Math.random() * 300 + 200);
+        }
+    });
 }
 
 // ==========================================================================
