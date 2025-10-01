@@ -1204,7 +1204,6 @@ html {
   
   .about-content {
     grid-template-columns: 1fr;
-    text-align: center;
   }
   
   .about-stats {
@@ -1276,6 +1275,10 @@ html {
   
   .btn {
     justify-content: center;
+  }
+  
+  .about-content {
+    text-align: center;
   }
   
   .projects-filter {
