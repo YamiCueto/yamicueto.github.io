@@ -2,27 +2,35 @@
    VARIABLES CSS
    ========================================================================== */
 :root {
-  /* Colores principales */
+  /* Colores principales - Tema Oscuro Permanente */
   --primary-color: #3b82f6;
   --secondary-color: #1e293b;
   --accent-color: #06b6d4;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
   --text-muted: #94a3b8;
   
   /* RGB values for rgba usage */
   --accent-color-rgb: 6, 182, 212;
   --primary-color-rgb: 59, 130, 246;
+  --text-color-rgb: 255, 255, 255;
   
-  /* Colores de fondo */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
+  /* Colores de fondo - Tema Oscuro */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
   --bg-code: #1e293b;
   
-  /* Gradientes */
+  /* Gradientes - Optimizados para tema oscuro */
   --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
   --gradient-secondary: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  
+  /* Navegación */
+  --nav-bg: rgba(15, 23, 42, 0.8);
+  --nav-bg-scroll: rgba(15, 23, 42, 0.95);
+  --nav-border: rgba(51, 65, 85, 0.5);
+  --nav-border-scroll: rgba(51, 65, 85, 0.8);
   
   /* Tipografía */
   --font-primary: 'Inter', sans-serif;
@@ -75,33 +83,6 @@
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
-}
-
-/* Tema oscuro */
-/* Tema oscuro */
-[data-theme="dark"] {
-  --primary-color: #60a5fa;
-  --secondary-color: #f1f5f9;
-  --accent-color: #22d3ee;
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-muted: #64748b;
-  
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
-  --bg-code: #0f172a;
-  
-  /* Navegación tema oscuro */
-  --nav-bg: rgba(15, 23, 42, 0.8);
-  --nav-bg-scroll: rgba(15, 23, 42, 0.95);
-  --nav-border: rgba(51, 65, 85, 0.5);
-  --nav-border-scroll: rgba(51, 65, 85, 0.8);
-}
-
-/* Transiciones suaves para el cambio de tema */
-.nav, .nav-link, .theme-toggle, .logo-name {
-  transition: all var(--transition-normal);
 }
 
 /* ==========================================================================
@@ -312,23 +293,6 @@ body {
   font-size: var(--font-base);
 }
 
-.theme-toggle {
-  cursor: pointer;
-  padding: var(--space-2);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-  color: var(--text-primary);
-}
-
-.theme-toggle:hover {
-  background: var(--bg-tertiary);
-  color: var(--primary-color);
-}
-
-.theme-toggle i {
-  transition: all var(--transition-fast);
-}
-
 .hamburger {
   display: none;
   flex-direction: column;
@@ -347,10 +311,6 @@ body {
 .nav-menu.mobile-open {
   background: var(--bg-primary) !important;
   border: 1px solid var(--nav-border) !important;
-  box-shadow: var(--shadow-lg) !important;
-}
-
-[data-theme="dark"] .nav-menu.mobile-open {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2) !important;
 }
 
@@ -359,9 +319,6 @@ body {
   font-family: var(--font-primary);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-}
-
-[data-theme="dark"] .share-notification {
   background: var(--primary-color) !important;
   color: white !important;
 }
@@ -1173,7 +1130,7 @@ html {
     gap: var(--space-1);
   }
   
-  .share-toggle, .theme-toggle {
+  .share-toggle {
     padding: var(--space-1);
   }
   

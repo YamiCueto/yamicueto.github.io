@@ -2,7 +2,6 @@
 // VARIABLES GLOBALES
 // ==========================================================================
 let isMenuOpen = false;
-let currentTheme = 'light';
 
 // ==========================================================================
 // INICIALIZACIÓN
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeApp() {
     setupCursor();
     setupNavigation();
-    setupThemeToggle();
     setupShareButton();
     setupTypingEffect();
     setupScrollAnimations();
@@ -167,34 +165,6 @@ function updateActiveLink() {
             link.classList.add('active');
         }
     });
-}
-
-// ==========================================================================
-// TEMA OSCURO/CLARO
-// ==========================================================================
-function setupThemeToggle() {
-    const themeToggle = document.querySelector('.theme-toggle');
-    const themeIcon = themeToggle.querySelector('i');
-    
-    // Cargar tema guardado
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
-    
-    themeToggle.addEventListener('click', () => {
-        currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-        setTheme(currentTheme);
-        localStorage.setItem('theme', currentTheme);
-    });
-}
-
-function setTheme(theme) {
-    currentTheme = theme;
-    document.documentElement.setAttribute('data-theme', theme);
-    
-    const themeIcon = document.querySelector('.theme-toggle i');
-    if (themeIcon) {
-        themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
-    }
 }
 
 // ==========================================================================
