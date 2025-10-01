@@ -23,6 +23,7 @@ function initializeApp() {
     setupProjectFilters();
     setupSmoothScrolling();
     setupLoadingAnimations();
+    setupScrollToTop();
     
     // Inicializar animaciones de página
     initPageAnimations();
@@ -716,6 +717,74 @@ function checkInitiallyVisibleSections() {
                 animateChildElements(section);
             }, Math.random() * 300 + 200);
         }
+    });
+}
+
+// ==========================================================================
+// BOTÓN FLOTANTE VOLVER ARRIBA
+// ==========================================================================
+function setupScrollToTop() {
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    if (!scrollToTopBtn) return;
+    
+    // Mostrar/ocultar botón basado en scroll
+    window.addEventListener('scroll', debounce(() => {
+        const scrollPosition = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        
+        if (scrollPosition > windowHeight * 0.3) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    }, 100));
+    
+    // Función para volver arriba suavemente
+    scrollToTopBtn.addEventListener('click', () => {
+        // Animación personalizada más suave que scroll-behavior
+        const startPosition = window.pageYOffset;
+        const startTime = performance.now();
+        const duration = 800; // 800ms para la animación
+        
+        function easeInOutCubic(t) {
+            return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+        }
+        
+        function animateScroll(currentTime) {
+            const timeElapsed = currentTime - startTime;
+            const progress = Math.min(timeElapsed / duration, 1);
+            const easedProgress = easeInOutCubic(progress);
+            
+            window.scrollTo(0, startPosition * (1 - easedProgress));
+            
+            if (progress < 1) {
+                requestAnimationFrame(animateScroll);
+            } else {
+                // Trigger animación del hero cuando llegue arriba
+                const heroSection = document.querySelector('#home');
+                if (heroSection) {
+                    triggerSectionAnimation('#home');
+                }
+            }
+        }
+        
+        requestAnimationFrame(animateScroll);
+        
+        // Tracking del evento
+        trackEvent('scroll_to_top_clicked', { 
+            scroll_position: startPosition,
+            viewport_height: window.innerHeight 
+        });
+    });
+    
+    // Efecto hover mejorado
+    scrollToTopBtn.addEventListener('mouseenter', () => {
+        scrollToTopBtn.style.transform = 'translateY(-2px) scale(1.1)';
+    });
+    
+    scrollToTopBtn.addEventListener('mouseleave', () => {
+        scrollToTopBtn.style.transform = 'translateY(0) scale(1)';
     });
 }
 

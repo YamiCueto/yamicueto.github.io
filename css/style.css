@@ -10,6 +10,10 @@
   --text-secondary: #64748b;
   --text-muted: #94a3b8;
   
+  /* RGB values for rgba usage */
+  --accent-color-rgb: 6, 182, 212;
+  --primary-color-rgb: 59, 130, 246;
+  
   /* Colores de fondo */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
@@ -1049,6 +1053,75 @@ body {
 .footer-quote {
   font-style: italic;
   opacity: 0.8;
+}
+
+/* ==========================================================================
+   BOTÓN FLOTANTE VOLVER ARRIBA
+   ========================================================================== */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(var(--accent-color-rgb), 0.3);
+}
+
+.scroll-to-top:hover {
+    background: var(--text-color);
+    transform: translateY(0) scale(1.1);
+    box-shadow: 0 6px 20px rgba(var(--accent-color-rgb), 0.4);
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top:active {
+    transform: translateY(0) scale(0.95);
+}
+
+/* Efecto de pulso cuando aparece */
+.scroll-to-top.show {
+    animation: pulseIn 0.6s ease-out;
+}
+
+@keyframes pulseIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+    50% {
+        transform: translateY(-5px) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Responsive design para el botón */
+@media (max-width: 768px) {
+    .scroll-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
 }
 
 /* Animaciones suaves para navegación */
