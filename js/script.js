@@ -83,12 +83,18 @@ function setupNavigation() {
     
     // Scroll effect para navegación
     window.addEventListener('scroll', () => {
+        const root = document.documentElement;
+        const navBgScroll = getComputedStyle(root).getPropertyValue('--nav-bg-scroll');
+        const navBorderScroll = getComputedStyle(root).getPropertyValue('--nav-border-scroll');
+        const navBg = getComputedStyle(root).getPropertyValue('--nav-bg');
+        const navBorder = getComputedStyle(root).getPropertyValue('--nav-border');
+        
         if (window.scrollY > 50) {
-            nav.style.background = 'rgba(248, 250, 252, 0.95)';
-            nav.style.borderBottomColor = 'rgba(226, 232, 240, 0.8)';
+            nav.style.background = navBgScroll;
+            nav.style.borderBottomColor = navBorderScroll;
         } else {
-            nav.style.background = 'rgba(248, 250, 252, 0.8)';
-            nav.style.borderBottomColor = 'rgba(226, 232, 240, 0.5)';
+            nav.style.background = navBg;
+            nav.style.borderBottomColor = navBorder;
         }
     });
     
@@ -124,12 +130,12 @@ function toggleMenu() {
         navMenu.style.top = '100%';
         navMenu.style.left = '0';
         navMenu.style.width = '100%';
-        navMenu.style.background = 'white';
         navMenu.style.padding = '1rem';
-        navMenu.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+        navMenu.classList.add('mobile-open');
         hamburger.classList.add('active');
     } else {
         navMenu.style.display = '';
+        navMenu.classList.remove('mobile-open');
         hamburger.classList.remove('active');
     }
 }
