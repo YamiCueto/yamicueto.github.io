@@ -26,10 +26,10 @@
   --gradient-secondary: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   
-  /* Navegación */
-  --nav-bg: rgba(15, 23, 42, 0.8);
-  --nav-bg-scroll: rgba(15, 23, 42, 0.95);
-  --nav-border: rgba(51, 65, 85, 0.5);
+  /* Navegación - Tema oscuro más intenso */
+  --nav-bg: rgba(15, 23, 42, 0.95);
+  --nav-bg-scroll: rgba(15, 23, 42, 0.98);
+  --nav-border: rgba(51, 65, 85, 0.6);
   --nav-border-scroll: rgba(51, 65, 85, 0.8);
   
   /* Tipografía */
@@ -72,12 +72,6 @@
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
   --radius-2xl: 1rem;
-  
-  /* Navegación */
-  --nav-bg: rgba(248, 250, 252, 0.8);
-  --nav-bg-scroll: rgba(248, 250, 252, 0.95);
-  --nav-border: rgba(226, 232, 240, 0.5);
-  --nav-border-scroll: rgba(226, 232, 240, 0.8);
   
   /* Transiciones */
   --transition-fast: 0.15s ease;
