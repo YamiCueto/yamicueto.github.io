@@ -7,11 +7,45 @@
     <meta name="description" content="Full Stack Developer con 10+ años de experiencia en Angular, Java, y tecnologías cloud. Especializado en soluciones escalables.">
     <meta name="keywords" content="Full Stack Developer, Angular, Java, TypeScript, AWS, Colombia">
     
-    <!-- Open Graph / Social Media -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Yamid Cueto Mazo | Full Stack Developer">
-    <meta property="og:description" content="Full Stack Developer con 10+ años de experiencia">
-    <meta property="og:url" content="https://yamicueto.github.io/YamiCueto/">
+    <meta property="og:description" content="Full Stack Developer con 10+ años de experiencia en Angular, Java, y tecnologías cloud. Especializado en soluciones escalables y transformación digital.">
+    <meta property="og:url" content="https://yamicueto.github.io/">
+    <meta property="og:site_name" content="Yamid Cueto - Portfolio">
+    <meta property="og:image" content="https://github.com/YamiCueto.png">
+    <meta property="og:image:alt" content="Yamid Cueto - Full Stack Developer">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="400">
+    <meta property="og:image:height" content="400">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@YamiDev">
+    <meta name="twitter:creator" content="@YamiDev">
+    <meta name="twitter:title" content="Yamid Cueto Mazo | Full Stack Developer">
+    <meta name="twitter:description" content="Full Stack Developer con 10+ años de experiencia en Angular, Java, y tecnologías cloud. Especializado en soluciones escalables.">
+    <meta name="twitter:image" content="https://github.com/YamiCueto.png">
+    <meta name="twitter:image:alt" content="Yamid Cueto - Full Stack Developer">
+    
+    <!-- LinkedIn -->
+    <meta property="article:author" content="https://linkedin.com/in/yamid-cueto-mazo">
+    
+    <!-- Additional SEO -->
+    <meta name="author" content="Yamid Cueto Mazo">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="revisit-after" content="7 days">
+    <meta name="rating" content="general">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yamicueto.github.io/">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//github.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +60,49 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Yamid Cueto Mazo",
+        "jobTitle": "Senior Full Stack Developer",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Tata Consultancy Services"
+        },
+        "url": "https://yamicueto.github.io/",
+        "image": "https://github.com/YamiCueto.png",
+        "sameAs": [
+            "https://linkedin.com/in/yamid-cueto-mazo",
+            "https://github.com/YamiCueto",
+            "https://twitter.com/YamiDev",
+            "https://instagram.com/yamiddev"
+        ],
+        "knowsAbout": [
+            "Angular",
+            "Java",
+            "TypeScript",
+            "Spring Boot",
+            "AWS",
+            "Docker",
+            "Full Stack Development",
+            "Cloud Architecture"
+        ],
+        "alumniOf": {
+            "@type": "Organization",
+            "name": "Universidad"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "CO",
+            "addressLocality": "Colombia"
+        },
+        "email": "yamidcuetomazo@gmail.com",
+        "description": "Full Stack Developer con más de 10 años de experiencia en desarrollo de aplicaciones web escalables y robustas. Especializado en Angular, Java y tecnologías cloud."
+    }
+    </script>
 </head>
 <body>
     <!-- Cursor personalizado -->
@@ -47,8 +124,13 @@
                 <li><a href="#experience" class="nav-link">Experiencia</a></li>
                 <li><a href="#contact" class="nav-link">Contacto</a></li>
             </ul>
-            <div class="theme-toggle">
-                <i class="fas fa-moon"></i>
+            <div class="nav-actions">
+                <button class="share-toggle" id="share-btn" title="Compartir Perfil">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+                <div class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </div>
             </div>
             <div class="hamburger">
                 <span></span>
@@ -82,7 +164,7 @@
                             <i class="fas fa-envelope"></i>
                             Contacto
                         </a>
-                        <a href="https://linkedin.com/in/yamid-cueto-mazo" class="btn btn-outline" target="_blank">
+                        <a rel="noopener noreferrer" title="LinkedIn" href="https://linkedin.com/in/yamid-cueto-mazo" class="btn btn-outline" target="_blank">
                             <i class="fab fa-linkedin"></i>
                             LinkedIn
                         </a>
@@ -295,10 +377,10 @@
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://yamicueto.github.io/todo-list-app/" target="_blank" class="project-link">
+                                <a rel="noopener noreferrer" title="todo-list-app demo" href="https://yamicueto.github.io/todo-list-app/" target="_blank" class="project-link">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
-                                <a href="https://github.com/YamiCueto/todo-list-app" target="_blank" class="project-link">
+                                <a rel="noopener noreferrer" title="todo-list-app repository" href="https://github.com/YamiCueto/todo-list-app" target="_blank" class="project-link">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -322,10 +404,10 @@
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://yamicueto.github.io/academy.ia/" target="_blank" class="project-link">
+                                <a rel="noopener noreferrer" title="Academy.IA demo" href="https://yamicueto.github.io/academy.ia/" target="_blank" class="project-link">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
-                                <a href="https://github.com/YamiCueto/academy.ia" target="_blank" class="project-link">
+                                <a rel="noopener noreferrer" title="Academy.IA repository" href="https://github.com/YamiCueto/academy.ia" target="_blank" class="project-link">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -349,10 +431,10 @@
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://yamicueto.github.io/e-commerce-with-ia/" target="_blank" class="project-link">
+                                <a rel="noopener noreferrer" title="E-commerce con IA demo" href="https://yamicueto.github.io/e-commerce-with-ia/" target="_blank" class="project-link">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
-                                <a href="https://github.com/YamiCueto/e-commerce-with-ia" target="_blank" class="project-link">
+                                <a rel="noopener noreferrer" title="E-commerce con IA repository" href="https://github.com/YamiCueto/e-commerce-with-ia" target="_blank" class="project-link">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -376,10 +458,10 @@
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://yamicueto.github.io/recetario-app/" target="_blank" class="project-link">
+                                <a rel="noopener noreferrer" title="Recetario App demo" href="https://yamicueto.github.io/recetario-app/" target="_blank" class="project-link">
                                     <i class="fas fa-external-link-alt"></i>
                                 </a>
-                                <a href="https://github.com/YamiCueto/recetario-app" target="_blank" class="project-link">
+                                <a rel="noopener noreferrer" title="Recetario App repository" href="https://github.com/YamiCueto/recetario-app" target="_blank" class="project-link">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -403,7 +485,7 @@
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://github.com/YamiCueto/api-users" target="_blank" class="project-link">
+                                <a rel="noopener noreferrer" title="API Users repository" href="https://github.com/YamiCueto/api-users" target="_blank" class="project-link">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -427,7 +509,7 @@
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="https://github.com/YamiCueto/webflux-project" target="_blank" class="project-link">
+                                <a rel="noopener noreferrer" title="WebFlux Project repository" href="https://github.com/YamiCueto/webflux-project" target="_blank" class="project-link">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -557,19 +639,19 @@
                 </div>
                 
                 <div class="social-links">
-                    <a href="https://linkedin.com/in/yamid-cueto-mazo" target="_blank" class="social-link">
+                    <a rel="noopener noreferrer" title="LinkedIn" href="https://linkedin.com/in/yamid-cueto-mazo" target="_blank" class="social-link">
                         <i class="fab fa-linkedin"></i>
                         <span>LinkedIn</span>
                     </a>
-                    <a href="https://github.com/YamiCueto" target="_blank" class="social-link">
+                    <a rel="noopener noreferrer" title="GitHub" href="https://github.com/YamiCueto" target="_blank" class="social-link">
                         <i class="fab fa-github"></i>
                         <span>GitHub</span>
                     </a>
-                    <a href="https://twitter.com/YamiDev" target="_blank" class="social-link">
+                    <a rel="noopener noreferrer" title="Twitter" href="https://twitter.com/YamiDev" target="_blank" class="social-link">
                         <i class="fab fa-twitter"></i>
                         <span>Twitter</span>
                     </a>
-                    <a href="https://instagram.com/yamiddev" target="_blank" class="social-link">
+                    <a rel="noopener noreferrer" title="Instagram" href="https://instagram.com/yamiddev" target="_blank" class="social-link">
                         <i class="fab fa-instagram"></i>
                         <span>Instagram</span>
                     </a>

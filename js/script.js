@@ -15,6 +15,7 @@ function initializeApp() {
     setupCursor();
     setupNavigation();
     setupThemeToggle();
+    setupShareButton();
     setupTypingEffect();
     setupScrollAnimations();
     setupSkillBars();
@@ -189,6 +190,87 @@ function setTheme(theme) {
     if (themeIcon) {
         themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
     }
+}
+
+// ==========================================================================
+// BOTÓN COMPARTIR
+// ==========================================================================
+function setupShareButton() {
+    const shareBtn = document.getElementById('share-btn');
+    if (!shareBtn) return;
+    
+    shareBtn.addEventListener('click', async () => {
+        const shareData = {
+            title: 'Yamid Cueto Mazo | Full Stack Developer',
+            text: 'Full Stack Developer con 10+ años de experiencia en Angular, Java y tecnologías cloud. ¡Conoce mi trabajo!',
+            url: window.location.href
+        };
+        
+        try {
+            // Verificar si el navegador soporta Web Share API
+            if (navigator.share) {
+                await navigator.share(shareData);
+                trackEvent('profile_shared', { method: 'native_share' });
+            } else {
+                // Fallback: copiar al portapapeles
+                await navigator.clipboard.writeText(window.location.href);
+                showShareNotification('¡Enlace copiado al portapapeles!');
+                trackEvent('profile_shared', { method: 'clipboard' });
+            }
+        } catch (error) {
+            // Fallback adicional
+            const textArea = document.createElement('textarea');
+            textArea.value = window.location.href;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showShareNotification('¡Enlace copiado al portapapeles!');
+            trackEvent('profile_shared', { method: 'fallback' });
+        }
+    });
+}
+
+function showShareNotification(message) {
+    // Crear notificación temporal
+    const notification = document.createElement('div');
+    notification.className = 'share-notification';
+    notification.textContent = message;
+    
+    // Estilos inline para la notificación
+    Object.assign(notification.style, {
+        position: 'fixed',
+        top: '80px',
+        right: '20px',
+        background: 'var(--primary-color)',
+        color: 'white',
+        padding: '12px 20px',
+        borderRadius: 'var(--radius-lg)',
+        boxShadow: 'var(--shadow-lg)',
+        zIndex: '10000',
+        fontSize: 'var(--font-sm)',
+        fontWeight: '500',
+        transform: 'translateX(100%)',
+        transition: 'transform 0.3s ease',
+        maxWidth: '300px'
+    });
+    
+    document.body.appendChild(notification);
+    
+    // Animación de entrada
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remover después de 3 segundos
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                document.body.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
 }
 
 // ==========================================================================
