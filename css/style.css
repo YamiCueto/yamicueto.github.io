@@ -173,6 +173,7 @@ body {
   border-bottom: 1px solid var(--nav-border);
   z-index: 1000;
   transition: all var(--transition-normal);
+  overflow-x: hidden;
 }
 
 .nav-container {
@@ -183,6 +184,8 @@ body {
   align-items: center;
   justify-content: space-between;
   height: 70px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .nav-logo {
@@ -1112,6 +1115,10 @@ html {
    RESPONSIVE DESIGN
    ========================================================================== */
 @media (max-width: 768px) {
+  .nav-container {
+    padding: 0 var(--space-4);
+  }
+  
   .nav-menu {
     display: none;
   }
@@ -1182,6 +1189,10 @@ html {
 }
 
 @media (max-width: 480px) {
+  .nav-container {
+    padding: 0 var(--space-3);
+  }
+  
   .container {
     padding: 0 var(--space-4);
   }
