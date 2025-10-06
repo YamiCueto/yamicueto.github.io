@@ -917,3 +917,376 @@ document.addEventListener('click', (e) => {
 });
 
 console.log('🚀 Yamid Cueto - CV Web cargado exitosamente!');
+
+// ==========================================================================
+// PDF GENERATION
+// ==========================================================================
+function generatePDF() {
+    // Check if jsPDF is loaded
+    if (typeof window.jspdf === 'undefined') {
+        alert('PDF generator is loading, please try again in a moment.');
+        return;
+    }
+    
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Colors
+    const primaryColor = [52, 152, 219];
+    const textColor = [44, 62, 80];
+    const accentColor = [39, 174, 96];
+    const grayColor = [100, 100, 100];
+    
+    let currentY = 30;
+    const pageHeight = 280;
+    const margin = 20;
+    
+    // Helper function to add new page if needed
+    function checkPageBreak(additionalHeight = 0) {
+        if (currentY + additionalHeight > pageHeight) {
+            doc.addPage();
+            currentY = 30;
+        }
+    }
+    
+    // Helper function to add section title
+    function addSectionTitle(title, color = primaryColor) {
+        checkPageBreak(20);
+        doc.setFontSize(16);
+        doc.setTextColor(...color);
+        doc.text(title, margin, currentY);
+        currentY += 15;
+    }
+    
+    // Helper function to add text with wrapping
+    function addWrappedText(text, fontSize = 11, color = textColor, maxWidth = 170) {
+        doc.setFontSize(fontSize);
+        doc.setTextColor(...color);
+        const lines = doc.splitTextToSize(text, maxWidth);
+        checkPageBreak(lines.length * 6);
+        doc.text(lines, margin, currentY);
+        currentY += lines.length * 6;
+    }
+    
+    // PAGE 1: HEADER AND PROFILE
+    // =========================
+    
+    // Header
+    doc.setFontSize(24);
+    doc.setTextColor(...primaryColor);
+    doc.text('YAMID CUETO MAZO', margin, currentY);
+    currentY += 15;
+    
+    doc.setFontSize(14);
+    doc.setTextColor(...textColor);
+    doc.text('Senior Software Engineer | Full Stack Developer', margin, currentY);
+    currentY += 10;
+    
+    doc.setFontSize(10);
+    doc.text('Medellín, Colombia | +57 300 279 2493', margin, currentY);
+    currentY += 6;
+    doc.text('yamid.cueto@gmail.com', margin, currentY);
+    currentY += 6;
+    doc.text('LinkedIn: linkedin.com/in/yamid-cueto-mazo', margin, currentY);
+    currentY += 6;
+    doc.text('GitHub: github.com/yamicueto', margin, currentY);
+    currentY += 6;
+    doc.text('Portfolio: yamicueto.github.io', margin, currentY);
+    currentY += 20;
+    
+    // Professional Profile
+    addSectionTitle('PERFIL PROFESIONAL');
+    addWrappedText('Senior Software Engineer con más de 10 años de experiencia especializado en desarrollo full-stack y arquitecturas modernas. Expert en React, Node.js, TypeScript y AWS con sólida experiencia en liderazgo técnico y gestión de equipos multidisciplinarios.');
+    currentY += 5;
+    addWrappedText('Apasionado por crear soluciones escalables y eficientes que generen impacto real en los usuarios. Experiencia comprobada en optimización de rendimiento, implementación de mejores prácticas de desarrollo y mentoría de desarrolladores junior y semi-senior.');
+    currentY += 15;
+    
+    // Key Strengths
+    addSectionTitle('FORTALEZAS CLAVE');
+    const strengths = [
+        '• Arquitectura de software escalable y mantenible',
+        '• Liderazgo técnico y gestión de equipos de desarrollo',
+        '• Implementación de CI/CD y DevOps best practices',
+        '• Optimización de rendimiento y experiencia de usuario',
+        '• Mentoría y desarrollo de talento técnico',
+        '• Comunicación efectiva con stakeholders técnicos y de negocio'
+    ];
+    
+    strengths.forEach(strength => {
+        checkPageBreak(8);
+        doc.setFontSize(11);
+        doc.setTextColor(...textColor);
+        doc.text(strength, margin, currentY);
+        currentY += 7;
+    });
+    
+    currentY += 10;
+    
+    // PAGE 1-2: EXPERIENCE
+    // ===================
+    
+    addSectionTitle('EXPERIENCIA LABORAL');
+    
+    // Current Job
+    doc.setFontSize(13);
+    doc.setTextColor(...primaryColor);
+    doc.text('Senior Software Engineer', margin, currentY);
+    currentY += 8;
+    
+    doc.setFontSize(11);
+    doc.setTextColor(...accentColor);
+    doc.text('EMPRESA CONFIDENCIAL | 2020 - Presente | Medellín, Colombia', margin, currentY);
+    currentY += 12;
+    
+    const currentJobTasks = [
+        '• Liderazgo técnico de equipos de 5+ desarrolladores en proyectos de alta complejidad',
+        '• Desarrollo de aplicaciones web escalables utilizando React, Node.js y TypeScript',
+        '• Implementación de arquitecturas en AWS con 99.9% de disponibilidad y auto-scaling',
+        '• Diseño e implementación de APIs RESTful y GraphQL para servicios distribuidos',
+        '• Optimización de rendimiento que resultó en 40% de mejora en tiempos de carga',
+        '• Implementación de pipelines CI/CD con Docker, Jenkins y automatización de deploys',
+        '• Mentoría de desarrolladores junior y semi-senior en mejores prácticas',
+        '• Colaboración directa con Product Managers y stakeholders de negocio'
+    ];
+    
+    currentJobTasks.forEach(task => {
+        checkPageBreak(8);
+        doc.setFontSize(10);
+        doc.setTextColor(...textColor);
+        const lines = doc.splitTextToSize(task, 170);
+        doc.text(lines, margin, currentY);
+        currentY += lines.length * 6;
+    });
+    
+    currentY += 10;
+    
+    // Previous Job
+    doc.setFontSize(13);
+    doc.setTextColor(...primaryColor);
+    doc.text('Full Stack Developer', margin, currentY);
+    currentY += 8;
+    
+    doc.setFontSize(11);
+    doc.setTextColor(...accentColor);
+    doc.text('EMPRESA ANTERIOR | 2018 - 2020 | Medellín, Colombia', margin, currentY);
+    currentY += 12;
+    
+    const prevJobTasks = [
+        '• Desarrollo de aplicaciones web responsive con React, Vue.js y Angular',
+        '• Implementación de APIs REST con Node.js, Express y bases de datos relacionales',
+        '• Integración con servicios de terceros y APIs de pago (Stripe, PayPal)',
+        '• Optimización de bases de datos PostgreSQL y MongoDB',
+        '• Implementación de testing automatizado con Jest, Cypress y Selenium',
+        '• Colaboración en metodologías ágiles (Scrum) y code reviews'
+    ];
+    
+    prevJobTasks.forEach(task => {
+        checkPageBreak(8);
+        doc.setFontSize(10);
+        doc.setTextColor(...textColor);
+        const lines = doc.splitTextToSize(task, 170);
+        doc.text(lines, margin, currentY);
+        currentY += lines.length * 6;
+    });
+    
+    currentY += 15;
+    
+    // PAGE 2-3: TECHNOLOGIES
+    // ======================
+    
+    addSectionTitle('COMPETENCIAS TÉCNICAS');
+    
+    // Expert Level
+    doc.setFontSize(12);
+    doc.setTextColor(...accentColor);
+    doc.text('NIVEL EXPERT (+7 años de experiencia)', margin, currentY);
+    currentY += 10;
+    
+    const expertTechs = [
+        'React: Desarrollo de SPAs complejas, hooks avanzados, Context API, Redux',
+        'Node.js: APIs escalables, microservicios, real-time con Socket.io',
+        'TypeScript: Tipado avanzado, interfaces, generics, decorators',
+        'JavaScript: ES6+, programación funcional, patrones de diseño',
+        'AWS: EC2, S3, Lambda, RDS, CloudFormation, Load Balancers',
+        'Docker: Containerización, Docker Compose, orquestación'
+    ];
+    
+    expertTechs.forEach(tech => {
+        checkPageBreak(8);
+        doc.setFontSize(10);
+        doc.setTextColor(...textColor);
+        const lines = doc.splitTextToSize(`• ${tech}`, 170);
+        doc.text(lines, margin, currentY);
+        currentY += lines.length * 6;
+    });
+    
+    currentY += 8;
+    
+    // Advanced Level
+    doc.setFontSize(12);
+    doc.setTextColor(...primaryColor);
+    doc.text('NIVEL AVANZADO (4-6 años de experiencia)', margin, currentY);
+    currentY += 10;
+    
+    const advancedTechs = [
+        'Python: Django, Flask, data processing, scripting automatizado',
+        'PostgreSQL: Queries complejas, optimización, stored procedures',
+        'MongoDB: Agregaciones, indexing, replicación',
+        'Git: Flujos avanzados, merge strategies, Git hooks',
+        'Linux: Administración de servidores, bash scripting, nginx',
+        'CI/CD: Jenkins, GitHub Actions, automatización de deploys'
+    ];
+    
+    advancedTechs.forEach(tech => {
+        checkPageBreak(8);
+        doc.setFontSize(10);
+        doc.setTextColor(...textColor);
+        const lines = doc.splitTextToSize(`• ${tech}`, 170);
+        doc.text(lines, margin, currentY);
+        currentY += lines.length * 6;
+    });
+    
+    currentY += 8;
+    
+    // Intermediate Level
+    doc.setFontSize(12);
+    doc.setTextColor(...grayColor);
+    doc.text('NIVEL INTERMEDIO (2-3 años de experiencia)', margin, currentY);
+    currentY += 10;
+    
+    const intermediateTechs = [
+        'Angular: Componentes, servicios, routing, reactive forms',
+        'Vue.js: Vuex, Vue Router, composición API',
+        'GraphQL: Queries, mutations, Apollo Client',
+        'Kubernetes: Pods, services, deployments básicos',
+        'DevOps: Monitoring, logging, infrastructure as code'
+    ];
+    
+    intermediateTechs.forEach(tech => {
+        checkPageBreak(8);
+        doc.setFontSize(10);
+        doc.setTextColor(...textColor);
+        const lines = doc.splitTextToSize(`• ${tech}`, 170);
+        doc.text(lines, margin, currentY);
+        currentY += lines.length * 6;
+    });
+    
+    currentY += 15;
+    
+    // PAGE 3: PROJECTS
+    // ===============
+    
+    addSectionTitle('PROYECTOS DESTACADOS');
+    
+    // Project 1
+    doc.setFontSize(12);
+    doc.setTextColor(...primaryColor);
+    doc.text('E-Commerce Platform Escalable', margin, currentY);
+    currentY += 8;
+    
+    addWrappedText('Desarrollo completo de plataforma e-commerce con React, Node.js y AWS. Implementación de sistema de pagos, gestión de inventario y panel administrativo. Soporte para +10,000 usuarios concurrentes.');
+    
+    doc.setFontSize(10);
+    doc.setTextColor(...grayColor);
+    doc.text('Tecnologías: React, Node.js, PostgreSQL, AWS, Stripe API', margin, currentY);
+    currentY += 12;
+    
+    // Project 2
+    doc.setFontSize(12);
+    doc.setTextColor(...primaryColor);
+    doc.text('Sistema de Gestión Empresarial (ERP)', margin, currentY);
+    currentY += 8;
+    
+    addWrappedText('Desarrollo de ERP personalizado para PyME con módulos de inventario, facturación, CRM y reportes. Migración de sistema legacy y capacitación de usuarios.');
+    
+    doc.setFontSize(10);
+    doc.setTextColor(...grayColor);
+    doc.text('Tecnologías: Vue.js, Python Django, PostgreSQL, Docker', margin, currentY);
+    currentY += 12;
+    
+    // Project 3
+    doc.setFontSize(12);
+    doc.setTextColor(...primaryColor);
+    doc.text('API Gateway y Microservicios', margin, currentY);
+    currentY += 8;
+    
+    addWrappedText('Diseño e implementación de arquitectura de microservicios con API Gateway, autenticación JWT y rate limiting. Migración de monolito a microservicios.');
+    
+    doc.setFontSize(10);
+    doc.setTextColor(...grayColor);
+    doc.text('Tecnologías: Node.js, Docker, AWS Lambda, API Gateway', margin, currentY);
+    currentY += 15;
+    
+    // PAGE 4: EDUCATION, CERTIFICATIONS, ETC.
+    // =======================================
+    
+    addSectionTitle('EDUCACIÓN');
+    
+    doc.setFontSize(12);
+    doc.setTextColor(...primaryColor);
+    doc.text('Tecnólogo en Análisis y Desarrollo de Sistemas de Información', margin, currentY);
+    currentY += 8;
+    
+    doc.setFontSize(11);
+    doc.setTextColor(...textColor);
+    doc.text('Servicio Nacional de Aprendizaje - SENA', margin, currentY);
+    currentY += 6;
+    doc.text('Barranquilla, Atlántico', margin, currentY);
+    currentY += 15;
+    
+    // Certifications
+    addSectionTitle('CERTIFICACIONES');
+    
+    const certifications = [
+        '• AWS Certified Solutions Architect - Associate',
+        '• React Advanced Certification - Meta',
+        '• Node.js Professional Certification',
+        '• Scrum Master Certified (PSM I)',
+        '• Docker Certified Associate'
+    ];
+    
+    certifications.forEach(cert => {
+        checkPageBreak(8);
+        doc.setFontSize(11);
+        doc.setTextColor(...textColor);
+        doc.text(cert, margin, currentY);
+        currentY += 7;
+    });
+    
+    currentY += 10;
+    
+    // Languages
+    addSectionTitle('IDIOMAS');
+    doc.setFontSize(11);
+    doc.setTextColor(...textColor);
+    doc.text('Español: Nativo', margin, currentY);
+    currentY += 15;
+    
+    // Soft Skills
+    addSectionTitle('HABILIDADES BLANDAS');
+    
+    const softSkills = [
+        '• Liderazgo técnico y gestión de equipos',
+        '• Comunicación efectiva con stakeholders',
+        '• Resolución de problemas complejos',
+        '• Mentoría y desarrollo de talento',
+        '• Adaptabilidad a nuevas tecnologías',
+        '• Trabajo en equipo y colaboración'
+    ];
+    
+    softSkills.forEach(skill => {
+        checkPageBreak(8);
+        doc.setFontSize(11);
+        doc.setTextColor(...textColor);
+        doc.text(skill, margin, currentY);
+        currentY += 7;
+    });
+    
+    // Footer in last page
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.text('CV generado automáticamente desde yamicueto.github.io', margin, 285);
+    
+    // Save the PDF
+    doc.save('CV_Yamid_Cueto_Senior_Software_Engineer_Completo.pdf');
+}
