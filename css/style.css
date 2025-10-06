@@ -73,10 +73,30 @@
   --radius-xl: 0.75rem;
   --radius-2xl: 1rem;
 
-  /* Transiciones */
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
+  /* Transiciones - Disabled for cleaner look */
+  --transition-fast: none;
+  --transition-normal: none;
+  --transition-slow: none;
+}
+
+/* ==========================================================================
+   OVERRIDE ANIMATIONS - ENSURE ALL CONTENT IS VISIBLE
+   ========================================================================== */
+
+/* Force all content to be visible without animations */
+.section-animate,
+.loading,
+.animate-slide-in-rotate,
+.animate-fade-in-scale,
+.animate-bounce-in,
+.animate-zoom-in-left,
+.fade-in,
+.slide-up,
+[class*="animate-"] {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  visibility: visible !important;
 }
 
 /* ==========================================================================
@@ -457,7 +477,6 @@ body {
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
 }
 
@@ -468,7 +487,6 @@ body {
 }
 
 .btn-accent:hover {
-  transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
 }
 
@@ -726,7 +744,6 @@ body {
 }
 
 .stat:hover {
-  transform: translateY(-4px);
   box-shadow: var(--shadow-md);
   border-color: rgba(79, 70, 229, 0.3);
 }
@@ -847,7 +864,6 @@ body {
 }
 
 .skills-category:hover {
-  transform: translateY(-5px);
   box-shadow: 
     0 20px 40px rgba(0, 0, 0, 0.4),
     0 2px 12px rgba(0, 0, 0, 0.3),
@@ -1047,7 +1063,6 @@ body {
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
   box-shadow: var(--shadow-xl);
   border-color: var(--accent-color);
 }
@@ -1104,7 +1119,6 @@ body {
 }
 
 .project-link:hover {
-  transform: scale(1.1);
   background: white;
   color: var(--primary-color);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -1326,7 +1340,6 @@ body {
 }
 
 .value-card:hover {
-  transform: translateY(-8px);
   box-shadow: 
     0 20px 40px rgba(0, 0, 0, 0.15),
     0 2px 12px rgba(0, 0, 0, 0.1);
@@ -1649,18 +1662,8 @@ body {
 }
 
 .cta-button:hover {
-  transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   background: #f8fffe;
-}
-
-.cta-button:hover i {
-  animation: whatsappPulse 1.5s infinite;
-}
-
-@keyframes whatsappPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
 }
 
 /* Responsive Design for Contact Section */
@@ -1791,16 +1794,13 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Mejoras de performance para animaciones */
-.section-animate,
-.section-animate * {
-  will-change: transform, opacity;
-}
+/* Mejoras de performance para animaciones - DISABLED */
+/* .section-animate rules disabled */
 
-/* Estados de carga */
+/* Estados de carga - FIXED for no animations */
 .loading {
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1; /* Changed from 0 to 1 */
+  /* transform: translateY(20px); */
 }
 
 .loaded {
@@ -1885,18 +1885,20 @@ html {
     padding: var(--space-1);
   }
 
-  /* Limitar animaciones que puedan causar overflow */
+  /* Limitar animaciones que puedan causar overflow - DISABLED */
   .animate-slide-in-rotate,
   .animate-fade-in-scale,
   .animate-bounce-in,
   .animate-zoom-in-left {
     transform: none !important;
     animation: none !important;
+    opacity: 1 !important; /* Ensure visibility */
   }
 
-  /* Aplicar animaciones más suaves en mobile */
+  /* Aplicar animaciones más suaves en mobile - DISABLED */
   .section-animate.animate-in {
-    animation: mobileSlideIn 0.6s ease-out;
+    /* animation: mobileSlideIn 0.6s ease-out; */
+    opacity: 1 !important; /* Ensure visibility */
   }
 }
 

@@ -15,12 +15,12 @@ function initializeApp() {
     setupNavigation();
     setupShareButton();
     setupTypingEffect();
-    setupScrollAnimations();
-    setupAdvancedSectionAnimations();
+    // setupScrollAnimations(); // Disabled for cleaner look
+    // setupAdvancedSectionAnimations(); // Disabled for cleaner look
     setupSkillBars();
     setupProjectFilters();
     setupSmoothScrolling();
-    setupLoadingAnimations();
+    // setupLoadingAnimations(); // Disabled for cleaner look
     setupScrollToTop();
     
     // Inicializar animaciones de página
