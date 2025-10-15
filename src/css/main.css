@@ -1,0 +1,29 @@
+/* ==========================================================================
+   YAMID CUETO PORTFOLIO - MAIN CSS
+   ========================================================================== */
+
+/* Base imports */
+@import url('./utils/variables.css');
+@import url('./utils/reset.css');
+@import url('./utils/animations.css');
+@import url('./utils/utilities.css');
+
+/* Component imports */
+@import url('./components/navigation.css');
+@import url('./components/buttons.css');
+@import url('./components/cards.css');
+@import url('./components/code-window.css');
+@import url('./components/cursor.css');
+@import url('./components/metrics.css');
+
+/* Section imports */
+@import url('./sections/hero.css');
+@import url('./sections/about.css');
+@import url('./sections/skills.css');
+@import url('./sections/projects.css');
+@import url('./sections/experience.css');
+@import url('./sections/contact.css');
+@import url('./sections/footer.css');
+
+/* Responsive imports */
+@import url('./utils/responsive.css');
