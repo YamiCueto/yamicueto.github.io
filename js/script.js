@@ -392,8 +392,265 @@ function generatePDF() {
         return;
     }
     
-    // Tu código de generación PDF aquí...
-    // (mantén tu implementación actual)
+    try {
+        showNotification('Generando CV completo...', 'info');
+        
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        // Configuración
+        const pageWidth = doc.internal.pageSize.width;
+        const pageHeight = doc.internal.pageSize.height;
+        const margin = 15;
+        let currentY = 25;
+        
+        // Header con estilo
+        doc.setFontSize(22);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 100, 200);
+        doc.text('YAMID CUETO MAZO', margin, currentY);
+        
+        currentY += 8;
+        doc.setFontSize(14);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(50, 50, 50);
+        doc.text('Senior Full Stack Developer | 10+ Años de Experiencia', margin, currentY);
+        
+        // Línea decorativa
+        currentY += 5;
+        doc.setDrawColor(0, 100, 200);
+        doc.setLineWidth(0.5);
+        doc.line(margin, currentY, pageWidth - margin, currentY);
+        currentY += 8;
+        
+        // Contacto en columnas
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
+        const col1 = margin;
+        const col2 = pageWidth / 2;
+        
+        doc.text('Email: yamidcuetomazo@gmail.com', col1, currentY);
+        doc.text('Web: yamicueto.github.io', col2, currentY);
+        currentY += 4;
+        doc.text('Telefono: +57 300 279 2493', col1, currentY);
+        doc.text('LinkedIn: linkedin.com/in/yamid-cueto-mazo', col2, currentY);
+        currentY += 4;
+        doc.text('Ubicacion: Barranquilla, Colombia', col1, currentY);
+        doc.text('GitHub: github.com/YamiCueto', col2, currentY);
+        currentY += 10;
+        
+        // Resumen Profesional mejorado
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 100, 200);
+        doc.text('PERFIL PROFESIONAL', margin, currentY);
+        currentY += 6;
+        
+        doc.setFontSize(9);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        const resumen = 'Senior Software Engineer con más de 10 años liderando transformaciones digitales en empresas enterprise. Especialista en migración de sistemas legacy críticos, habiendo migrado un sistema bancario de VB6 a Java/Spring que sirve a 500K+ usuarios con 99.9% uptime. Expert en arquitecturas escalables con Java, Spring Boot, Angular y AWS. Actualmente desarrollando herramientas de IA generativa en Tata Consultancy Services.';
+        const resumenLines = doc.splitTextToSize(resumen, pageWidth - 2 * margin);
+        doc.text(resumenLines, margin, currentY);
+        currentY += resumenLines.length * 4 + 8;
+        
+        // Logros Destacados
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 100, 200);
+        doc.text('LOGROS DESTACADOS', margin, currentY);
+        currentY += 6;
+        
+        doc.setFontSize(9);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        const logros = [
+            '• Migracion exitosa de sistema bancario legacy (VB6 a Java) sirviendo 500K+ usuarios',
+            '• Implementacion de arquitecturas cloud que mejoraron performance en 40%',
+            '• Desarrollo de 15+ aplicaciones enterprise con alta disponibilidad',
+            '• Liderazgo tecnico en equipos multidisciplinarios y transformacion digital'
+        ];
+        
+        logros.forEach(logro => {
+            const logroLines = doc.splitTextToSize(logro, pageWidth - 2 * margin - 5);
+            doc.text(logroLines, margin, currentY);
+            currentY += logroLines.length * 4 + 2;
+        });
+        currentY += 5;
+        
+        // Experiencia Profesional Completa
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 100, 200);
+        doc.text('EXPERIENCIA PROFESIONAL', margin, currentY);
+        currentY += 6;
+        
+        // TCS
+        doc.setFontSize(10);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 0, 0);
+        doc.text('Senior Software Engineering', margin, currentY);
+        currentY += 4;
+        doc.setFontSize(9);
+        doc.setFont(undefined, 'italic');
+        doc.setTextColor(0, 100, 200);
+        doc.text('Tata Consultancy Services | Nov 2023 - Presente', margin, currentY);
+        currentY += 4;
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        const tcsDesc = '• Desarrollo de soluciones enterprise con Java y herramientas de IA generativa\n• Liderazgo en proyectos de transformación digital y experiencia de usuario\n• Arquitectura de sistemas distribuidos con Kubernetes y microservicios\n• Implementación de mejores prácticas en desarrollo ágil (Scrum)';
+        const tcsLines = doc.splitTextToSize(tcsDesc, pageWidth - 2 * margin);
+        doc.text(tcsLines, margin, currentY);
+        currentY += tcsLines.length * 4 + 6;
+        
+        // Intergrupo
+        doc.setFontSize(10);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 0, 0);
+        doc.text('Senior Software Development Engineer', margin, currentY);
+        currentY += 4;
+        doc.setFontSize(9);
+        doc.setFont(undefined, 'italic');
+        doc.setTextColor(0, 100, 200);
+        doc.text('Intergrupo | Mar 2021 - Nov 2023', margin, currentY);
+        currentY += 4;
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        const intergrupoDesc = '• Desarrollo de sistemas distribuidos escalables con Spring Framework\n• Implementación de arquitecturas cloud con alta disponibilidad\n• Liderazgo técnico en metodologías ágiles y mejores prácticas\n• Optimización de performance y seguridad en aplicaciones enterprise';
+        const intergrupoLines = doc.splitTextToSize(intergrupoDesc, pageWidth - 2 * margin);
+        doc.text(intergrupoLines, margin, currentY);
+        currentY += intergrupoLines.length * 4 + 6;
+        
+        // SoftwareONE
+        doc.setFontSize(10);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 0, 0);
+        doc.text('Software Development Engineer', margin, currentY);
+        currentY += 4;
+        doc.setFontSize(9);
+        doc.setFont(undefined, 'italic');
+        doc.setTextColor(0, 100, 200);
+        doc.text('SoftwareONE Colombia | Feb 2021 - Nov 2023', margin, currentY);
+        currentY += 4;
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        const softwareOneDesc = '• Desarrollo de soluciones cloud con enfoque en arquitectura escalable\n• Implementación de seguridad y optimización de rendimiento\n• Trabajo con tecnologías Java, Kubernetes y APIs RESTful';
+        const softwareOneLines = doc.splitTextToSize(softwareOneDesc, pageWidth - 2 * margin);
+        doc.text(softwareOneLines, margin, currentY);
+        currentY += softwareOneLines.length * 4 + 6;
+        
+        // GTS
+        doc.setFontSize(10);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 0, 0);
+        doc.text('Full Stack Engineer', margin, currentY);
+        currentY += 4;
+        doc.setFontSize(9);
+        doc.setFont(undefined, 'italic');
+        doc.setTextColor(0, 100, 200);
+        doc.text('GTS Global Tax Services | Ene 2019 - Mar 2020', margin, currentY);
+        currentY += 4;
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        const gtsDesc = '• Desarrollo full stack con Java/Spring Boot + Angular 8+\n• Implementación de soluciones completas para servicios fiscales globales\n• Integración de APIs RESTful y optimización de bases de datos';
+        const gtsLines = doc.splitTextToSize(gtsDesc, pageWidth - 2 * margin);
+        doc.text(gtsLines, margin, currentY);
+        currentY += gtsLines.length * 4 + 8;
+        
+        // Comprobar si necesitamos nueva página
+        if (currentY > pageHeight - 60) {
+            doc.addPage();
+            currentY = 25;
+        }
+        
+        // Skills Técnicos Completos
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 100, 200);
+        doc.text('COMPETENCIAS TÉCNICAS', margin, currentY);
+        currentY += 6;
+        
+        doc.setFontSize(9);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        
+        const skills = [
+            'Frontend: Angular (Expert), TypeScript (Advanced), JavaScript (Advanced), HTML5, CSS3',
+            'Backend: Java (Expert), Spring Boot (Advanced), Node.js (Intermediate), REST APIs',
+            'Cloud & DevOps: AWS (EC2, S3, Lambda), Docker, Kubernetes, Git (Expert)',
+            'Bases de Datos: PostgreSQL, MySQL, MongoDB, JPA/Hibernate',
+            'Herramientas: Maven, Jenkins, JIRA, IntelliJ IDEA, VS Code',
+            'Metodologías: Scrum, Agile, TDD, Clean Architecture, Microservices'
+        ];
+        
+        skills.forEach(skill => {
+            const skillLines = doc.splitTextToSize(`• ${skill}`, pageWidth - 2 * margin);
+            doc.text(skillLines, margin, currentY);
+            currentY += skillLines.length * 4 + 2;
+        });
+        currentY += 6;
+        
+        // Proyectos Destacados
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 100, 200);
+        doc.text('PROYECTOS DESTACADOS', margin, currentY);
+        currentY += 6;
+        
+        doc.setFontSize(9);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        
+        const proyectos = [
+            '• Promptly: Interfaz moderna para LLMs (Ollama/OpenAI) - JavaScript, AI APIs',
+            '• RubberDuck Studio: Backend reflexivo para developers - Node.js, IA local/cloud',
+            '• Cloud Cheatsheet: Dashboard interactivo de servicios AWS - TypeScript',
+            '• Todo List App: Gestion de tareas con Angular Material - Angular, TypeScript',
+            '• Academy.IA: Plataforma educativa SPA - JavaScript puro, HTML5, CSS3'
+        ];
+        
+        proyectos.forEach(proyecto => {
+            const proyectoLines = doc.splitTextToSize(proyecto, pageWidth - 2 * margin);
+            doc.text(proyectoLines, margin, currentY);
+            currentY += proyectoLines.length * 4 + 2;
+        });
+        currentY += 6;
+        
+        // Educación
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(0, 100, 200);
+        doc.text('EDUCACIÓN & CERTIFICACIONES', margin, currentY);
+        currentY += 6;
+        
+        doc.setFontSize(9);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        doc.text('• Tecnologo en Desarrollo de Software - SENA', margin, currentY);
+        currentY += 4;
+        doc.text('• Certificaciones en tecnologias Java, Spring Boot y AWS', margin, currentY);
+        currentY += 4;
+        doc.text('• Formacion continua en IA Generativa y arquitecturas cloud', margin, currentY);
+        currentY += 8;
+        
+        // Footer profesional
+        currentY = pageHeight - 15;
+        doc.setFontSize(8);
+        doc.setTextColor(100, 100, 100);
+        doc.text('CV generado desde yamicueto.github.io', margin, currentY);
+        const fecha = new Date().toLocaleDateString('es-ES', { 
+            year: 'numeric', month: 'long', day: 'numeric' 
+        });
+        doc.text(`Actualizado: ${fecha}`, pageWidth - margin - 50, currentY);
+        
+        // Descargar
+        doc.save('Yamid_Cueto_CV_Completo.pdf');
+        showNotification('✅ CV completo descargado exitosamente!', 'success');
+        
+    } catch (error) {
+        console.error('Error generando PDF:', error);
+        showNotification('❌ Error generando PDF. Inténtalo de nuevo.', 'error');
+    }
     
     trackEvent('pdf_download');
 }
