@@ -1,9 +1,6 @@
 // ==========================================================================
-// PORTFOLIO - VERSIÓN HÍBRIDA CON GSAP
+// PORTFOLIO - VERSIÓN LEGACY ESTABLE 
 // ==========================================================================
-
-// Solo importar lo mínimo de GSAP
-import { setupTypingEffectGSAP, setupTypingEffectFallback } from './typing-gsap.js';
 
 // ==========================================================================
 // VARIABLES GLOBALES
@@ -27,10 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function initializeApp() {
     // VERSIÓN HÍBRIDA: GSAP solo para typing, resto legacy
-    console.log('� Modo híbrido: GSAP typing + legacy animations');
+    console.log('🛡️ Modo legacy estable: sin GSAP imports');
     
-    // Core features (legacy)
+    // Core features (legacy y estables)
     setupNavigation();
+    setupTypingEffectLegacy(); // Usar versión legacy directa
     setupShareButton();
     setupSmoothScrolling();
     setupScrollToTop();
@@ -40,16 +38,12 @@ function initializeApp() {
         setupCursor();
     }
     
-    // Typing effect con GSAP (con fallback)
-    try {
-        setupTypingEffectGSAP();
-    } catch (error) {
-        console.warn('GSAP typing falló, usando fallback:', error);
-        setupTypingEffectFallback();
-    }
-    
     // Animations legacy (probadas y funcionando)
     setupScrollAnimationsLegacy();
+    
+    // Legacy features
+    setupLazyLoading();
+    setupAnalytics();
     
     // Legacy features
     setupLazyLoading();

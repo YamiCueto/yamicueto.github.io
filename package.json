@@ -1,7 +1,6 @@
 {
   "name": "yamicueto-portfolio",
   "version": "2.0.0",
-  "type": "module",
   "description": "Yamid Cueto - Senior Software Engineer Portfolio",
   "main": "index.html",
   "scripts": {

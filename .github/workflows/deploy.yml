@@ -36,10 +36,10 @@ jobs:
     - name: 🎨 Build CSS
       run: npm run build:css:prod
       
-    - name: � Build JS (Hybrid GSAP)
+    - name: 🚀 Build JS (Hybrid GSAP)
       run: npm run build:js:hybrid
       
-    - name: �🗜️ Minify assets
+    - name: �️ Minify assets
       run: npm run minify
     
     - name: 🧹 Lint CSS
@@ -53,6 +53,7 @@ jobs:
         path: |
           css/style.css
           css/style.min.css
+          js/script.hybrid.js
           js/script.min.js
         retention-days: 1
 
