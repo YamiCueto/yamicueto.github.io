@@ -34,17 +34,18 @@ body {
 
 /* Tablet y Mobile - 768px y menor */
 @media (max-width: 768px) {
-  /* DESHABILITAR TODAS LAS ANIMACIONES PROBLEMÁTICAS */
-  * {
+  /* DESHABILITAR SOLO LAS ANIMACIONES PROBLEMÁTICAS */
+  .section-animate,
+  .section-animate.animate-in,
+  .hero.section-animate,
+  .about.section-animate,
+  .skills.section-animate,
+  .projects.section-animate,
+  .experience.section-animate,
+  .contact.section-animate {
     transform: none !important;
     animation: none !important;
-    transition: none !important;
-  }
-
-  .section-animate,
-  .section-animate.animate-in {
     opacity: 1 !important;
-    transform: none !important;
     transition: none !important;
   }
 

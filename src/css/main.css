@@ -23,7 +23,7 @@
 @import url('./sections/projects.css');
 @import url('./sections/experience.css');
 @import url('./sections/contact.css');
-@import url('./sections/footer.css');
+@import url('./components/footer.css');
 
 /* Responsive imports */
 @import url('./utils/responsive.css');
