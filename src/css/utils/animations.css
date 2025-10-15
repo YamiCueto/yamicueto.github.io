@@ -14,53 +14,89 @@
   transform: translateY(0);
 }
 
-/* Animaciones específicas para cada sección */
-.hero.section-animate {
-  transform: scale(0.95) translateY(20px);
+/* Animaciones específicas para cada sección - SOLO DESKTOP */
+@media (min-width: 769px) {
+  .hero.section-animate {
+    transform: scale(0.95) translateY(20px);
+  }
+
+  .hero.animate-in {
+    transform: scale(1) translateY(0);
+  }
+
+  .about.section-animate {
+    transform: translateX(-50px) rotateY(-10deg);
+  }
+
+  .about.animate-in {
+    transform: translateX(0) rotateY(0deg);
+  }
+
+  .skills.section-animate {
+    transform: rotateX(15deg) translateY(30px);
+  }
+
+  .skills.animate-in {
+    transform: rotateX(0deg) translateY(0);
+  }
+
+  .projects.section-animate {
+    transform: perspective(1000px) rotateX(20deg) translateY(40px);
+  }
+
+  .projects.animate-in {
+    transform: perspective(1000px) rotateX(0deg) translateY(0);
+  }
+
+  .experience.section-animate {
+    transform: perspective(1000px) rotateY(15deg) translateX(30px);
+  }
+
+  .experience.animate-in {
+    transform: perspective(1000px) rotateY(0deg) translateX(0);
+  }
+
+  .contact.section-animate {
+    transform: scale(0.8) translateY(50px);
+  }
+
+  .contact.animate-in {
+    transform: scale(1) translateY(0);
+  }
 }
 
-.hero.animate-in {
-  transform: scale(1) translateY(0);
-}
+/* Animaciones simplificadas para MÓVIL */
+@media (max-width: 768px) {
+  .section-animate {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 
-.about.section-animate {
-  transform: translateX(-50px) rotateY(-10deg);
-}
+  .section-animate.animate-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 
-.about.animate-in {
-  transform: translateX(0) rotateY(0deg);
-}
+  .hero.section-animate,
+  .about.section-animate,
+  .skills.section-animate,
+  .projects.section-animate,
+  .experience.section-animate,
+  .contact.section-animate {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 
-.skills.section-animate {
-  transform: rotateX(15deg) translateY(30px);
-}
-
-.skills.animate-in {
-  transform: rotateX(0deg) translateY(0);
-}
-
-.projects.section-animate {
-  transform: perspective(1000px) rotateX(20deg) translateY(40px);
-}
-
-.projects.animate-in {
-  transform: perspective(1000px) rotateX(0deg) translateY(0);
-}
-
-.experience.section-animate {
-  transform: perspective(1000px) rotateY(15deg) translateX(30px);
-}
-
-.experience.animate-in {
-  transform: perspective(1000px) rotateY(0deg) translateX(0);
-}
-
-.contact.section-animate {
-  transform: scale(0.8) translateY(50px);
-}
-
-.contact.animate-in {
-  transform: scale(1) translateY(0);
+  .hero.animate-in,
+  .about.animate-in,
+  .skills.animate-in,
+  .projects.animate-in,
+  .experience.animate-in,
+  .contact.animate-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Animaciones de entrada suaves */

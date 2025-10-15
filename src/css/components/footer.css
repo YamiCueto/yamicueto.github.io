@@ -43,13 +43,13 @@ BOTÓN FLOTANTE VOLVER ARRIBA
   visibility: hidden;
   transform: translateY(20px);
   transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(var(--accent-color-rgb), 0.3);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
 }
 
 .scroll-to-top:hover {
-  background: var(--text-color);
+  background: var(--primary-color);
   transform: translateY(0) scale(1.1);
-  box-shadow: 0 6px 20px rgba(var(--accent-color-rgb), 0.4);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
 }
 
 .scroll-to-top.show {
