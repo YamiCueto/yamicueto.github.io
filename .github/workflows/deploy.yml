@@ -36,7 +36,10 @@ jobs:
     - name: 🎨 Build CSS
       run: npm run build:css:prod
       
-    - name: 🗜️ Minify assets
+    - name: � Build JS (Hybrid GSAP)
+      run: npm run build:js:hybrid
+      
+    - name: �🗜️ Minify assets
       run: npm run minify
     
     - name: 🧹 Lint CSS
