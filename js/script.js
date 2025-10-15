@@ -1,12 +1,9 @@
 // ==========================================================================
-// MEJORAS CRÍTICAS Y OPTIMIZACIONES
+// PORTFOLIO - VERSIÓN HÍBRIDA CON GSAP
 // ==========================================================================
 
-// ✅ REMOVED: setupAdvancedSectionAnimations() - Código duplicado/innecesario
-// ✅ REMOVED: Multiple animation functions - Simplificado a uno
-// ✅ ADDED: Intersection Observer más eficiente
-// ✅ ADDED: Lazy loading real para imágenes
-// ✅ ADDED: Performance monitoring
+// Solo importar lo mínimo de GSAP
+import { setupTypingEffectGSAP, setupTypingEffectFallback } from './typing-gsap.js';
 
 // ==========================================================================
 // VARIABLES GLOBALES
@@ -15,7 +12,7 @@ let isMenuOpen = false;
 let observerInstances = [];
 
 // ==========================================================================
-// INICIALIZACIÓN MEJORADA
+// INICIALIZACIÓN HÍBRIDA
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', function() {
     // Medir performance
@@ -25,13 +22,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Log performance
     const perfEnd = performance.now();
-    console.log(`🚀 Portfolio cargado en ${(perfEnd - perfStart).toFixed(2)}ms`);
+    console.log(`🚀 Portfolio híbrido cargado en ${(perfEnd - perfStart).toFixed(2)}ms`);
 });
 
 function initializeApp() {
-    // Features core
+    // VERSIÓN HÍBRIDA: GSAP solo para typing, resto legacy
+    console.log('� Modo híbrido: GSAP typing + legacy animations');
+    
+    // Core features (legacy)
     setupNavigation();
-    setupTypingEffect();
     setupShareButton();
     setupSmoothScrolling();
     setupScrollToTop();
@@ -41,13 +40,20 @@ function initializeApp() {
         setupCursor();
     }
     
-    // Animations
-    setupScrollAnimations();
+    // Typing effect con GSAP (con fallback)
+    try {
+        setupTypingEffectGSAP();
+    } catch (error) {
+        console.warn('GSAP typing falló, usando fallback:', error);
+        setupTypingEffectFallback();
+    }
     
-    // Lazy loading
+    // Animations legacy (probadas y funcionando)
+    setupScrollAnimationsLegacy();
+    
+    // Legacy features
     setupLazyLoading();
-    
-    // Analytics
+    setupAnalytics();
     setupAnalytics();
 }
 
@@ -236,76 +242,6 @@ function showNotification(message, type = 'info') {
 }
 
 // ==========================================================================
-// TYPING EFFECT MEJORADO
-// ==========================================================================
-function setupTypingEffect() {
-    const typingElement = document.getElementById('typing-text');
-    if (!typingElement) return;
-    
-    const roles = [
-        'Full Stack Developer',
-        'Legacy System Transformer',
-        'Java/Spring Expert',
-        'Cloud Architect',
-        'Problem Solver'
-    ];
-    
-    let currentRoleIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-    
-    function type() {
-        const currentRole = roles[currentRoleIndex];
-        
-        if (isDeleting) {
-            typingElement.textContent = currentRole.substring(0, currentCharIndex - 1);
-            currentCharIndex--;
-        } else {
-            typingElement.textContent = currentRole.substring(0, currentCharIndex + 1);
-            currentCharIndex++;
-        }
-        
-        let typingSpeed = isDeleting ? 50 : 100;
-        
-        if (!isDeleting && currentCharIndex === currentRole.length) {
-            typingSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && currentCharIndex === 0) {
-            isDeleting = false;
-            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-            typingSpeed = 500;
-        }
-        
-        setTimeout(type, typingSpeed);
-    }
-    
-    type();
-}
-
-// ==========================================================================
-// SCROLL ANIMATIONS SIMPLIFICADO Y EFICIENTE
-// ==========================================================================
-function setupScrollAnimations() {
-    const sections = document.querySelectorAll('.section-animate');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                // Opcional: desconectar después de animar
-                // observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    });
-    
-    sections.forEach(section => observer.observe(section));
-    observerInstances.push(observer);
-}
-
-// ==========================================================================
 // PROJECT FILTERS
 // ==========================================================================
 function setupProjectFilters() {
@@ -466,6 +402,72 @@ function generatePDF() {
     // (mantén tu implementación actual)
     
     trackEvent('pdf_download');
+}
+
+// ==========================================================================
+// FUNCIONES LEGACY DE EMERGENCIA
+// ==========================================================================
+
+function setupTypingEffectLegacy() {
+    const typingElement = document.getElementById('typing-text');
+    if (!typingElement) return;
+    
+    const roles = [
+        'Full Stack Developer',
+        'Legacy System Transformer',
+        'Java/Spring Expert',
+        'Cloud Architect',
+        'Problem Solver'
+    ];
+    
+    let currentRoleIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    
+    function type() {
+        const currentRole = roles[currentRoleIndex];
+        
+        if (isDeleting) {
+            typingElement.textContent = currentRole.substring(0, currentCharIndex - 1);
+            currentCharIndex--;
+        } else {
+            typingElement.textContent = currentRole.substring(0, currentCharIndex + 1);
+            currentCharIndex++;
+        }
+        
+        let typingSpeed = isDeleting ? 50 : 100;
+        
+        if (!isDeleting && currentCharIndex === currentRole.length) {
+            typingSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && currentCharIndex === 0) {
+            isDeleting = false;
+            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+            typingSpeed = 500;
+        }
+        
+        setTimeout(type, typingSpeed);
+    }
+    
+    type();
+}
+
+function setupScrollAnimationsLegacy() {
+    const sections = document.querySelectorAll('.section-animate');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    sections.forEach(section => observer.observe(section));
+    observerInstances.push(observer);
 }
 
 // ==========================================================================
