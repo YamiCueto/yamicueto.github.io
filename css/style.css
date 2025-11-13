@@ -109,54 +109,124 @@
 }
 
 /* GitHub Stats Section */
-.github-stats {
-    text-align: center;
-    margin: var(--space-12) 0;
-    padding: var(--space-8) 0;
-    background: var(--bg-secondary);
-    border-radius: var(--radius-xl);
+.github-stats-section {
+    margin: var(--space-16) 0;
+    padding: var(--space-10) var(--space-6);
+    background: var(--bg-primary);
+    border-radius: var(--radius-2xl);
+    border: 1px solid rgba(79, 70, 229, 0.1);
 }
 
-.github-stats h3 {
+.stats-header {
+    text-align: center;
+    margin-bottom: var(--space-10);
+}
+
+.stats-title {
     color: var(--text-primary);
     font-size: var(--font-2xl);
     font-weight: 700;
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-2);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
 }
 
-.github-stats h3 i {
+.stats-title i {
     color: var(--primary-color);
+    font-size: var(--font-3xl);
 }
 
-.stats-grid {
+.stats-subtitle {
+    color: var(--text-muted);
+    font-size: var(--font-md);
+    margin: 0;
+}
+
+.stats-grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-6);
     max-width: 1000px;
     margin: 0 auto;
 }
 
-.stat-widget {
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
+.stat-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    padding: var(--space-4);
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: all var(--transition-normal);
+    border: 1px solid transparent;
 }
 
-.stat-widget:hover {
+.stat-card:hover {
     box-shadow: var(--shadow-xl);
     transform: translateY(-5px);
+    border-color: rgba(59, 130, 246, 0.3);
 }
 
-.stat-widget img {
+.stat-card img {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: var(--radius-lg);
+}
+
+.stat-primary,
+.stat-streak {
+    grid-column: span 1;
+}
+
+.stat-languages {
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-languages img {
+    max-width: 600px;
+}
+
+/* Responsive for GitHub Stats */
+@media (max-width: 968px) {
+    .stats-grid-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .stat-primary,
+    .stat-streak,
+    .stat-languages {
+        grid-column: span 1;
+    }
+    
+    .stat-languages img {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .github-stats-section {
+        padding: var(--space-8) var(--space-4);
+    }
+    
+    .stats-title {
+        font-size: var(--font-xl);
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+    
+    .stats-title i {
+        font-size: var(--font-2xl);
+    }
+    
+    .stat-card {
+        padding: var(--space-3);
+    }
 }
 
 /* Testimonials Section */
