@@ -191,6 +191,16 @@
     max-width: 600px;
 }
 
+.stat-error {
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+    padding: var(--space-8);
+    text-align: center;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px dashed rgba(239, 68, 68, 0.3);
+    border-radius: var(--radius-lg);
+}
+
 /* Responsive for GitHub Stats */
 @media (max-width: 968px) {
     .stats-grid-container {
