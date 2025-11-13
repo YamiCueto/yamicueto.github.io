@@ -950,21 +950,30 @@
                 
                 <div class="stats-grid-container">
                     <div class="stat-card stat-primary">
+                        <div class="skeleton-loader"></div>
                         <img src="https://github-readme-stats.vercel.app/api?username=YamiCueto&show_icons=true&theme=radical&hide_border=true&bg_color=1e293b&title_color=3b82f6&icon_color=06b6d4&text_color=e2e8f0&border_radius=12&cache_seconds=1800" 
-                             alt="GitHub Stats" 
-                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'stat-error\'>📊 Stats temporalmente no disponibles</div>'">
+                             alt="GitHub Stats"
+                             onload="this.previousElementSibling.style.display='none'; this.style.display='block';"
+                             onerror="this.previousElementSibling.style.display='none'; this.parentElement.innerHTML='<div class=\'stat-error\'>📊 Stats temporalmente no disponibles</div>'"
+                             style="display: none;">
                     </div>
                     
                     <div class="stat-card stat-streak">
+                        <div class="skeleton-loader"></div>
                         <img src="https://streak-stats.demolab.com?user=YamiCueto&theme=radical&hide_border=true&background=1e293b&stroke=3b82f6&ring=06b6d4&fire=06b6d4&currStreakLabel=e2e8f0&border_radius=12" 
                              alt="GitHub Streak"
-                             onerror="this.src='https://github-readme-streak-stats.herokuapp.com/?user=YamiCueto&theme=radical&hide_border=true&background=1e293b&stroke=3b82f6&ring=06b6d4&fire=06b6d4&currStreakLabel=e2e8f0&border_radius=12'">
+                             onload="this.previousElementSibling.style.display='none'; this.style.display='block';"
+                             onerror="this.src='https://github-readme-streak-stats.herokuapp.com/?user=YamiCueto&theme=radical&hide_border=true&background=1e293b&stroke=3b82f6&ring=06b6d4&fire=06b6d4&currStreakLabel=e2e8f0&border_radius=12'"
+                             style="display: none;">
                     </div>
                     
                     <div class="stat-card stat-languages">
+                        <div class="skeleton-loader skeleton-wide"></div>
                         <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YamiCueto&layout=compact&theme=radical&hide_border=true&bg_color=1e293b&title_color=3b82f6&text_color=e2e8f0&border_radius=12&langs_count=6&cache_seconds=1800" 
                              alt="Top Languages"
-                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'stat-error\'>📈 Languages temporalmente no disponibles</div>'">
+                             onload="this.previousElementSibling.style.display='none'; this.style.display='block';"
+                             onerror="this.previousElementSibling.style.display='none'; this.parentElement.innerHTML='<div class=\'stat-error\'>📈 Languages temporalmente no disponibles</div>'"
+                             style="display: none;">
                     </div>
                 </div>
             </div>
