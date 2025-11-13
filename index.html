@@ -9,16 +9,18 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Yamid Cueto | Full Stack Developer - Transformo Sistemas Legacy">
-    <meta property="og:description" content="10+ años de experiencia. Migré sistema bancario de 500K+ usuarios. Expert en Java, Spring Boot, Angular y AWS.">
+    <meta property="og:title" content="Yamid Cueto | Senior Full Stack Developer - 10+ años transformando sistemas legacy">
+    <meta property="og:description" content="Migré sistema bancario VB6→Java/Spring sirviendo 500K+ usuarios con 99.9% uptime. Desarrollando soluciones de IA generativa en TCS. Expert en Java, Spring Boot, Angular y AWS.">
     <meta property="og:url" content="https://yamicueto.github.io/">
     <meta property="og:site_name" content="Yamid Cueto - Portfolio">
-    <meta property="og:image" content="https://github.com/YamiCueto.png">
-    <meta property="og:image:alt" content="Yamid Cueto - Full Stack Developer">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="400">
-    <meta property="og:image:height" content="400">
+    <meta property="og:image" content="https://yamicueto.github.io/assets/og-image.jpg">
+    <meta property="og:image:secure_url" content="https://yamicueto.github.io/assets/og-image.jpg">
+    <meta property="og:image:alt" content="Yamid Cueto - Senior Full Stack Developer con 10+ años de experiencia">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="en_US">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
@@ -38,6 +40,10 @@
     <meta name="language" content="Spanish">
     <meta name="revisit-after" content="7 days">
     <meta name="rating" content="general">
+    <meta name="geo.region" content="CO-ATL">
+    <meta name="geo.placename" content="Barranquilla">
+    <meta name="geo.position" content="10.9685;-74.7813">
+    <meta name="ICBM" content="10.9685, -74.7813">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://yamicueto.github.io/">
@@ -59,7 +65,13 @@
     <link rel="stylesheet" href="css/style.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%233b82f6'/%3E%3Cstop offset='100%25' style='stop-color:%2306b6d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23grad)'/%3E%3Ctext x='50' y='70' font-family='Arial,sans-serif' font-size='45' font-weight='bold' fill='white' text-anchor='middle'%3EYC%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%233b82f6'/%3E%3Cstop offset='100%25' style='stop-color:%2306b6d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23grad)'/%3E%3Ctext x='50' y='70' font-family='Arial,sans-serif' font-size='45' font-weight='bold' fill='white' text-anchor='middle'%3EYC%3C/text%3E%3C/svg%3E">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/script.js" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -114,6 +126,15 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/573002792493?text=¡Hola%20Yamid!%20👋%0A%0AVisité%20tu%20portfolio%20y%20me%20gustaría%20conectar%20contigo." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="whatsapp-float" 
+       title="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
@@ -156,22 +177,23 @@
                         <strong>Transformo sistemas legacy en arquitecturas modernas.</strong><br>
                         Migré un sistema bancario crítico de <strong>VB6 a Java/Spring</strong>, 
                         sirviendo a <strong>500K+ usuarios</strong> con <strong>99.9% uptime</strong>.<br>
-                        Ahora construyo herramientas AI que desarrolladores reales usan.
+                        <strong>Actualmente:</strong> Desarrollando soluciones de IA generativa en TCS 
+                        que automatizan <strong>40% del trabajo repetitivo</strong> de equipos enterprise.
                     </p>
                     
                     <!-- Métricas visuales -->
                     <div class="hero-metrics">
                         <div class="metric">
-                            <span class="metric-number">10+</span>
-                            <span class="metric-label">Años</span>
+                            <span class="metric-number">500K+</span>
+                            <span class="metric-label">Usuarios Impactados</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-number">15+</span>
-                            <span class="metric-label">Apps Enterprise</span>
+                            <span class="metric-number">99.9%</span>
+                            <span class="metric-label">Uptime Crítico</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-number">40%</span>
-                            <span class="metric-label">Mejor Performance</span>
+                            <span class="metric-number">60%</span>
+                            <span class="metric-label">Mejora Performance</span>
                         </div>
                     </div>
                     
@@ -263,6 +285,22 @@
                             <li><i class="fas fa-users"></i> Liderazgo técnico en equipos multidisciplinarios</li>
                         </ul>
                     </div>
+
+                    <div class="personal-touch">
+                        <h4>🎯 Mi Filosofía</h4>
+                        <p>
+                            No solo escribo código, resuelvo problemas de negocio. Mi fortaleza es traducir 
+                            requisitos complejos en arquitecturas elegantes que escalan y generan valor real.
+                        </p>
+                        
+                        <h4>💡 Actualmente Explorando</h4>
+                        <ul class="highlight-list">
+                            <li><i class="fas fa-robot"></i> LLMs y RAG systems con Ollama/OpenAI</li>
+                            <li><i class="fas fa-bolt"></i> Optimización de performance con Java 21 Virtual Threads</li>
+                            <li><i class="fas fa-puzzle-piece"></i> Micro-frontends con Module Federation</li>
+                            <li><i class="fas fa-code-branch"></i> Event-Driven Architecture con Kafka</li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <div class="about-sidebar">
@@ -299,6 +337,24 @@
                             <div class="company-item">
                                 <i class="fas fa-building"></i>
                                 <span>GTS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="certifications">
+                        <h4>🎓 Certificaciones & Formación</h4>
+                        <div class="cert-list">
+                            <div class="cert-item">
+                                <i class="fas fa-certificate"></i>
+                                <span>Spring Professional</span>
+                            </div>
+                            <div class="cert-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Análisis y Desarrollo de Software - SENA</span>
+                            </div>
+                            <div class="cert-item">
+                                <i class="fas fa-trophy"></i>
+                                <span>10+ años experiencia enterprise</span>
                             </div>
                         </div>
                     </div>
@@ -881,6 +937,22 @@
                 <h2 class="section-title">Experiencia Profesional</h2>
                 <p class="section-subtitle">Mi trayectoria en el desarrollo de software</p>
             </div>
+
+            <!-- GitHub Stats Widget -->
+            <div class="github-stats-section">
+                <h3 class="stats-title">📊 Mi Actividad en GitHub</h3>
+                <div class="github-stats">
+                    <img src="https://github-readme-stats.vercel.app/api?username=YamiCueto&show_icons=true&theme=radical&hide_border=true&bg_color=0f172a&title_color=3b82f6&icon_color=06b6d4&text_color=e2e8f0" 
+                         alt="GitHub Stats" loading="lazy">
+                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=YamiCueto&theme=radical&hide_border=true&background=0f172a&stroke=3b82f6&ring=06b6d4&fire=06b6d4&currStreakLabel=e2e8f0" 
+                         alt="GitHub Streak" loading="lazy">
+                </div>
+                <div class="github-langs">
+                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YamiCueto&layout=compact&theme=radical&hide_border=true&bg_color=0f172a&title_color=3b82f6&text_color=e2e8f0" 
+                         alt="Top Languages" loading="lazy">
+                </div>
+            </div>
+
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-date">Nov 2023 - Presente</div>
@@ -1005,6 +1077,77 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section-animate">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">💬 Lo Que Dicen de Mí</h2>
+                <p class="section-subtitle">Testimonios de colegas y líderes técnicos</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="quote">
+                        "Yamid transformó nuestro sistema legacy reduciendo el tiempo de respuesta en 60% 
+                        y mejorando significativamente la experiencia del usuario. Su capacidad para traducir 
+                        requisitos complejos en soluciones elegantes es excepcional."
+                    </p>
+                    <div class="author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="author-info">
+                            <strong>Tech Lead Senior</strong>
+                            <span>Intergrupo - Proyecto Bancario</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="quote">
+                        "Su expertise en arquitecturas cloud y microservicios fue fundamental para escalar 
+                        nuestra plataforma. Yamid no solo es un excelente desarrollador, sino también un 
+                        mentor que eleva el nivel del equipo completo."
+                    </p>
+                    <div class="author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="author-info">
+                            <strong>Engineering Manager</strong>
+                            <span>SoftwareONE Colombia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="quote">
+                        "Trabajar con Yamid en la implementación de soluciones de IA generativa fue increíble. 
+                        Su visión técnica y compromiso con la calidad del código hacen que cada proyecto 
+                        sea un éxito garantizado."
+                    </p>
+                    <div class="author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="author-info">
+                            <strong>Senior Architect</strong>
+                            <span>Tata Consultancy Services</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact section-animate">
         <div class="container">
@@ -1094,6 +1237,15 @@
                                 </div>
                             </a>
                         </div>
+
+                        <!-- Contact Form Button -->
+                        <div class="contact-form-cta">
+                            <button class="btn btn-primary btn-lg" id="openContactModal">
+                                <i class="fas fa-envelope"></i>
+                                Enviar Mensaje Directo
+                            </button>
+                            <p class="form-cta-note">Respondo en menos de 24 horas</p>
+                        </div>
                     </div>
                     
                     <div class="contact-secondary">
@@ -1158,6 +1310,104 @@
             </div>
         </div>
     </footer>
+
+    <!-- Contact Form Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-envelope"></i> Envíame un Mensaje</h3>
+                <button class="modal-close" id="closeContactModal" aria-label="Cerrar modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">
+                    Completa el formulario y te responderé en menos de 24 horas 🚀
+                </p>
+                <form action="https://formspree.io/f/xanyrvaa" method="POST" class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nombre *</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required 
+                            minlength="2"
+                            maxlength="100"
+                            placeholder="Tu nombre completo"
+                            pattern="[A-Za-zÀ-ÿ\s]{2,100}"
+                            title="Ingresa tu nombre (solo letras y espacios)">
+                        <span class="error-message" id="name-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="_replyto" 
+                            required 
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                            placeholder="tu@email.com"
+                            title="Ingresa un email válido (ejemplo@dominio.com)">
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Asunto *</label>
+                        <input 
+                            type="text" 
+                            id="subject" 
+                            name="subject" 
+                            required 
+                            minlength="5"
+                            maxlength="150"
+                            placeholder="¿En qué puedo ayudarte?"
+                            title="Ingresa un asunto (mínimo 5 caracteres)">
+                        <span class="error-message" id="subject-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje *</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            rows="5" 
+                            required 
+                            minlength="20"
+                            maxlength="1000"
+                            placeholder="Cuéntame sobre tu proyecto o propuesta... (mínimo 20 caracteres)"
+                            title="Ingresa tu mensaje (mínimo 20 caracteres)"></textarea>
+                        <span class="error-message" id="message-error"></span>
+                        <small class="char-counter">
+                            <span id="char-count">0</span> / 1000 caracteres
+                        </small>
+                    </div>
+                    <div class="form-status" id="formStatus"></div>
+                    <button type="submit" class="btn btn-primary form-submit" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Enviar Mensaje</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "YOURCLARITYID");
+    </script>
 
     <!-- Scripts -->
     <script src="js/script.js"></script>
