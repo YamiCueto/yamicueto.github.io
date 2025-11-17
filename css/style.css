@@ -536,6 +536,11 @@
         padding: var(--space-8) var(--space-4);
     }
     
+    .stats-grid-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
     .stats-title {
         font-size: var(--font-xl);
         flex-direction: column;
