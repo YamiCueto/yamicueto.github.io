@@ -12,10 +12,13 @@ class ProjectsSlider {
         this.cardsPerView = this.getCardsPerView();
         this.visibleCards = this.cards;
         this.isAnimating = false;
+        this.autoplayInterval = null;
+        this.autoplayDelay = 4000; // 4 segundos
         
         this.init();
         this.setupEventListeners();
         this.setupResizeObserver();
+        this.startAutoplay();
     }
     
     init() {
@@ -115,6 +118,7 @@ class ProjectsSlider {
         
         this.currentIndex = Math.max(0, Math.min(index, this.maxIndex));
         this.updateSlider(true);
+        this.resetAutoplay();
     }
     
     next() {
@@ -172,17 +176,57 @@ class ProjectsSlider {
         }, 350);
     }
     
+    startAutoplay() {
+        this.stopAutoplay(); // Limpiar cualquier interval existente
+        
+        this.autoplayInterval = setInterval(() => {
+            if (this.currentIndex >= this.maxIndex) {
+                this.goToSlide(0); // Volver al inicio
+            } else {
+                this.next();
+            }
+        }, this.autoplayDelay);
+    }
+    
+    stopAutoplay() {
+        if (this.autoplayInterval) {
+            clearInterval(this.autoplayInterval);
+            this.autoplayInterval = null;
+        }
+    }
+    
+    resetAutoplay() {
+        this.stopAutoplay();
+        this.startAutoplay();
+    }
+    
     setupEventListeners() {
+        // Pausar autoplay al hover
+        this.container?.addEventListener('mouseenter', () => this.stopAutoplay());
+        this.container?.addEventListener('mouseleave', () => this.startAutoplay());
+        
         // Botones de navegación
-        this.prevBtn?.addEventListener('click', () => this.prev());
-        this.nextBtn?.addEventListener('click', () => this.next());
+        this.prevBtn?.addEventListener('click', () => {
+            this.prev();
+            this.resetAutoplay();
+        });
+        this.nextBtn?.addEventListener('click', () => {
+            this.next();
+            this.resetAutoplay();
+        });
         
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (!this.container) return;
             
-            if (e.key === 'ArrowLeft') this.prev();
-            if (e.key === 'ArrowRight') this.next();
+            if (e.key === 'ArrowLeft') {
+                this.prev();
+                this.resetAutoplay();
+            }
+            if (e.key === 'ArrowRight') {
+                this.next();
+                this.resetAutoplay();
+            }
         });
         
         // Touch events para mobile
@@ -196,6 +240,7 @@ class ProjectsSlider {
         this.track?.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             this.handleSwipe();
+            this.resetAutoplay();
         });
         
         const handleSwipe = () => {
@@ -226,17 +271,19 @@ class ProjectsSlider {
     }
 }
 
-// Inicializar slider cuando el DOM esté listo
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        window.projectsSlider = new ProjectsSlider();
-    });
-} else {
+// Inicializar slider cuando GSAP y DOM estén listos
+function initializeSlider() {
+    // Verificar que GSAP esté disponible
+    if (typeof gsap === 'undefined') {
+        console.warn('⏳ GSAP no está listo, reintentando...');
+        setTimeout(initializeSlider, 100);
+        return;
+    }
+    
+    console.log('✅ GSAP cargado, inicializando slider...');
     window.projectsSlider = new ProjectsSlider();
-}
-
-// Conectar con los filtros
-document.addEventListener('DOMContentLoaded', () => {
+    
+    // Conectar con los filtros
     const filterBtns = document.querySelectorAll('.filter-btn');
     
     filterBtns.forEach(btn => {
@@ -252,4 +299,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
+}
+
+// Inicializar cuando el DOM esté listo
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeSlider);
+} else {
+    initializeSlider();
+}

@@ -30,12 +30,13 @@
     transform: translateY(-50%);
     z-index: 10;
     
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    border: 2px solid rgba(59, 130, 246, 0.3);
     
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(10px);
     color: white;
     
     cursor: pointer;
@@ -45,29 +46,32 @@
     justify-content: center;
     
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .slider-btn:hover:not(:disabled) {
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    border-color: transparent;
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
 }
 
 .slider-btn:disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
+    background: rgba(30, 41, 59, 0.5);
 }
 
 .slider-btn.prev {
-    left: -20px;
+    left: 10px;
 }
 
 .slider-btn.next {
-    right: -20px;
+    right: 10px;
 }
 
 .slider-btn i {
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 /* Pagination Dots */
@@ -113,12 +117,13 @@
         max-width: calc(50% - 10px);
     }
     
-    .slider-btn.prev {
-        left: 10px;
+    .slider-btn {
+        width: 44px;
+        height: 44px;
     }
     
-    .slider-btn.next {
-        right: 10px;
+    .slider-btn i {
+        font-size: 1rem;
     }
 }
 
