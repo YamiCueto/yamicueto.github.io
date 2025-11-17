@@ -1,0 +1,100 @@
+/* Swiper Projects Slider Customization */
+
+/* Swiper Container */
+.projectsSwiper {
+    width: 100%;
+    padding: 2rem 0 4rem 0;
+    position: relative;
+    overflow: visible;
+}
+
+.projectsSwiper .swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+.projectsSwiper .swiper-slide {
+    height: auto;
+    display: flex;
+}
+
+.projectsSwiper .project-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation Buttons */
+.projectsSwiper .swiper-button-next,
+.projectsSwiper .swiper-button-prev {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 50%;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.projectsSwiper .swiper-button-next:after,
+.projectsSwiper .swiper-button-prev:after {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.projectsSwiper .swiper-button-next:hover,
+.projectsSwiper .swiper-button-prev:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+}
+
+.projectsSwiper .swiper-button-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Pagination */
+.projectsSwiper .swiper-pagination {
+    bottom: 0;
+}
+
+.projectsSwiper .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: var(--text-muted);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.projectsSwiper .swiper-pagination-bullet-active {
+    background: var(--primary-color);
+    opacity: 1;
+    width: 30px;
+    border-radius: 6px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .projectsSwiper .swiper-button-next,
+    .projectsSwiper .swiper-button-prev {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .projectsSwiper .swiper-button-next:after,
+    .projectsSwiper .swiper-button-prev:after {
+        font-size: 16px;
+    }
+    
+    .projectsSwiper {
+        padding: 1rem 0 3rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .projectsSwiper .swiper-button-next,
+    .projectsSwiper .swiper-button-prev {
+        display: none;
+    }
+}

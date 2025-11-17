@@ -1023,14 +1023,3 @@
     .github-stats h3 {
         font-size: var(--font-xl);
     }
-    
-    .modal {
-        padding: var(--space-2);
-    }
-    
-    .modal-close {
-        width: 36px;
-        height: 36px;
-        font-size: var(--font-md);
-    }
-}

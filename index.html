@@ -61,8 +61,12 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/swiper-custom.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%233b82f6'/%3E%3Cstop offset='100%25' style='stop-color:%2306b6d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23grad)'/%3E%3Ctext x='50' y='70' font-family='Arial,sans-serif' font-size='45' font-weight='bold' fill='white' text-anchor='middle'%3EYC%3C/text%3E%3C/svg%3E">
@@ -543,9 +547,12 @@
                 <button class="filter-btn" data-filter="java">Java</button>
                 <button class="filter-btn" data-filter="web">Web</button>
             </div>
-            <div class="projects-grid">
+            
+            <!-- Swiper Container -->
+            <div class="swiper projectsSwiper">
+                <div class="swiper-wrapper">
                 <!-- FotoMultasLab -->
-                <div class="project-card" data-category="web">
+                <div class="swiper-slide project-card" data-category="web">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -577,7 +584,7 @@
                 </div>
 
                 <!-- Flowly -->
-                <div class="project-card" data-category="web">
+                <div class="swiper-slide project-card" data-category="web">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -609,7 +616,7 @@
                 </div>
 
                 <!-- Proyecto destacado: Promptly -->
-                <div class="project-card" data-category="ai">
+                <div class="swiper-slide project-card" data-category="ai">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -642,7 +649,7 @@
                 </div>
 
                 <!-- Cloud Cheatsheet -->
-                <div class="project-card" data-category="web">
+                <div class="swiper-slide project-card" data-category="web">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -673,7 +680,7 @@
                 </div>
 
                 <!-- RubberDuck Studio Backend -->
-                <div class="project-card" data-category="ai">
+                <div class="swiper-slide project-card" data-category="ai">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -702,7 +709,7 @@
                 </div>
 
                 <!-- RubberDuck Studio Frontend -->
-                <div class="project-card" data-category="angular">
+                <div class="swiper-slide project-card" data-category="angular">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -730,7 +737,7 @@
                 </div>
 
                 <!-- Todo List App -->
-                <div class="project-card" data-category="angular">
+                <div class="swiper-slide project-card" data-category="angular">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -761,7 +768,7 @@
                 </div>
 
                 <!-- Academy.IA -->
-                <div class="project-card" data-category="ai">
+                <div class="swiper-slide project-card" data-category="ai">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -792,7 +799,7 @@
                 </div>
 
                 <!-- E-commerce with IA -->
-                <div class="project-card" data-category="ai">
+                <div class="swiper-slide project-card" data-category="ai">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -823,7 +830,7 @@
                 </div>
 
                 <!-- Recetario App -->
-                <div class="project-card" data-category="web">
+                <div class="swiper-slide project-card" data-category="web">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -855,7 +862,7 @@
                 </div>
 
                 <!-- API Users -->
-                <div class="project-card" data-category="java">
+                <div class="swiper-slide project-card" data-category="java">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -884,7 +891,7 @@
                 </div>
 
                 <!-- WebFlux Project -->
-                <div class="project-card" data-category="java">
+                <div class="swiper-slide project-card" data-category="java">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -912,7 +919,7 @@
                 </div>
 
                 <!-- Portfolio Website -->
-                <div class="project-card" data-category="web">
+                <div class="swiper-slide project-card" data-category="web">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -944,7 +951,7 @@
                 </div>
 
                 <!-- Lawyers Page -->
-                <div class="project-card" data-category="web">
+                <div class="swiper-slide project-card" data-category="web">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -975,7 +982,7 @@
                 </div>
 
                 <!-- Comprame.co -->
-                <div class="project-card" data-category="web">
+                <div class="swiper-slide project-card" data-category="web">
                     <div class="project-image">
                         <div class="project-overlay">
                             <div class="project-links">
@@ -1001,7 +1008,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div><!-- End swiper-wrapper -->
+                
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div><!-- End swiper -->
         </div>
     </section>
 
@@ -1509,8 +1524,73 @@
         })(window, document, "clarity", "script", "YOURCLARITYID");
     </script>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <!-- Scripts -->
     <script src="js/script.js"></script>
+    
+    <!-- Swiper Initialization -->
+    <script>
+        // Initialize Swiper
+        let projectsSwiper = new Swiper('.projectsSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                const slides = document.querySelectorAll('.swiper-slide.project-card');
+                
+                // Show/hide slides based on filter
+                slides.forEach(slide => {
+                    if (filter === 'all' || slide.getAttribute('data-category') === filter) {
+                        slide.style.display = 'flex';
+                    } else {
+                        slide.style.display = 'none';
+                    }
+                });
+                
+                // Update swiper
+                projectsSwiper.update();
+                projectsSwiper.slideTo(0);
+            });
+        });
+    </script>
     
     <!-- jsPDF Lazy Loading -->
     <script>
