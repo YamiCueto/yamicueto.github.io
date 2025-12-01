@@ -140,11 +140,12 @@ class ProjectsSlider {
         if (category === 'all') {
             this.visibleCards = this.cards;
         } else {
-            this.visibleCards = this.cards.filter(card => 
-                card.dataset.category === category
-            );
+            this.visibleCards = this.cards.filter(card => {
+                const categories = card.dataset.category || '';
+                return categories.split(' ').includes(category);
+            });
         }
-        
+
         // Mostrar/ocultar tarjetas con animación
         this.cards.forEach(card => {
             if (this.visibleCards.includes(card)) {
@@ -165,15 +166,23 @@ class ProjectsSlider {
                 });
             }
         });
-        
+
         // Reset slider
         this.currentIndex = 0;
         this.createDots();
-        
+
         // Pequeño delay para que las animaciones de display terminen
         setTimeout(() => {
             this.updateSlider(false);
         }, 350);
+    }
+
+    refresh() {
+        // Refrescar la lista de tarjetas
+        this.cards = Array.from(document.querySelectorAll('.project-card'));
+        this.visibleCards = this.cards;
+        this.currentIndex = 0;
+        this.init();
     }
     
     startAutoplay() {
