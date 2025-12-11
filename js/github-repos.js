@@ -27,6 +27,9 @@ const TECH_CATEGORIES = {
     'web': ['javascript', 'html', 'css', 'web', 'frontend', 'react', 'vue']
 };
 
+// Lenguajes de programación relevantes
+const RELEVANT_LANGUAGES = ['Java', 'JavaScript', 'TypeScript', 'HTML', 'CSS'];
+
 // Iconos para tecnologías comunes
 const TECH_ICONS = {
     'angular': 'fab fa-angular',
@@ -171,7 +174,16 @@ function getCachedRepos() {
         const cached = localStorage.getItem(CACHE_KEY);
         if (!cached) return null;
 
-        const { data, timestamp } = JSON.parse(cached);
+        let parsedData;
+        try {
+            parsedData = JSON.parse(cached);
+        } catch (parseError) {
+            console.error('❌ Error al parsear caché, limpiando datos corruptos:', parseError);
+            localStorage.removeItem(CACHE_KEY);
+            return null;
+        }
+
+        const { data, timestamp } = parsedData;
         const now = Date.now();
 
         if (now - timestamp < CACHE_DURATION) {
@@ -204,6 +216,14 @@ function cacheRepos(repos) {
 }
 
 /**
+ * Calcula cuántos meses han pasado desde una fecha
+ */
+function getMonthsSinceUpdate(dateString) {
+    const MILLIS_PER_MONTH = 1000 * 60 * 60 * 24 * 30;
+    return (Date.now() - new Date(dateString)) / MILLIS_PER_MONTH;
+}
+
+/**
  * Calcula la puntuación de relevancia de un repositorio
  */
 function calculateRelevanceScore(repo) {
@@ -228,7 +248,7 @@ function calculateRelevanceScore(repo) {
     }
 
     // Penalización por repositorios muy antiguos sin actualizar
-    const monthsSinceUpdate = (Date.now() - new Date(repo.updated_at)) / (1000 * 60 * 60 * 24 * 30);
+    const monthsSinceUpdate = getMonthsSinceUpdate(repo.updated_at);
     if (monthsSinceUpdate > 12) {
         score -= 20;
     } else if (monthsSinceUpdate < 3) {
@@ -236,8 +256,7 @@ function calculateRelevanceScore(repo) {
     }
 
     // Bonus por lenguajes relevantes
-    const relevantLanguages = ['Java', 'JavaScript', 'TypeScript', 'HTML', 'CSS'];
-    if (relevantLanguages.includes(repo.language)) {
+    if (RELEVANT_LANGUAGES.includes(repo.language)) {
         score += 10;
     }
 
