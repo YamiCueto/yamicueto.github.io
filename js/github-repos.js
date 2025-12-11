@@ -1,10 +1,23 @@
 /**
  * GitHub Repositories Fetcher
  * Obtiene los repositorios públicos del usuario y actualiza la sección de proyectos
+ * con filtrado inteligente y caching
  */
 
 const GITHUB_USERNAME = 'YamiCueto';
 const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
+
+// Configuración de caché
+const CACHE_KEY = 'github_repos_cache';
+const CACHE_DURATION = 3600000; // 1 hora en milisegundos
+
+// Criterios para proyectos destacados
+const FEATURED_CRITERIA = {
+    minStars: 0,
+    hasDemo: true,
+    hasDescription: true,
+    minDescriptionLength: 20
+};
 
 // Mapeo de tecnologías a categorías para el filtrado
 const TECH_CATEGORIES = {
@@ -95,6 +108,7 @@ function createProjectCard(repo) {
     const categories = getProjectCategories(repo);
     const icon = getProjectIcon(repo.name, repo.description || '', repo.topics || []);
     const hasDemo = repo.homepage && repo.homepage.trim() !== '';
+    const isFeatured = repo.relevanceScore > 80; // Proyectos destacados
 
     // Crear tags de tecnología basados en topics y lenguaje
     const techTags = [];
@@ -107,9 +121,13 @@ function createProjectCard(repo) {
         .map(tag => `<span class="tech-tag">${tag}</span>`)
         .join('\n                                ');
 
+    // Agregar badge de proyecto destacado
+    const featuredBadge = isFeatured ? '<span class="featured-badge">⭐ Destacado</span>' : '';
+
     return `
                     <!-- ${repo.name} -->
-                    <div class="project-card" data-category="${categories.join(' ')}">
+                    <div class="project-card${isFeatured ? ' featured' : ''}" data-category="${categories.join(' ')}" data-score="${repo.relevanceScore}">
+                        ${featuredBadge}
                         <div class="project-image">
                             <div class="project-overlay">
                                 <div class="project-links">
@@ -131,7 +149,7 @@ function createProjectCard(repo) {
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">${repo.name.replace(/-/g, ' ')}${repo.stargazers_count > 0 ? ' ⭐' : ''}</h3>
+                            <h3 class="project-title">${repo.name.replace(/-/g, ' ')}${repo.stargazers_count > 0 ? ` ⭐${repo.stargazers_count}` : ''}</h3>
                             <p class="project-description">${repo.description || 'Proyecto en desarrollo'}</p>
                             <div class="project-tech">
                                 ${techTagsHTML}
@@ -146,29 +164,156 @@ function createProjectCard(repo) {
 }
 
 /**
+ * Verifica si los datos en caché son válidos
+ */
+function getCachedRepos() {
+    try {
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (!cached) return null;
+
+        const { data, timestamp } = JSON.parse(cached);
+        const now = Date.now();
+
+        if (now - timestamp < CACHE_DURATION) {
+            console.log('📦 Usando repositorios desde caché');
+            return data;
+        }
+
+        console.log('⏰ Caché expirado, obteniendo datos frescos');
+        return null;
+    } catch (error) {
+        console.error('❌ Error al leer caché:', error);
+        return null;
+    }
+}
+
+/**
+ * Guarda los repositorios en caché
+ */
+function cacheRepos(repos) {
+    try {
+        const cacheData = {
+            data: repos,
+            timestamp: Date.now()
+        };
+        localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+        console.log('💾 Repositorios guardados en caché');
+    } catch (error) {
+        console.error('❌ Error al guardar en caché:', error);
+    }
+}
+
+/**
+ * Calcula la puntuación de relevancia de un repositorio
+ */
+function calculateRelevanceScore(repo) {
+    let score = 0;
+
+    // Puntos por estrellas
+    score += repo.stargazers_count * 10;
+
+    // Puntos por tener homepage/demo
+    if (repo.homepage && repo.homepage.trim() !== '') {
+        score += 50;
+    }
+
+    // Puntos por descripción de calidad
+    if (repo.description && repo.description.length >= FEATURED_CRITERIA.minDescriptionLength) {
+        score += 30;
+    }
+
+    // Puntos por topics
+    if (repo.topics && repo.topics.length > 0) {
+        score += repo.topics.length * 5;
+    }
+
+    // Penalización por repositorios muy antiguos sin actualizar
+    const monthsSinceUpdate = (Date.now() - new Date(repo.updated_at)) / (1000 * 60 * 60 * 24 * 30);
+    if (monthsSinceUpdate > 12) {
+        score -= 20;
+    } else if (monthsSinceUpdate < 3) {
+        score += 15; // Bonus por repositorios recientes
+    }
+
+    // Bonus por lenguajes relevantes
+    const relevantLanguages = ['Java', 'JavaScript', 'TypeScript', 'HTML', 'CSS'];
+    if (relevantLanguages.includes(repo.language)) {
+        score += 10;
+    }
+
+    return score;
+}
+
+/**
+ * Filtra y ordena los repositorios más relevantes
+ */
+function filterRelevantRepos(repos) {
+    // Calcular scores
+    const reposWithScores = repos.map(repo => ({
+        ...repo,
+        relevanceScore: calculateRelevanceScore(repo)
+    }));
+
+    // Ordenar por score de relevancia
+    reposWithScores.sort((a, b) => b.relevanceScore - a.relevanceScore);
+
+    console.log('🎯 Top 5 proyectos por relevancia:');
+    reposWithScores.slice(0, 5).forEach((repo, i) => {
+        console.log(`${i + 1}. ${repo.name} - Score: ${repo.relevanceScore}`);
+    });
+
+    return reposWithScores;
+}
+
+/**
+ * Muestra un estado de carga
+ */
+function showLoadingState() {
+    const projectsTrack = document.querySelector('.projects-track');
+    if (projectsTrack) {
+        projectsTrack.innerHTML = `
+            <div class="projects-loading" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                <i class="fab fa-github" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1rem; animation: pulse 2s infinite;"></i>
+                <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">🔄 Cargando proyectos desde GitHub...</p>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Obteniendo repositorios más relevantes</p>
+            </div>
+        `;
+    }
+}
+
+/**
  * Obtiene los repositorios de GitHub y actualiza la sección de proyectos
  */
 async function fetchAndUpdateProjects() {
     try {
-        console.log('🔄 Obteniendo repositorios de GitHub...');
+        // Intentar usar caché primero
+        let repos = getCachedRepos();
+        
+        if (!repos) {
+            showLoadingState();
+            console.log('🔄 Obteniendo repositorios de GitHub API...');
 
-        const response = await fetch(GITHUB_API_URL);
-        if (!response.ok) {
-            throw new Error(`Error al obtener repositorios: ${response.status}`);
+            const response = await fetch(GITHUB_API_URL);
+            if (!response.ok) {
+                throw new Error(`Error al obtener repositorios: ${response.status}`);
+            }
+
+            repos = await response.json();
+            console.log(`✅ Se obtuvieron ${repos.length} repositorios`);
+
+            // Guardar en caché
+            cacheRepos(repos);
         }
-
-        const repos = await response.json();
-        console.log(`✅ Se obtuvieron ${repos.length} repositorios`);
 
         // Filtrar repositorios públicos y no archivados
         const publicRepos = repos.filter(repo => !repo.private && !repo.archived && !repo.fork);
         console.log(`📦 Repositorios públicos activos: ${publicRepos.length}`);
 
-        // Ordenar por fecha de actualización (más recientes primero)
-        publicRepos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+        // Filtrar y ordenar por relevancia
+        const relevantRepos = filterRelevantRepos(publicRepos);
 
         // Generar HTML para todos los proyectos
-        const projectsHTML = publicRepos.map(repo => createProjectCard(repo)).join('\n');
+        const projectsHTML = relevantRepos.map(repo => createProjectCard(repo)).join('\n');
 
         // Actualizar el contenedor de proyectos
         const projectsTrack = document.querySelector('.projects-track');
@@ -181,16 +326,30 @@ async function fetchAndUpdateProjects() {
                 window.projectsSlider.refresh();
                 console.log('🎨 Slider refrescado');
             }
+
+            // Actualizar contador de proyectos en "Sobre Mí"
+            updateProjectCount(relevantRepos.length);
         } else {
             console.error('❌ No se encontró el contenedor .projects-track');
         }
 
-        return publicRepos;
+        return relevantRepos;
 
     } catch (error) {
         console.error('❌ Error al obtener repositorios:', error);
         showErrorMessage('No se pudieron cargar los proyectos desde GitHub. Por favor, recarga la página.');
         return [];
+    }
+}
+
+/**
+ * Actualiza el contador de proyectos en la sección "Sobre Mí"
+ */
+function updateProjectCount(count) {
+    const projectCountElement = document.querySelector('.about-stats .stat:nth-child(3) .stat-number');
+    if (projectCountElement) {
+        projectCountElement.textContent = `${count}`;
+        console.log(`📊 Contador de proyectos actualizado: ${count}`);
     }
 }
 
@@ -204,12 +363,21 @@ function showErrorMessage(message) {
             <div class="projects-error" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
                 <i class="fab fa-github" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
                 <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">⚠️ ${message}</p>
-                <button onclick="fetchAndUpdateProjects()" class="btn btn-primary" style="margin-top: 1rem;">
+                <button onclick="clearCacheAndReload()" class="btn btn-primary" style="margin-top: 1rem;">
                     <i class="fas fa-sync-alt"></i> Reintentar
                 </button>
             </div>
         `;
     }
+}
+
+/**
+ * Limpia el caché y recarga los proyectos
+ */
+function clearCacheAndReload() {
+    localStorage.removeItem(CACHE_KEY);
+    console.log('🗑️ Caché limpiado');
+    fetchAndUpdateProjects();
 }
 
 /**
@@ -223,3 +391,4 @@ if (document.readyState === 'loading') {
 
 // Exportar funciones para uso global
 window.fetchAndUpdateProjects = fetchAndUpdateProjects;
+window.clearCacheAndReload = clearCacheAndReload;
