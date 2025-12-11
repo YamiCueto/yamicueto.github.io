@@ -436,6 +436,164 @@
         });
     });
 
+    // ==========================================================================
+    // CONTACT FORM VALIDATION & SUBMISSION
+    // ==========================================================================
+    function setupContactForm() {
+        const modal = document.getElementById('contactModal');
+        const openBtn = document.getElementById('openContactModal');
+        const closeBtn = document.getElementById('closeContactModal');
+        const overlay = document.getElementById('modalOverlay');
+        const form = document.getElementById('contactForm');
+        
+        if (!modal || !form) return;
+
+        // Open modal
+        if (openBtn) {
+            openBtn.addEventListener('click', () => {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+                trackEvent('contact_modal_open');
+            });
+        }
+
+        // Close modal
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+            trackEvent('contact_modal_close');
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeModal);
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', closeModal);
+        }
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('show')) {
+                closeModal();
+            }
+        });
+
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const subjectInput = document.getElementById('subject');
+        const messageTextarea = document.getElementById('message');
+        const charCount = document.getElementById('char-count');
+        const charCounter = document.querySelector('.char-counter');
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.getElementById('formStatus');
+
+        // Character counter for message
+        if (messageTextarea && charCount) {
+            messageTextarea.addEventListener('input', () => {
+                const count = messageTextarea.value.length;
+                charCount.textContent = count;
+                
+                charCounter.classList.remove('limit-warning', 'limit-danger');
+                if (count > 800) {
+                    charCounter.classList.add('limit-danger');
+                } else if (count > 600) {
+                    charCounter.classList.add('limit-warning');
+                }
+            });
+        }
+
+        // Real-time validation messages
+        const validationMessages = {
+            name: 'Ingresa tu nombre completo (solo letras y espacios)',
+            email: 'Ingresa un email válido (ejemplo@dominio.com)',
+            subject: 'El asunto debe tener al menos 5 caracteres',
+            message: 'El mensaje debe tener entre 20 y 1000 caracteres'
+        };
+
+        // Add validation on blur
+        [nameInput, emailInput, subjectInput, messageTextarea].forEach(input => {
+            if (!input) return;
+            
+            input.addEventListener('blur', () => {
+                const errorEl = document.getElementById(`${input.id}-error`);
+                if (!errorEl) return;
+                
+                if (!input.validity.valid && input.value) {
+                    errorEl.textContent = validationMessages[input.id] || 'Campo inválido';
+                } else {
+                    errorEl.textContent = '';
+                }
+            });
+
+            input.addEventListener('input', () => {
+                const errorEl = document.getElementById(`${input.id}-error`);
+                if (errorEl && input.validity.valid) {
+                    errorEl.textContent = '';
+                }
+            });
+        });
+
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Check if all fields are valid
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // Disable submit button and show loading
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            formStatus.className = 'form-status';
+            formStatus.textContent = '';
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formStatus.className = 'form-status success';
+                    formStatus.textContent = '✓ ¡Mensaje enviado con éxito! Te responderé pronto.';
+                    form.reset();
+                    if (charCount) charCount.textContent = '0';
+                    
+                    trackEvent('contact_form_submit', { success: true });
+                    
+                    // Close modal and show notification after 2 seconds
+                    setTimeout(() => {
+                        closeModal();
+                        showNotification('¡Mensaje enviado! Revisa tu email 📧', 'success');
+                        formStatus.className = 'form-status';
+                        formStatus.textContent = '';
+                    }, 2000);
+                } else {
+                    throw new Error('Error en el servidor');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                formStatus.className = 'form-status error';
+                formStatus.textContent = '✗ Hubo un error al enviar el mensaje. Por favor, intenta de nuevo o contáctame por WhatsApp.';
+                
+                trackEvent('contact_form_submit', { success: false, error: error.message });
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+            }
+        });
+    }
+
+    // Add to initialization
+    setupContactForm();
+
     console.log('🚀 Portfolio de Yamid Cueto cargado exitosamente!');
 
 })();

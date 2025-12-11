@@ -186,11 +186,33 @@ El sitio se despliega automáticamente en **GitHub Pages** cuando se hace push a
 
 **URL de producción**: https://yamicueto.github.io/
 
+## 🎉 Nuevas Características
+
+### 🤖 **Integración Automática con GitHub API**
+- ✅ **Actualización automática** de proyectos desde GitHub
+- ✅ **Sistema de caché inteligente** (1 hora de duración)
+- ✅ **Algoritmo de relevancia** para proyectos destacados
+- ✅ **Proyectos destacados** con badge visual ⭐
+- ✅ **Loading states** con animaciones
+- ✅ **Manejo robusto de errores** con retry
+- ✅ **Contador dinámico** de proyectos en "Sobre Mí"
+
+### 📊 Criterios de Relevancia
+Los proyectos se ordenan automáticamente por:
+- Número de estrellas (+10 puntos por estrella)
+- Disponibilidad de demo/homepage (+50 puntos)
+- Calidad de descripción (+30 puntos)
+- Topics relevantes (+5 puntos por topic)
+- Antigüedad de última actualización (±20 puntos)
+- Lenguajes de programación relevantes (+10 puntos)
+
+Ver documentación completa en [`docs/GITHUB_API_INTEGRATION.md`](docs/GITHUB_API_INTEGRATION.md)
+
 ## 📈 Mejoras Futuras
 
 - [ ] 🌍 **Internacionalización** (ES/EN)
 - [ ] 📧 **Formulario de contacto** funcional
-- [ ] 📊 **Integración completa** con GitHub API
+- [x] 📊 **Integración completa** con GitHub API ✅
 - [ ] 🎮 **Más animaciones** interactivas
 - [ ] 📱 **PWA** (Progressive Web App)
 - [ ] 🔍 **Buscador** de proyectos
