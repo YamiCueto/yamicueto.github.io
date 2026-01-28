@@ -52,8 +52,5 @@
     "type": "git",
     "url": "https://github.com/YamiCueto/yamicueto.github.io.git"
   },
-  "homepage": "https://yamicueto.github.io",
-  "dependencies": {
-    "gsap": "^3.13.0"
-  }
+  "homepage": "https://yamicueto.github.io"
 }

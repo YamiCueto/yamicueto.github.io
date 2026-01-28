@@ -11,12 +11,12 @@ let observerInstances = [];
 // ==========================================================================
 // INICIALIZACIÓN HÍBRIDA
 // ==========================================================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Medir performance
     const perfStart = performance.now();
-    
+
     initializeApp();
-    
+
     // Log performance
     const perfEnd = performance.now();
     console.log(`🚀 Portfolio híbrido cargado en ${(perfEnd - perfStart).toFixed(2)}ms`);
@@ -25,26 +25,26 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeApp() {
     // VERSIÓN HÍBRIDA: GSAP solo para typing, resto legacy
     console.log('🛡️ Modo legacy estable: sin GSAP imports');
-    
+
     // Core features (legacy y estables)
     setupNavigation();
     setupTypingEffectLegacy(); // Usar versión legacy directa
     setupShareButton();
     setupSmoothScrolling();
     setupScrollToTop();
-    
+
     // Features opcionales (solo desktop)
     if (window.innerWidth > 768) {
         setupCursor();
     }
-    
+
     // Animations legacy (probadas y funcionando)
     setupScrollAnimationsLegacy();
-    
+
     // Legacy features
     setupLazyLoading();
     setupAnalytics();
-    
+
     // Legacy features
     setupLazyLoading();
     setupAnalytics();
@@ -57,37 +57,37 @@ function initializeApp() {
 function setupCursor() {
     const cursor = document.querySelector('.cursor');
     const cursorFollower = document.querySelector('.cursor-follower');
-    
+
     if (!cursor || !cursorFollower) return;
-    
+
     let mouseX = 0;
     let mouseY = 0;
     let followerX = 0;
     let followerY = 0;
-    
+
     // Usar requestAnimationFrame para mejor performance
     let rafId;
-    
+
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        
+
         cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-        
+
         if (!rafId) {
             rafId = requestAnimationFrame(animateFollower);
         }
     });
-    
+
     function animateFollower() {
         followerX += (mouseX - followerX) * 0.1;
         followerY += (mouseY - followerY) * 0.1;
-        
+
         cursorFollower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
-        
+
         rafId = requestAnimationFrame(animateFollower);
     }
-    
+
     // Efectos hover optimizados
     const hoverElements = document.querySelectorAll('a, button, .project-card');
     hoverElements.forEach(element => {
@@ -95,7 +95,7 @@ function setupCursor() {
             cursor.style.transform += ' scale(2)';
             cursorFollower.style.transform += ' scale(1.5)';
         });
-        
+
         element.addEventListener('mouseleave', () => {
             cursor.style.transform = cursor.style.transform.replace(' scale(2)', '');
             cursorFollower.style.transform = cursorFollower.style.transform.replace(' scale(1.5)', '');
@@ -111,28 +111,28 @@ function setupNavigation() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     // Throttled scroll handler
     let scrollTimeout;
     window.addEventListener('scroll', () => {
         if (scrollTimeout) return;
-        
+
         scrollTimeout = setTimeout(() => {
             const scrolled = window.scrollY > 50;
-            nav.style.background = scrolled ? 
-                'var(--nav-bg-scroll)' : 
+            nav.style.background = scrolled ?
+                'var(--nav-bg-scroll)' :
                 'var(--nav-bg)';
-            
+
             updateActiveLink();
             scrollTimeout = null;
         }, 100);
     });
-    
+
     // Menu toggle
     if (hamburger) {
         hamburger.addEventListener('click', toggleMenu);
     }
-    
+
     // Close menu on link click
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -144,7 +144,7 @@ function setupNavigation() {
 function toggleMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
-    
+
     isMenuOpen = !isMenuOpen;
     hamburger?.classList.toggle('active');
     navMenu?.classList.toggle('mobile-open');
@@ -154,18 +154,18 @@ function toggleMenu() {
 function updateActiveLink() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     let currentSection = '';
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop - 100;
         const sectionHeight = section.offsetHeight;
-        
+
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
             currentSection = section.getAttribute('id');
         }
     });
-    
+
     navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${currentSection}`) {
@@ -180,14 +180,14 @@ function updateActiveLink() {
 function setupShareButton() {
     const shareBtn = document.getElementById('share-btn');
     if (!shareBtn) return;
-    
+
     shareBtn.addEventListener('click', async () => {
         const shareData = {
             title: 'Yamid Cueto | Full Stack Developer',
             text: '10+ años transformando sistemas legacy. Expert en Java, Spring Boot, Angular.',
             url: window.location.href
         };
-        
+
         try {
             if (navigator.share) {
                 await navigator.share(shareData);
@@ -208,7 +208,7 @@ function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
-    
+
     Object.assign(notification.style, {
         position: 'fixed',
         top: '80px',
@@ -222,13 +222,13 @@ function showNotification(message, type = 'info') {
         transform: 'translateX(100%)',
         transition: 'transform 0.3s ease'
     });
-    
+
     document.body.appendChild(notification);
-    
+
     requestAnimationFrame(() => {
         notification.style.transform = 'translateX(0)';
     });
-    
+
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => notification.remove(), 300);
@@ -241,25 +241,25 @@ function showNotification(message, type = 'info') {
 function setupProjectFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
-    
+
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const filter = button.getAttribute('data-filter');
-            
+
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-            
+
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
                 const shouldShow = filter === 'all' || category === filter;
-                
+
                 card.style.display = shouldShow ? 'block' : 'none';
-                
+
                 if (shouldShow) {
                     card.style.animation = 'slideUp 0.6s ease-out';
                 }
             });
-            
+
             trackEvent('project_filter', { filter });
         });
     });
@@ -272,20 +272,20 @@ function setupSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetSection = document.querySelector(targetId);
             if (!targetSection) return;
-            
+
             const offsetTop = targetSection.offsetTop - 70;
-            
+
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
             });
-            
+
             trackEvent('navigation', { section: targetId });
         });
     });
@@ -297,24 +297,24 @@ function setupSmoothScrolling() {
 function setupScrollToTop() {
     const scrollBtn = document.getElementById('scrollToTop');
     if (!scrollBtn) return;
-    
+
     let scrollTimeout;
     window.addEventListener('scroll', () => {
         if (scrollTimeout) return;
-        
+
         scrollTimeout = setTimeout(() => {
             const shouldShow = window.pageYOffset > window.innerHeight * 0.3;
             scrollBtn.classList.toggle('show', shouldShow);
             scrollTimeout = null;
         }, 100);
     });
-    
+
     scrollBtn.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
-        
+
         trackEvent('scroll_to_top');
     });
 }
@@ -324,7 +324,7 @@ function setupScrollToTop() {
 // ==========================================================================
 function setupLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
-    
+
     const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -337,7 +337,7 @@ function setupLazyLoading() {
     }, {
         rootMargin: '50px'
     });
-    
+
     images.forEach(img => imageObserver.observe(img));
     observerInstances.push(imageObserver);
 }
@@ -355,7 +355,7 @@ function setupAnalytics() {
             trackEvent('project_click', { project: title });
         }
     });
-    
+
     // Track time on page
     let startTime = Date.now();
     window.addEventListener('beforeunload', () => {
@@ -369,7 +369,7 @@ function trackEvent(eventName, data = {}) {
     if (window.gtag) {
         gtag('event', eventName, data);
     }
-    
+
     // Log para desarrollo
     if (window.location.hostname === 'localhost') {
         console.log('📊 Event:', eventName, data);
@@ -391,44 +391,44 @@ function generatePDF() {
         showNotification('Generando PDF...', 'info');
         return;
     }
-    
+
     try {
         showNotification('Generando CV completo...', 'info');
-        
+
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
-        
+
         // Configuración
         const pageWidth = doc.internal.pageSize.width;
         const pageHeight = doc.internal.pageSize.height;
         const margin = 15;
         let currentY = 25;
-        
+
         // Header con estilo
         doc.setFontSize(22);
         doc.setFont(undefined, 'bold');
         doc.setTextColor(0, 100, 200);
         doc.text('YAMID CUETO MAZO', margin, currentY);
-        
+
         currentY += 8;
         doc.setFontSize(14);
         doc.setFont(undefined, 'normal');
         doc.setTextColor(50, 50, 50);
         doc.text('Senior Full Stack Developer | 10+ Años de Experiencia', margin, currentY);
-        
+
         // Línea decorativa
         currentY += 5;
         doc.setDrawColor(0, 100, 200);
         doc.setLineWidth(0.5);
         doc.line(margin, currentY, pageWidth - margin, currentY);
         currentY += 8;
-        
+
         // Contacto en columnas
         doc.setFontSize(9);
         doc.setTextColor(0, 0, 0);
         const col1 = margin;
         const col2 = pageWidth / 2;
-        
+
         doc.text('Email: yamidcuetomazo@gmail.com', col1, currentY);
         doc.text('Web: yamicueto.github.io', col2, currentY);
         currentY += 4;
@@ -438,14 +438,14 @@ function generatePDF() {
         doc.text('Ubicacion: Barranquilla, Colombia', col1, currentY);
         doc.text('GitHub: github.com/YamiCueto', col2, currentY);
         currentY += 10;
-        
+
         // Resumen Profesional mejorado
         doc.setFontSize(12);
         doc.setFont(undefined, 'bold');
         doc.setTextColor(0, 100, 200);
         doc.text('PERFIL PROFESIONAL', margin, currentY);
         currentY += 6;
-        
+
         doc.setFontSize(9);
         doc.setFont(undefined, 'normal');
         doc.setTextColor(0, 0, 0);
@@ -453,14 +453,14 @@ function generatePDF() {
         const resumenLines = doc.splitTextToSize(resumen, pageWidth - 2 * margin);
         doc.text(resumenLines, margin, currentY);
         currentY += resumenLines.length * 4 + 8;
-        
+
         // Logros Destacados
         doc.setFontSize(12);
         doc.setFont(undefined, 'bold');
         doc.setTextColor(0, 100, 200);
         doc.text('LOGROS DESTACADOS', margin, currentY);
         currentY += 6;
-        
+
         doc.setFontSize(9);
         doc.setFont(undefined, 'normal');
         doc.setTextColor(0, 0, 0);
@@ -470,21 +470,21 @@ function generatePDF() {
             '• Desarrollo de 15+ aplicaciones enterprise con alta disponibilidad',
             '• Liderazgo tecnico en equipos multidisciplinarios y transformacion digital'
         ];
-        
+
         logros.forEach(logro => {
             const logroLines = doc.splitTextToSize(logro, pageWidth - 2 * margin - 5);
             doc.text(logroLines, margin, currentY);
             currentY += logroLines.length * 4 + 2;
         });
         currentY += 5;
-        
+
         // Experiencia Profesional Completa
         doc.setFontSize(12);
         doc.setFont(undefined, 'bold');
         doc.setTextColor(0, 100, 200);
         doc.text('EXPERIENCIA PROFESIONAL', margin, currentY);
         currentY += 6;
-        
+
         // TCS
         doc.setFontSize(10);
         doc.setFont(undefined, 'bold');
@@ -502,7 +502,7 @@ function generatePDF() {
         const tcsLines = doc.splitTextToSize(tcsDesc, pageWidth - 2 * margin);
         doc.text(tcsLines, margin, currentY);
         currentY += tcsLines.length * 4 + 6;
-        
+
         // Intergrupo
         doc.setFontSize(10);
         doc.setFont(undefined, 'bold');
@@ -520,7 +520,7 @@ function generatePDF() {
         const intergrupoLines = doc.splitTextToSize(intergrupoDesc, pageWidth - 2 * margin);
         doc.text(intergrupoLines, margin, currentY);
         currentY += intergrupoLines.length * 4 + 6;
-        
+
         // SoftwareONE
         doc.setFontSize(10);
         doc.setFont(undefined, 'bold');
@@ -538,7 +538,7 @@ function generatePDF() {
         const softwareOneLines = doc.splitTextToSize(softwareOneDesc, pageWidth - 2 * margin);
         doc.text(softwareOneLines, margin, currentY);
         currentY += softwareOneLines.length * 4 + 6;
-        
+
         // GTS
         doc.setFontSize(10);
         doc.setFont(undefined, 'bold');
@@ -556,24 +556,24 @@ function generatePDF() {
         const gtsLines = doc.splitTextToSize(gtsDesc, pageWidth - 2 * margin);
         doc.text(gtsLines, margin, currentY);
         currentY += gtsLines.length * 4 + 8;
-        
+
         // Comprobar si necesitamos nueva página
         if (currentY > pageHeight - 60) {
             doc.addPage();
             currentY = 25;
         }
-        
+
         // Skills Técnicos Completos
         doc.setFontSize(12);
         doc.setFont(undefined, 'bold');
         doc.setTextColor(0, 100, 200);
         doc.text('COMPETENCIAS TÉCNICAS', margin, currentY);
         currentY += 6;
-        
+
         doc.setFontSize(9);
         doc.setFont(undefined, 'normal');
         doc.setTextColor(0, 0, 0);
-        
+
         const skills = [
             'Frontend: Angular (Expert), TypeScript (Advanced), JavaScript (Advanced), HTML5, CSS3',
             'Backend: Java (Expert), Spring Boot (Advanced), Node.js (Intermediate), REST APIs',
@@ -582,25 +582,25 @@ function generatePDF() {
             'Herramientas: Maven, Jenkins, JIRA, IntelliJ IDEA, VS Code',
             'Metodologías: Scrum, Agile, TDD, Clean Architecture, Microservices'
         ];
-        
+
         skills.forEach(skill => {
             const skillLines = doc.splitTextToSize(`• ${skill}`, pageWidth - 2 * margin);
             doc.text(skillLines, margin, currentY);
             currentY += skillLines.length * 4 + 2;
         });
         currentY += 6;
-        
+
         // Proyectos Destacados
         doc.setFontSize(12);
         doc.setFont(undefined, 'bold');
         doc.setTextColor(0, 100, 200);
         doc.text('PROYECTOS DESTACADOS', margin, currentY);
         currentY += 6;
-        
+
         doc.setFontSize(9);
         doc.setFont(undefined, 'normal');
         doc.setTextColor(0, 0, 0);
-        
+
         const proyectos = [
             '• Promptly: Interfaz moderna para LLMs (Ollama/OpenAI) - JavaScript, AI APIs',
             '• RubberDuck Studio: Backend reflexivo para developers - Node.js, IA local/cloud',
@@ -608,21 +608,21 @@ function generatePDF() {
             '• Todo List App: Gestion de tareas con Angular Material - Angular, TypeScript',
             '• Academy.IA: Plataforma educativa SPA - JavaScript puro, HTML5, CSS3'
         ];
-        
+
         proyectos.forEach(proyecto => {
             const proyectoLines = doc.splitTextToSize(proyecto, pageWidth - 2 * margin);
             doc.text(proyectoLines, margin, currentY);
             currentY += proyectoLines.length * 4 + 2;
         });
         currentY += 6;
-        
+
         // Educación
         doc.setFontSize(12);
         doc.setFont(undefined, 'bold');
         doc.setTextColor(0, 100, 200);
         doc.text('EDUCACIÓN & CERTIFICACIONES', margin, currentY);
         currentY += 6;
-        
+
         doc.setFontSize(9);
         doc.setFont(undefined, 'normal');
         doc.setTextColor(0, 0, 0);
@@ -632,26 +632,26 @@ function generatePDF() {
         currentY += 4;
         doc.text('• Formacion continua en IA Generativa y arquitecturas cloud', margin, currentY);
         currentY += 8;
-        
+
         // Footer profesional
         currentY = pageHeight - 15;
         doc.setFontSize(8);
         doc.setTextColor(100, 100, 100);
         doc.text('CV generado desde yamicueto.github.io', margin, currentY);
-        const fecha = new Date().toLocaleDateString('es-ES', { 
-            year: 'numeric', month: 'long', day: 'numeric' 
+        const fecha = new Date().toLocaleDateString('es-ES', {
+            year: 'numeric', month: 'long', day: 'numeric'
         });
         doc.text(`Actualizado: ${fecha}`, pageWidth - margin - 50, currentY);
-        
+
         // Descargar
         doc.save('Yamid_Cueto_CV_Completo.pdf');
         showNotification('✅ CV completo descargado exitosamente!', 'success');
-        
+
     } catch (error) {
         console.error('Error generando PDF:', error);
         showNotification('❌ Error generando PDF. Inténtalo de nuevo.', 'error');
     }
-    
+
     trackEvent('pdf_download');
 }
 
@@ -662,7 +662,7 @@ function generatePDF() {
 function setupTypingEffectLegacy() {
     const typingElement = document.getElementById('typing-text');
     if (!typingElement) return;
-    
+
     const roles = [
         'Full Stack Developer',
         'Legacy System Transformer',
@@ -670,14 +670,14 @@ function setupTypingEffectLegacy() {
         'Cloud Architect',
         'Problem Solver'
     ];
-    
+
     let currentRoleIndex = 0;
     let currentCharIndex = 0;
     let isDeleting = false;
-    
+
     function type() {
         const currentRole = roles[currentRoleIndex];
-        
+
         if (isDeleting) {
             typingElement.textContent = currentRole.substring(0, currentCharIndex - 1);
             currentCharIndex--;
@@ -685,9 +685,9 @@ function setupTypingEffectLegacy() {
             typingElement.textContent = currentRole.substring(0, currentCharIndex + 1);
             currentCharIndex++;
         }
-        
+
         let typingSpeed = isDeleting ? 50 : 100;
-        
+
         if (!isDeleting && currentCharIndex === currentRole.length) {
             typingSpeed = 2000;
             isDeleting = true;
@@ -696,16 +696,16 @@ function setupTypingEffectLegacy() {
             currentRoleIndex = (currentRoleIndex + 1) % roles.length;
             typingSpeed = 500;
         }
-        
+
         setTimeout(type, typingSpeed);
     }
-    
+
     type();
 }
 
 function setupScrollAnimationsLegacy() {
     const sections = document.querySelectorAll('.section-animate');
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -716,7 +716,7 @@ function setupScrollAnimationsLegacy() {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
     });
-    
+
     sections.forEach(section => observer.observe(section));
     observerInstances.push(observer);
 }
@@ -735,7 +735,7 @@ window.addEventListener('beforeunload', () => {
 // ==========================================================================
 window.addEventListener('error', (e) => {
     console.error('💥 Error:', e.error);
-    trackEvent('javascript_error', { 
+    trackEvent('javascript_error', {
         message: e.error?.message,
         file: e.filename,
         line: e.lineno
@@ -751,13 +751,13 @@ function setupContactForm() {
     const closeBtn = document.getElementById('closeContactModal');
     const overlay = document.getElementById('modalOverlay');
     const form = document.getElementById('contactForm');
-    
+
     if (!modal || !form) return;
 
     // Open modal
     if (openBtn) {
         openBtn.addEventListener('click', () => {
-            modal.classList.add('show');
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
             trackEvent('contact_modal_open');
         });
@@ -765,7 +765,7 @@ function setupContactForm() {
 
     // Close modal
     function closeModal() {
-        modal.classList.remove('show');
+        modal.classList.remove('active');
         document.body.style.overflow = '';
         trackEvent('contact_modal_close');
     }
@@ -780,7 +780,7 @@ function setupContactForm() {
 
     // Close on ESC key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeModal();
         }
     });
@@ -799,7 +799,7 @@ function setupContactForm() {
         messageTextarea.addEventListener('input', () => {
             const count = messageTextarea.value.length;
             charCount.textContent = count;
-            
+
             charCounter.classList.remove('limit-warning', 'limit-danger');
             if (count > 800) {
                 charCounter.classList.add('limit-danger');
@@ -820,11 +820,11 @@ function setupContactForm() {
     // Add validation on blur
     [nameInput, emailInput, subjectInput, messageTextarea].forEach(input => {
         if (!input) return;
-        
+
         input.addEventListener('blur', () => {
             const errorEl = document.getElementById(`${input.id}-error`);
             if (!errorEl) return;
-            
+
             if (!input.validity.valid && input.value) {
                 errorEl.textContent = validationMessages[input.id] || 'Campo inválido';
             } else {
@@ -843,7 +843,7 @@ function setupContactForm() {
     // Form submission
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         // Check if all fields are valid
         if (!form.checkValidity()) {
             form.reportValidity();
@@ -871,9 +871,9 @@ function setupContactForm() {
                 formStatus.textContent = '✓ ¡Mensaje enviado con éxito! Te responderé pronto.';
                 form.reset();
                 if (charCount) charCount.textContent = '0';
-                
+
                 trackEvent('contact_form_submit', { success: true });
-                
+
                 // Close modal and show notification after 2 seconds
                 setTimeout(() => {
                     closeModal();
@@ -888,7 +888,7 @@ function setupContactForm() {
             console.error('Form submission error:', error);
             formStatus.className = 'form-status error';
             formStatus.textContent = '✗ Hubo un error al enviar el mensaje. Por favor, intenta de nuevo o contáctame por WhatsApp.';
-            
+
             trackEvent('contact_form_submit', { success: false, error: error.message });
         } finally {
             submitBtn.disabled = false;

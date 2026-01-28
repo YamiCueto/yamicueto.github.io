@@ -1,1 +1,19 @@
 /* Cards component - placeholder */
+
+/* Project Real Image Styling (sobreescribe minificado)
+   Forzar visibilidad y ajuste de imágenes en cards de proyectos destacados */
+.project-placeholder { display: none !important; }
+.project-image-real {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  z-index: 2;
+  position: relative;
+  display: block;
+}
+.project-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

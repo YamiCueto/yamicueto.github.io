@@ -6,6 +6,16 @@
 const GITHUB_USERNAME = 'YamiCueto';
 const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`;
 
+// Projects that are already displayed statically and should be excluded from dynamic fetch
+const FEATURED_PROJECTS = [
+    'code-agent-arena',
+    'fotomultaslab',
+    'flowly',
+    'promptly',
+    'cloud-cheatsheet',
+    'academy-ia'
+];
+
 // Mapeo de tecnologías a categorías para el filtrado
 const TECH_CATEGORIES = {
     'ai': ['ollama', 'openai', 'ia', 'ai', 'llm', 'gpt', 'chatbot', 'machine-learning'],
@@ -109,7 +119,7 @@ function createProjectCard(repo) {
 
     return `
                     <!-- ${repo.name} -->
-                    <div class="project-card" data-category="${categories.join(' ')}">
+                    <div class="project-card fade-in-up" data-category="${categories.join(' ')}">
                         <div class="project-image">
                             <div class="project-overlay">
                                 <div class="project-links">
@@ -146,10 +156,16 @@ function createProjectCard(repo) {
 }
 
 /**
- * Obtiene los repositorios de GitHub y actualiza la sección de proyectos
+ * Obtiene los repositorios de GitHub y carga más proyectos
  */
-async function fetchAndUpdateProjects() {
+async function loadMoreProjects() {
+    const button = document.getElementById('load-more-projects');
+    const originalText = button.innerHTML;
+
     try {
+        button.disabled = true;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando...';
+
         console.log('🔄 Obteniendo repositorios de GitHub...');
 
         const response = await fetch(GITHUB_API_URL);
@@ -158,68 +174,44 @@ async function fetchAndUpdateProjects() {
         }
 
         const repos = await response.json();
-        console.log(`✅ Se obtuvieron ${repos.length} repositorios`);
 
-        // Filtrar repositorios públicos y no archivados
-        const publicRepos = repos.filter(repo => !repo.private && !repo.archived && !repo.fork);
-        console.log(`📦 Repositorios públicos activos: ${publicRepos.length}`);
+        // Filtrar repositorios públicos, no archivados, y NO incluidos en destacados
+        const newRepos = repos.filter(repo =>
+            !repo.private &&
+            !repo.archived &&
+            !repo.fork &&
+            !FEATURED_PROJECTS.includes(repo.name.toLowerCase())
+        );
+
+        console.log(`📦 Repositorios nuevos encontrados: ${newRepos.length}`);
 
         // Ordenar por fecha de actualización (más recientes primero)
-        publicRepos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+        newRepos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
-        // Generar HTML para todos los proyectos
-        const projectsHTML = publicRepos.map(repo => createProjectCard(repo)).join('\n');
-
-        // Actualizar el contenedor de proyectos
-        const projectsTrack = document.querySelector('.projects-track');
-        if (projectsTrack) {
-            projectsTrack.innerHTML = projectsHTML;
-            console.log('✨ Proyectos actualizados exitosamente');
-
-            // Refrescar el slider si existe
-            if (window.projectsSlider && typeof window.projectsSlider.refresh === 'function') {
-                window.projectsSlider.refresh();
-                console.log('🎨 Slider refrescado');
-            }
-        } else {
-            console.error('❌ No se encontró el contenedor .projects-track');
+        if (newRepos.length === 0) {
+            button.innerHTML = 'No hay más proyectos';
+            return;
         }
 
-        return publicRepos;
+        // Generar HTML
+        const newProjectsHTML = newRepos.map(repo => createProjectCard(repo)).join('\n');
+
+        // Append al grid
+        const projectsGrid = document.querySelector('.projects-grid');
+        projectsGrid.insertAdjacentHTML('beforeend', newProjectsHTML);
+
+        // Ocultar botón
+        button.style.display = 'none';
 
     } catch (error) {
         console.error('❌ Error al obtener repositorios:', error);
-        showErrorMessage('No se pudieron cargar los proyectos desde GitHub. Por favor, recarga la página.');
-        return [];
+        button.innerHTML = 'Error al cargar. Reintentar';
+        button.disabled = false;
+        button.onclick = loadMoreProjects;
     }
 }
 
-/**
- * Muestra un mensaje de error al usuario
- */
-function showErrorMessage(message) {
-    const projectsTrack = document.querySelector('.projects-track');
-    if (projectsTrack) {
-        projectsTrack.innerHTML = `
-            <div class="projects-error" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-                <i class="fab fa-github" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
-                <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">⚠️ ${message}</p>
-                <button onclick="fetchAndUpdateProjects()" class="btn btn-primary" style="margin-top: 1rem;">
-                    <i class="fas fa-sync-alt"></i> Reintentar
-                </button>
-            </div>
-        `;
-    }
-}
+// Global expose
+window.loadMoreProjects = loadMoreProjects;
 
-/**
- * Inicializa la carga de proyectos cuando el DOM esté listo
- */
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fetchAndUpdateProjects);
-} else {
-    fetchAndUpdateProjects();
-}
-
-// Exportar funciones para uso global
-window.fetchAndUpdateProjects = fetchAndUpdateProjects;
+// Don't auto-run fetchAndUpdateProjects anymore!
