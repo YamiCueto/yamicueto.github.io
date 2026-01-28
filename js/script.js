@@ -903,43 +903,123 @@ setupContactForm();
 console.log('🚀 Portfolio de Yamid Cueto cargado exitosamente!');
 
 // ==========================================================================
-// LOAD MORE PROJECTS
+// LOAD MORE PROJECTS (GitHub API Integration)
 // ==========================================================================
 function setupLoadMoreProjects() {
-    const projects = document.querySelectorAll('.project-card');
+    const projectsGrid = document.querySelector('.projects-grid');
     const loadMoreBtn = document.getElementById('load-more-projects');
-    const PROJECTS_PER_PAGE = 6;
+    const FEATURED_COUNT = 6; // Los 6 proyectos destacados con imágenes
+    let additionalProjects = [];
+    let currentlyShowing = FEATURED_COUNT;
 
-    if (!projects.length || !loadMoreBtn) return;
+    if (!projectsGrid || !loadMoreBtn) return;
 
-    // Inicializar: Ocultar proyectos extra
-    projects.forEach((project, index) => {
-        if (index >= PROJECTS_PER_PAGE) {
-            project.style.display = 'none';
-            project.classList.remove('fade-in-up');
-        } else {
-            project.style.display = 'flex';
+    // Nombres de los proyectos destacados (ya en el HTML)
+    const featuredRepos = [
+        'code-agent-arena',
+        'fotomultaslab',
+        'Flowly',
+        'promptly',
+        'cloud-cheatsheet',
+        'academy.ia'
+    ];
+
+    // Fetch de repos adicionales desde GitHub
+    fetch('https://api.github.com/users/YamiCueto/repos?sort=updated&per_page=100')
+        .then(response => response.json())
+        .then(repos => {
+            // Filtrar: solo públicos, no forks, no los destacados
+            additionalProjects = repos.filter(repo =>
+                !repo.fork &&
+                !repo.private &&
+                !featuredRepos.includes(repo.name) &&
+                repo.name !== 'yamicueto.github.io' // Excluir el portfolio mismo
+            );
+
+            // Si hay proyectos adicionales, mostrar botón
+            if (additionalProjects.length > 0) {
+                loadMoreBtn.style.display = 'block';
+            } else {
+                loadMoreBtn.style.display = 'none';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching GitHub repos:', error);
+            loadMoreBtn.style.display = 'none';
+        });
+
+    // Función para crear una card de proyecto
+    function createProjectCard(repo) {
+        const card = document.createElement('div');
+        card.className = 'project-card fade-in-up';
+        card.setAttribute('data-category', 'web'); // Categoría por defecto
+
+        // Detectar tecnologías principales
+        const language = repo.language || 'Code';
+        const techTags = [language];
+        if (repo.topics && repo.topics.length > 0) {
+            techTags.push(...repo.topics.slice(0, 2));
         }
-    });
 
-    // Ocultar botón si no hay suficientes proyectos
-    if (projects.length <= PROJECTS_PER_PAGE) {
-        loadMoreBtn.style.display = 'none';
+        card.innerHTML = `
+            <div class="project-image">
+                <div style="
+                    width: 100%;
+                    height: 200px;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-size: 3rem;
+                ">
+                    <i class="fab fa-github"></i>
+                </div>
+                <div class="project-overlay">
+                    <div class="project-links">
+                        ${repo.homepage ? `
+                            <a rel="noopener noreferrer" title="${repo.name} demo" 
+                               href="${repo.homepage}" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        ` : ''}
+                        <a rel="noopener noreferrer" title="${repo.name} repository" 
+                           href="${repo.html_url}" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">${repo.name}</h3>
+                <p class="project-description">${repo.description || 'Proyecto de código abierto'}</p>
+                <div class="project-tech">
+                    ${techTags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
+                </div>
+                <div class="project-meta">
+                    <span class="project-date">${new Date(repo.updated_at).toLocaleDateString('es-ES', { year: 'numeric', month: 'short' })}</span>
+                    ${repo.stargazers_count > 0 ? `<span>⭐ ${repo.stargazers_count}</span>` : ''}
+                </div>
+            </div>
+        `;
+
+        return card;
     }
 
     // Definir función global para el onclick
     window.loadMoreProjects = function () {
-        const hiddenProjects = Array.from(projects).filter(p => p.style.display === 'none');
-        const projectsToShow = hiddenProjects.slice(0, 3);
+        const BATCH_SIZE = 3;
+        const projectsToShow = additionalProjects.slice(currentlyShowing - FEATURED_COUNT, currentlyShowing - FEATURED_COUNT + BATCH_SIZE);
 
-        projectsToShow.forEach(project => {
-            project.style.display = 'flex';
-            setTimeout(() => {
-                project.classList.add('fade-in-up');
-            }, 10);
+        projectsToShow.forEach(repo => {
+            const card = createProjectCard(repo);
+            projectsGrid.appendChild(card);
         });
 
-        if (hiddenProjects.length - projectsToShow.length === 0) {
+        currentlyShowing += projectsToShow.length;
+
+        // Ocultar botón si ya no hay más
+        if (currentlyShowing >= FEATURED_COUNT + additionalProjects.length) {
             loadMoreBtn.style.display = 'none';
         }
     };
