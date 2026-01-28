@@ -48,7 +48,7 @@ function initializeApp() {
     // Legacy features
     setupLazyLoading();
     setupAnalytics();
-    setupAnalytics();
+    setupLoadMoreProjects();
 }
 
 // ==========================================================================
@@ -901,3 +901,46 @@ function setupContactForm() {
 setupContactForm();
 
 console.log('🚀 Portfolio de Yamid Cueto cargado exitosamente!');
+
+// ==========================================================================
+// LOAD MORE PROJECTS
+// ==========================================================================
+function setupLoadMoreProjects() {
+    const projects = document.querySelectorAll('.project-card');
+    const loadMoreBtn = document.getElementById('load-more-projects');
+    const PROJECTS_PER_PAGE = 6;
+
+    if (!projects.length || !loadMoreBtn) return;
+
+    // Inicializar: Ocultar proyectos extra
+    projects.forEach((project, index) => {
+        if (index >= PROJECTS_PER_PAGE) {
+            project.style.display = 'none';
+            project.classList.remove('fade-in-up');
+        } else {
+            project.style.display = 'flex';
+        }
+    });
+
+    // Ocultar botón si no hay suficientes proyectos
+    if (projects.length <= PROJECTS_PER_PAGE) {
+        loadMoreBtn.style.display = 'none';
+    }
+
+    // Definir función global para el onclick
+    window.loadMoreProjects = function () {
+        const hiddenProjects = Array.from(projects).filter(p => p.style.display === 'none');
+        const projectsToShow = hiddenProjects.slice(0, 3);
+
+        projectsToShow.forEach(project => {
+            project.style.display = 'flex';
+            setTimeout(() => {
+                project.classList.add('fade-in-up');
+            }, 10);
+        });
+
+        if (hiddenProjects.length - projectsToShow.length === 0) {
+            loadMoreBtn.style.display = 'none';
+        }
+    };
+}
