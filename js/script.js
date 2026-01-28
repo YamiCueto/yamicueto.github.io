@@ -925,6 +925,10 @@ function setupLoadMoreProjects() {
     ];
 
     // Fetch de repos adicionales desde GitHub
+    // Mostrar loading en botón
+    loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando...';
+    loadMoreBtn.disabled = true;
+
     fetch('https://api.github.com/users/YamiCueto/repos?sort=updated&per_page=100')
         .then(response => response.json())
         .then(repos => {
@@ -933,8 +937,12 @@ function setupLoadMoreProjects() {
                 !repo.fork &&
                 !repo.private &&
                 !featuredRepos.includes(repo.name) &&
-                repo.name !== 'yamicueto.github.io' // Excluir el portfolio mismo
+                repo.name !== 'yamicueto.github.io'
             );
+
+            // Restaurar botón
+            loadMoreBtn.innerHTML = 'Ver más proyectos <i class="fas fa-chevron-down"></i>';
+            loadMoreBtn.disabled = false;
 
             // Si hay proyectos adicionales, mostrar botón
             if (additionalProjects.length > 0) {
@@ -945,6 +953,8 @@ function setupLoadMoreProjects() {
         })
         .catch(error => {
             console.error('Error fetching GitHub repos:', error);
+            loadMoreBtn.innerHTML = 'Ver más proyectos <i class="fas fa-chevron-down"></i>';
+            loadMoreBtn.disabled = false;
             loadMoreBtn.style.display = 'none';
         });
 
