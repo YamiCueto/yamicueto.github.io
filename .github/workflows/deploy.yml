@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   build:
-    name: 🏗️ Build CSS and Assets
+    name: 🏗️ Build and Prepare Assets
     runs-on: ubuntu-latest
     
     steps:
@@ -34,28 +34,32 @@ jobs:
       run: npm ci
     
     - name: 🎨 Build CSS
+      # Generates css/style.css from src/css/main.css (including our custom fixes)
       run: npm run build:css:prod
       
-    - name: 🚀 Build JS (Hybrid GSAP)
-      run: npm run build:js:hybrid
-      
-    - name: �️ Minify assets
-      run: npm run minify
-    
-    - name: 🧹 Lint CSS
-      run: npm run lint:css
-      continue-on-error: true
-    
-    - name: 📤 Upload build artifacts
-      uses: actions/upload-artifact@v4
+    - name: 🧹 Prepare Distribution Folder
+      run: |
+        mkdir -p dist/css
+        mkdir -p dist/js
+        mkdir -p dist/assets
+        
+        # Copy critical files
+        cp index.html dist/
+        cp -r assets/* dist/assets/
+        
+        # Copy built/source assets
+        cp css/style.css dist/css/
+        cp js/script.js dist/js/
+        
+        # Copy optional SEO files if they exist
+        [ -f robots.txt ] && cp robots.txt dist/ || true
+        [ -f sitemap.xml ] && cp sitemap.xml dist/ || true
+        [ -f CNAME ] && cp CNAME dist/ || true
+
+    - name: � Upload build artifacts
+      uses: actions/upload-pages-artifact@v3
       with:
-        name: built-assets
-        path: |
-          css/style.css
-          css/style.min.css
-          js/script.hybrid.js
-          js/script.min.js
-        retention-days: 1
+        path: 'dist'
 
   deploy:
     name: 🌐 Deploy to GitHub Pages
@@ -67,39 +71,18 @@ jobs:
     if: github.ref == 'refs/heads/main'
     
     steps:
-    - name: 📦 Checkout repository
-      uses: actions/checkout@v4
-    
-    - name: 📥 Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: built-assets
-        path: .
-    
-    - name: 🔧 Setup Pages
-      uses: actions/configure-pages@v4
-    
-    - name: 📤 Upload to Pages
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: '.'
-    
     - name: 🚀 Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
 
   lighthouse:
-    name: 🔍 Lighthouse Performance Audit
+    name: 🔍 Lighthouse Audit
     runs-on: ubuntu-latest
     needs: deploy
     if: github.ref == 'refs/heads/main'
-    
     steps:
-    - name: 📦 Checkout repository
-      uses: actions/checkout@v4
-    
-    - name: 🔍 Run Lighthouse CI
-      uses: treosh/lighthouse-ci-action@v12
+    - uses: actions/checkout@v4
+    - uses: treosh/lighthouse-ci-action@v12
       with:
         urls: |
           https://yamicueto.github.io/
