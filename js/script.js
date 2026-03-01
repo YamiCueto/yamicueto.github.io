@@ -44,10 +44,7 @@ function initializeApp() {
     // Legacy features
     setupLazyLoading();
     setupAnalytics();
-
-    // Legacy features
-    setupLazyLoading();
-    setupAnalytics();
+    setupProjectFilters();
     setupLoadMoreProjects();
 }
 
@@ -250,8 +247,8 @@ function setupProjectFilters() {
             button.classList.add('active');
 
             projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                const shouldShow = filter === 'all' || category === filter;
+                const category = card.getAttribute('data-category') || '';
+                const shouldShow = filter === 'all' || category.split(' ').includes(filter);
 
                 card.style.display = shouldShow ? 'block' : 'none';
 
@@ -640,7 +637,7 @@ function generatePDF() {
         });
         doc.text(`Actualizado: ${fecha}`, pageWidth - margin - 50, currentY);
 
-        doc.save('Yamid_Cueto_CV_2026.pdf');
+        doc.save(`Yamid_Cueto_CV_${new Date().getFullYear()}.pdf`);
         showNotification('✅ CV profesional descargado!', 'success');
 
     } catch (error) {
