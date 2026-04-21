@@ -374,275 +374,336 @@ function trackEvent(eventName, data = {}) {
 }
 
 // ==========================================================================
-// PDF GENERATION (VERSIÓN MEJORADA PARA RECLUTADORES)
+// PDF GENERATION — VERSIÓN PROFESIONAL CON FOTO, PREMIOS Y CERTS TCS
 // ==========================================================================
-function generatePDF() {
-    if (typeof window.jspdf === 'undefined') {
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
-        script.onload = () => {
-            setTimeout(generatePDF, 100);
+
+async function loadGitHubPhoto() {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        const timeout = setTimeout(() => resolve(null), 5000);
+        img.onload = function () {
+            clearTimeout(timeout);
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = 200;
+                canvas.height = 200;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, 200, 200);
+                resolve(canvas.toDataURL('image/jpeg', 0.92));
+            } catch (e) { resolve(null); }
         };
-        document.head.appendChild(script);
-        showNotification('Generando PDF...', 'info');
+        img.onerror = () => { clearTimeout(timeout); resolve(null); };
+        img.src = 'https://github.com/YamiCueto.png?size=200';
+    });
+}
+
+async function generatePDF() {
+    showNotification('Generando CV profesional...', 'info');
+
+    if (typeof window.jspdf === 'undefined') {
+        await new Promise((res, rej) => {
+            const s = document.createElement('script');
+            s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+            s.onload = res; s.onerror = rej;
+            document.head.appendChild(s);
+        }).catch(() => null);
+    }
+    if (typeof window.jspdf === 'undefined') {
+        showNotification('Error cargando libreria PDF. Intentalo de nuevo.', 'error');
         return;
     }
 
+    const photoBase64 = await loadGitHubPhoto();
+
     try {
-        showNotification('Generando CV profesional...', 'info');
-
         const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+        const doc = new jsPDF('p', 'mm', 'a4');
 
-        const pageWidth = doc.internal.pageSize.width;
-        const pageHeight = doc.internal.pageSize.height;
-        const margin = 15;
-        let currentY = 25;
+        const pageWidth = doc.internal.pageSize.width;   // 210
+        const pageHeight = doc.internal.pageSize.height; // 297
+        const ml = 15;
+        let y = 0;
 
-        // Header
-        doc.setFontSize(22);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0, 100, 200);
-        doc.text('YAMID CUETO MAZO', margin, currentY);
+        // ── HEADER AZUL ───────────────────────────────────────────────────────
+        const headerH = 52;
+        doc.setFillColor(26, 86, 219);
+        doc.rect(0, 0, pageWidth, headerH, 'F');
 
-        currentY += 8;
-        doc.setFontSize(14);
-        doc.setFont(undefined, 'normal');
-        doc.setTextColor(50, 50, 50);
-        doc.text('Senior Full Stack Developer | 10+ Años de Experiencia', margin, currentY);
-
-        currentY += 5;
-        doc.setDrawColor(0, 100, 200);
-        doc.setLineWidth(0.5);
-        doc.line(margin, currentY, pageWidth - margin, currentY);
-        currentY += 8;
-
-        // Contacto con LINKS CLICKEABLES
-        doc.setFontSize(9);
-        doc.setTextColor(0, 0, 0);
-        const col1 = margin;
-        const col2 = pageWidth / 2;
-
-        doc.textWithLink('Email: yamidcuetomazo@gmail.com', col1, currentY, { url: 'mailto:yamidcuetomazo@gmail.com' });
-        doc.textWithLink('Portfolio: yamicueto.github.io', col2, currentY, { url: 'https://yamicueto.github.io' });
-        currentY += 4;
-        doc.text('Teléfono: +57 300 279 2493', col1, currentY);
-        doc.textWithLink('LinkedIn: /in/yamid-cueto-mazo', col2, currentY, { url: 'https://linkedin.com/in/yamid-cueto-mazo' });
-        currentY += 4;
-        doc.text('Ubicación: Barranquilla, Colombia', col1, currentY);
-        doc.textWithLink('GitHub: github.com/YamiCueto', col2, currentY, { url: 'https://github.com/YamiCueto' });
-        currentY += 10;
-
-        // Perfil Profesional
-        doc.setFontSize(12);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0, 100, 200);
-        doc.text('PERFIL PROFESIONAL', margin, currentY);
-        currentY += 6;
-
-        doc.setFontSize(9);
-        doc.setFont(undefined, 'normal');
-        doc.setTextColor(0, 0, 0);
-        const resumen = 'Senior Software Engineer con más de 10 años liderando transformaciones digitales en empresas enterprise. Especialista en migración de sistemas legacy críticos, habiendo migrado un sistema bancario de VB6 a Java/Spring que sirve a 500K+ usuarios con 99.9% uptime. Expert en arquitecturas escalables con Java, Spring Boot, Angular y AWS. Actualmente desarrollando herramientas de IA generativa en Tata Consultancy Services.';
-        const resumenLines = doc.splitTextToSize(resumen, pageWidth - 2 * margin);
-        doc.text(resumenLines, margin, currentY);
-        currentY += resumenLines.length * 4 + 8;
-
-        // EXPERIENCIA PROFESIONAL (movida antes de Skills)
-        doc.setFontSize(12);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0, 100, 200);
-        doc.text('EXPERIENCIA PROFESIONAL', margin, currentY);
-        currentY += 6;
-
-        // TCS con métricas de impacto
-        doc.setFontSize(10);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0, 0, 0);
-        doc.text('Senior Software Engineering', margin, currentY);
-        currentY += 4;
-        doc.setFontSize(9);
-        doc.setFont(undefined, 'italic');
-        doc.setTextColor(0, 100, 200);
-        doc.text('Tata Consultancy Services | Nov 2023 - Presente', margin, currentY);
-        currentY += 4;
-        doc.setFont(undefined, 'normal');
-        doc.setTextColor(0, 0, 0);
-        const tcsDesc = '• Lideré migración de sistema bancario legacy (VB6 → Java/Spring) sirviendo 500K+ usuarios con 99.9% uptime\n• Desarrollé 8+ microservicios con Spring Boot procesando 2M+ transacciones/día\n• Implementé arquitectura cloud con Kubernetes reduciendo costos de infraestructura en 35%\n• Mentoré equipo de 5 developers junior en best practices y arquitecturas escalables';
-        const tcsLines = doc.splitTextToSize(tcsDesc, pageWidth - 2 * margin);
-        doc.text(tcsLines, margin, currentY);
-        currentY += tcsLines.length * 4 + 6;
-
-        // Intergrupo
-        doc.setFontSize(10);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0, 0, 0);
-        doc.text('Senior Software Development Engineer', margin, currentY);
-        currentY += 4;
-        doc.setFontSize(9);
-        doc.setFont(undefined, 'italic');
-        doc.setTextColor(0, 100, 200);
-        doc.text('Intergrupo | Mar 2021 - Nov 2023', margin, currentY);
-        currentY += 4;
-        doc.setFont(undefined, 'normal');
-        doc.setTextColor(0, 0, 0);
-        const intergrupoDesc = '• Reduje tiempo de deployment en 60% implementando CI/CD con Jenkins + Docker\n• Desarrollé sistema distribuido con Spring Cloud procesando 1M+ requests/día\n• Optimicé performance de APIs críticas mejorando response time en 40%\n• Lideré adopción de metodologías ágiles (Scrum) en equipo de 12 personas';
-        const intergrupoLines = doc.splitTextToSize(intergrupoDesc, pageWidth - 2 * margin);
-        doc.text(intergrupoLines, margin, currentY);
-        currentY += intergrupoLines.length * 4 + 6;
-
-        // SoftwareONE
-        doc.setFontSize(10);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0, 0, 0);
-        doc.text('Software Development Engineer', margin, currentY);
-        currentY += 4;
-        doc.setFontSize(9);
-        doc.setFont(undefined, 'italic');
-        doc.setTextColor(0, 100, 200);
-        doc.text('SoftwareONE Colombia | Ago 2020 - Mar 2021', margin, currentY);
-        currentY += 4;
-        doc.setFont(undefined, 'normal');
-        doc.setTextColor(0, 0, 0);
-        const softwareOneDesc = '• Implementé soluciones cloud con AWS (EC2, S3, Lambda) mejorando escalabilidad\n• Desarrollé APIs RESTful con Spring Boot siguiendo principios de Clean Architecture\n• Integré sistemas legacy con arquitecturas modernas usando patrones de diseño';
-        const softwareOneLines = doc.splitTextToSize(softwareOneDesc, pageWidth - 2 * margin);
-        doc.text(softwareOneLines, margin, currentY);
-        currentY += softwareOneLines.length * 4 + 6;
-
-        // GTS
-        doc.setFontSize(10);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0, 0, 0);
-        doc.text('Full Stack Engineer', margin, currentY);
-        currentY += 4;
-        doc.setFontSize(9);
-        doc.setFont(undefined, 'italic');
-        doc.setTextColor(0, 100, 200);
-        doc.text('GTS Global Tax Services | Ene 2019 - Mar 2020', margin, currentY);
-        currentY += 4;
-        doc.setFont(undefined, 'normal');
-        doc.setTextColor(0, 0, 0);
-        const gtsDesc = '• Desarrollé aplicaciones full stack con Java/Spring Boot + Angular 8+\n• Implementé soluciones completas para servicios fiscales globales\n• Optimicé queries SQL reduciendo tiempo de respuesta en 50%';
-        const gtsLines = doc.splitTextToSize(gtsDesc, pageWidth - 2 * margin);
-        doc.text(gtsLines, margin, currentY);
-        currentY += gtsLines.length * 4 + 8;
-
-        // Nueva página si es necesario
-        if (currentY > pageHeight - 60) {
-            doc.addPage();
-            currentY = 25;
+        // Foto de perfil
+        if (photoBase64) {
+            doc.addImage(photoBase64, 'JPEG', ml, 11, 29, 29);
+            doc.setDrawColor(255, 255, 255);
+            doc.setLineWidth(0.8);
+            doc.roundedRect(ml, 11, 29, 29, 1.5, 1.5, 'S');
+        } else {
+            doc.setFillColor(255, 255, 255);
+            doc.roundedRect(ml, 11, 29, 29, 3, 3, 'F');
+            doc.setFontSize(16); doc.setFont(undefined, 'bold');
+            doc.setTextColor(26, 86, 219);
+            doc.text('YC', ml + 14.5, 29, { align: 'center' });
         }
 
-        // COMPETENCIAS TÉCNICAS
-        doc.setFontSize(12);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0, 100, 200);
-        doc.text('COMPETENCIAS TÉCNICAS', margin, currentY);
-        currentY += 6;
+        // Nombre y título
+        const tx = ml + 34;
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(19); doc.setFont(undefined, 'bold');
+        doc.text('YAMID CUETO MAZO', tx, 21);
+        doc.setFontSize(10.5); doc.setFont(undefined, 'normal');
+        doc.text('Senior Full Stack Developer  |  10+ Anos de Experiencia', tx, 29);
+        doc.setFontSize(8.5); doc.setTextColor(180, 210, 255);
+        doc.text('Java E3  .  Spring Boot E1  .  Angular E2  .  Generative AI E2  .  Cloud Architecture', tx, 37);
+        doc.setFontSize(8); doc.setTextColor(220, 235, 255);
+        doc.text('Barranquilla, Colombia  |  Disponible para trabajo remoto  |  GMT-5', tx, 44);
 
-        doc.setFontSize(9);
-        doc.setFont(undefined, 'normal');
-        doc.setTextColor(0, 0, 0);
+        // ── BARRA DE CONTACTO ─────────────────────────────────────────────────
+        doc.setFillColor(235, 245, 255);
+        doc.rect(0, headerH, pageWidth, 13, 'F');
+        const cy = headerH + 8.5;
+        doc.setFontSize(7.5); doc.setTextColor(26, 86, 219);
+        doc.textWithLink('yamidcuetomazo@gmail.com', ml, cy, { url: 'mailto:yamidcuetomazo@gmail.com' });
+        doc.setTextColor(160, 160, 160); doc.text('|', 68, cy);
+        doc.setTextColor(26, 86, 219);
+        doc.text('+57 300 279 2493', 71, cy);
+        doc.setTextColor(160, 160, 160); doc.text('|', 101, cy);
+        doc.setTextColor(26, 86, 219);
+        doc.textWithLink('yamicueto.github.io', 104, cy, { url: 'https://yamicueto.github.io' });
+        doc.setTextColor(160, 160, 160); doc.text('|', 132, cy);
+        doc.setTextColor(26, 86, 219);
+        doc.textWithLink('linkedin.com/in/yamid-cueto-mazo', 135, cy, { url: 'https://linkedin.com/in/yamid-cueto-mazo' });
+        doc.setTextColor(160, 160, 160); doc.text('|', 181, cy);
+        doc.setTextColor(26, 86, 219);
+        doc.textWithLink('github.com/YamiCueto', 184, cy, { url: 'https://github.com/YamiCueto' });
 
-        const skills = [
-            'Frontend: Angular (Expert), React (Advanced), TypeScript (Advanced), JavaScript (Expert), HTML5/CSS3',
-            'Backend: Java (Expert), Spring Boot (Expert), Node.js (Intermediate), Python (Intermediate), REST APIs',
-            'Cloud & DevOps: AWS (EC2, S3, Lambda), Docker, Kubernetes, Git (Expert), CI/CD (Jenkins)',
-            'Bases de Datos: PostgreSQL, MySQL, MongoDB, JPA/Hibernate',
-            'Herramientas: Maven, IntelliJ IDEA, VS Code, JIRA, Postman',
-            'Metodologías: Scrum, Agile, TDD, Clean Architecture, Microservices, Event-Driven'
+        y = headerH + 19;
+
+        // ── HELPERS ───────────────────────────────────────────────────────────
+        const checkBreak = (needed = 30) => {
+            if (y + needed > pageHeight - 14) { doc.addPage(); y = 18; }
+        };
+
+        const addSection = (title) => {
+            checkBreak(18);
+            doc.setFillColor(26, 86, 219);
+            doc.rect(ml, y - 4.5, 3, 7.5, 'F');
+            doc.setFontSize(10.5); doc.setFont(undefined, 'bold'); doc.setTextColor(26, 86, 219);
+            doc.text(title, ml + 5, y);
+            y += 1.5;
+            doc.setDrawColor(190, 220, 255); doc.setLineWidth(0.25);
+            doc.line(ml + 5, y, pageWidth - ml, y);
+            y += 5; doc.setTextColor(30, 41, 59);
+        };
+
+        const addBullets = (lines, w) => {
+            const width = w || (pageWidth - 2 * ml);
+            doc.setFont(undefined, 'normal'); doc.setFontSize(8.5); doc.setTextColor(30, 41, 59);
+            lines.forEach(line => {
+                const wrapped = doc.splitTextToSize(line, width);
+                checkBreak(wrapped.length * 3.8 + 2);
+                doc.text(wrapped, ml, y);
+                y += wrapped.length * 3.8 + 0.8;
+            });
+        };
+
+        const addJob = (title, company, dates, bullets, note) => {
+            checkBreak(38);
+            doc.setFontSize(9.5); doc.setFont(undefined, 'bold'); doc.setTextColor(30, 41, 59);
+            doc.text(title, ml, y);
+            const titleWidth = doc.getTextWidth(title);
+            doc.setFontSize(8.5); doc.setFont(undefined, 'normal'); doc.setTextColor(26, 86, 219);
+            doc.text(company, ml + titleWidth + 5, y);
+            doc.setTextColor(100, 116, 139);
+            doc.text(dates, pageWidth - ml, y, { align: 'right' });
+            y += 2;
+            doc.setDrawColor(220, 230, 248); doc.setLineWidth(0.15);
+            doc.line(ml, y, pageWidth - ml, y);
+            y += 4;
+            addBullets(bullets);
+            if (note) {
+                checkBreak(8);
+                doc.setFontSize(7.5); doc.setFont(undefined, 'italic'); doc.setTextColor(180, 120, 30);
+                const noteLines = doc.splitTextToSize(note, pageWidth - 2 * ml);
+                doc.text(noteLines, ml, y);
+                y += noteLines.length * 3.5 + 1;
+            }
+            y += 5;
+        };
+
+        // ── PERFIL PROFESIONAL ────────────────────────────────────────────────
+        addSection('PERFIL PROFESIONAL');
+        doc.setFontSize(8.5); doc.setFont(undefined, 'normal'); doc.setTextColor(30, 41, 59);
+        const resumen = 'Senior Software Engineer con mas de 10 anos liderando transformaciones digitales en empresas enterprise. Especialista en migracion de sistemas legacy criticos, habiendo liderado la migracion de un sistema bancario de VB6 a Java/Spring sirviendo 500K+ usuarios con 99.9% uptime. Expert en arquitecturas escalables con Java (E3), Spring Boot (E1) y Generative AI (E2) segun evaluacion TCS iEvolve. Reconocido con 5 premios en Tata Consultancy Services incluyendo "Star of the Month" (x2), "Best Team Award" y "Beyond Performance Xcelerate Awards" (x2). Actualmente desarrollando herramientas de IA generativa que automatizan 40% del trabajo repetitivo en equipos enterprise.';
+        const resLines = doc.splitTextToSize(resumen, pageWidth - 2 * ml);
+        doc.text(resLines, ml, y);
+        y += resLines.length * 3.8 + 8;
+
+        // ── EXPERIENCIA PROFESIONAL ───────────────────────────────────────────
+        addSection('EXPERIENCIA PROFESIONAL');
+
+        addJob('Senior Software Engineering', 'Tata Consultancy Services', 'Nov 2023 - Presente', [
+            '- Lidere migracion de sistema bancario legacy (VB6 -> Java/Spring) sirviendo 500K+ usuarios con 99.9% uptime',
+            '- Desarrolle 8+ microservicios con Spring Boot procesando 2M+ transacciones/dia en entorno Kubernetes',
+            '- Implemente soluciones de IA Generativa (LLMs/RAG) automatizando 40% del trabajo repetitivo del equipo',
+            '- Reduci costos de infraestructura en 35% mediante optimizacion de arquitectura cloud con Kubernetes'
+        ], 'Reconocimientos TCS: Star of the Month (Dic 2025, Jun 2024)  |  Best Team Award (Ago 2024)  |  Beyond Performance Xcelerate Warrior & Victor (Oct 2024)');
+
+        addJob('Senior Software Development Engineer', 'Intergrupo', 'Mar 2021 - Nov 2023', [
+            '- Reduci tiempo de deployment en 60% implementando CI/CD con Jenkins + Docker + Kubernetes',
+            '- Desarrolle sistema distribuido con Spring Cloud procesando 1M+ requests/dia',
+            '- Optimice APIs criticas mejorando response time en 40% mediante analisis de profiling JVM',
+            '- Lidere adopcion de metodologias agiles (Scrum E2) en equipo de 12 personas'
+        ]);
+
+        addJob('Software Development Engineer', 'SoftwareONE Colombia', 'Ago 2020 - Mar 2021', [
+            '- Implemente soluciones cloud con AWS (EC2, S3, Lambda) mejorando escalabilidad de plataforma',
+            '- Desarrolle APIs RESTful con Spring Boot siguiendo principios de Clean Architecture',
+            '- Integre sistemas legacy con arquitecturas modernas usando patrones de diseno'
+        ]);
+
+        addJob('Full Stack Engineer', 'GTS Global Tax Services', 'Ene 2019 - Mar 2020', [
+            '- Desarrolle aplicaciones full stack con Java/Spring Boot + Angular 8+ para servicios fiscales globales',
+            '- Optimice queries SQL reduciendo tiempo de respuesta en 50%'
+        ]);
+
+        // ── COMPETENCIAS TECNICAS ─────────────────────────────────────────────
+        checkBreak(55);
+        addSection('COMPETENCIAS TECNICAS');
+
+        const colW = (pageWidth - 2 * ml) / 2 - 4;
+        const col2X = ml + colW + 8;
+        const skillsLeft = [
+            { cat: 'Backend', val: 'Java E3 - Spring Boot E1 - Node.js - Python' },
+            { cat: 'Frontend', val: 'Angular E2 - TypeScript - JavaScript - React' },
+            { cat: 'Cloud', val: 'AWS (EC2/S3/Lambda) - Kubernetes - Docker' },
+        ];
+        const skillsRight = [
+            { cat: 'IA & Data', val: 'Generative AI E2 - LLMs - RAG - Ollama/OpenAI' },
+            { cat: 'DevOps', val: 'CI/CD - Git - Jenkins - IBM Rational ClearCase E2' },
+            { cat: 'Bases de Datos', val: 'PostgreSQL - MySQL - MongoDB - JPA/Hibernate' },
         ];
 
-        skills.forEach(skill => {
-            const skillLines = doc.splitTextToSize(`• ${skill}`, pageWidth - 2 * margin);
-            doc.text(skillLines, margin, currentY);
-            currentY += skillLines.length * 4 + 2;
+        const startSkillY = y; let maxSkillY = y;
+        skillsLeft.forEach(s => {
+            checkBreak(8);
+            doc.setFontSize(8.5); doc.setFont(undefined, 'bold'); doc.setTextColor(26, 86, 219);
+            doc.text(s.cat + ':', ml, y);
+            doc.setFont(undefined, 'normal'); doc.setTextColor(30, 41, 59);
+            const lines = doc.splitTextToSize(s.val, colW - 22);
+            doc.text(lines, ml + 26, y);
+            y += lines.length * 3.8 + 2.5;
+            if (y > maxSkillY) maxSkillY = y;
         });
-        currentY += 6;
 
-        // Verificar si necesitamos nueva página antes de Proyectos
-        if (currentY > pageHeight - 100) {
-            doc.addPage();
-            currentY = 25;
-        }
+        y = startSkillY;
+        skillsRight.forEach(s => {
+            doc.setFontSize(8.5); doc.setFont(undefined, 'bold'); doc.setTextColor(26, 86, 219);
+            doc.text(s.cat + ':', col2X, y);
+            doc.setFont(undefined, 'normal'); doc.setTextColor(30, 41, 59);
+            const lines = doc.splitTextToSize(s.val, colW - 22);
+            doc.text(lines, col2X + 26, y);
+            y += lines.length * 3.8 + 2.5;
+            if (y > maxSkillY) maxSkillY = y;
+        });
+        y = maxSkillY + 2;
 
-        // PROYECTOS DESTACADOS (formato compacto)
-        doc.setFontSize(12);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0, 100, 200);
-        doc.text('PROYECTOS DESTACADOS', margin, currentY);
-        currentY += 6;
+        doc.setFontSize(8.5); doc.setFont(undefined, 'bold'); doc.setTextColor(26, 86, 219);
+        doc.text('Metodologias:', ml, y);
+        doc.setFont(undefined, 'normal'); doc.setTextColor(30, 41, 59);
+        const metLines = doc.splitTextToSize('Scrum E2 - Agile Way of Working - Clean Architecture - Microservices - Event-Driven Architecture - TDD - Design Thinking', pageWidth - ml - 40);
+        doc.text(metLines, ml + 38, y);
+        y += metLines.length * 3.8 + 8;
 
-        doc.setFontSize(9);
-        doc.setFont(undefined, 'normal');
-        doc.setTextColor(0, 0, 0);
+        // ── CERTIFICACIONES ───────────────────────────────────────────────────
+        checkBreak(55);
+        addSection('CERTIFICACIONES');
 
+        const certs = [
+            { name: 'Generative AI Foundation Curriculum', org: 'TCS iEvolve', date: 'Sep 2025' },
+            { name: 'Domain Advisory: Foundation Generative AI', org: 'TCS iEvolve', date: 'Sep 2025' },
+            { name: 'Tech Foundation: DevOps Foundation Curriculum', org: 'TCS iEvolve', date: 'Mar 2026' },
+            { name: 'Tech Foundation: Design Thinking Foundation', org: 'TCS iEvolve', date: 'Abr 2026' },
+            { name: 'Oracle DBA Foundation', org: 'TCS iEvolve', date: 'Abr 2026' },
+            { name: 'TCS FrescoPlay OSS Intermediate (E2)', org: 'TCS FrescoPlay', date: 'Jul 2025' },
+            { name: 'Tecnologo en Analisis y Desarrollo de Software', org: 'SENA', date: '2015' },
+        ];
+
+        certs.forEach(cert => {
+            checkBreak(10);
+            doc.setFontSize(8.5); doc.setFont(undefined, 'bold'); doc.setTextColor(30, 41, 59);
+            doc.text('- ' + cert.name, ml, y);
+            doc.setFont(undefined, 'normal'); doc.setTextColor(100, 116, 139);
+            doc.text(cert.org + '  |  ' + cert.date, ml + 4, y + 3.8);
+            y += 8.5;
+        });
+        y += 3;
+
+        // ── PROYECTOS DESTACADOS ──────────────────────────────────────────────
+        checkBreak(45);
+        addSection('PROYECTOS DESTACADOS');
         const proyectos = [
-            '• Code Agent Arena (Dic 2025): Plataforma gamificada de aprendizaje sobre AI Agents - HTML5, JavaScript',
-            '• FotoMultasLab (Nov 2025): Mapa interactivo de fotodeteccion en Barranquilla - JavaScript, Maps API',
-            '• Flowly (Oct 2025): Herramienta para crear diagramas ER/UML - JavaScript, Konva.js, SVG',
-            '• Promptly (Oct 2025): Interfaz de chat para LLMs (Ollama/OpenAI) - JavaScript, AI APIs',
-            '• Cloud Cheatsheet (Oct 2025): Dashboard interactivo de servicios AWS - TypeScript',
-            '• Academy.IA (Sep 2025): Plataforma educativa con IA - React, Python, AI'
+            '- Code Agent Arena (Dic 2025): Plataforma gamificada de aprendizaje sobre AI Agents - HTML5, JavaScript',
+            '- FotoMultasLab (Nov 2025): Mapa interactivo de camaras en Barranquilla - JavaScript, Maps API',
+            '- Flowly (Oct 2025): Herramienta para diagramas ER/UML con exportacion SVG/PDF - JavaScript, Konva.js',
+            '- Promptly (Oct 2025): Interfaz de chat para LLMs (Ollama/OpenAI) - JavaScript, AI APIs',
+            '- Cloud Cheatsheet (Oct 2025): Dashboard interactivo de servicios AWS - TypeScript',
+            '- Academy.IA (Sep 2025): Plataforma educativa con generacion de cursos por IA - React, Python'
+        ];
+        doc.setFontSize(8.5); doc.setFont(undefined, 'normal'); doc.setTextColor(30, 41, 59);
+        proyectos.forEach(p => {
+            const lines = doc.splitTextToSize(p, pageWidth - 2 * ml);
+            checkBreak(lines.length * 3.8 + 2);
+            doc.text(lines, ml, y);
+            y += lines.length * 3.8 + 1.5;
+        });
+        y += 4;
+
+        // ── RECONOCIMIENTOS Y PREMIOS ─────────────────────────────────────────
+        checkBreak(45);
+        addSection('RECONOCIMIENTOS Y PREMIOS');
+
+        const awards = [
+            { title: 'Star of the Month - Awards for Excellence', co: 'Tata Consultancy Services', date: 'Dic 2025' },
+            { title: 'Beyond Performance Awards - Xcelerate Warrior', co: 'Tata Consultancy Services', date: 'Oct 2024' },
+            { title: 'Beyond Performance Awards - Xcelerate Victor', co: 'Tata Consultancy Services', date: 'Oct 2024' },
+            { title: 'Best Team Award - Awards for Excellence', co: 'Tata Consultancy Services', date: 'Ago 2024' },
+            { title: 'Star of the Month - Awards for Excellence', co: 'Tata Consultancy Services', date: 'Jun 2024' },
         ];
 
-        proyectos.forEach(proyecto => {
-            const proyectoLines = doc.splitTextToSize(proyecto, pageWidth - 2 * margin);
-            doc.text(proyectoLines, margin, currentY);
-            currentY += proyectoLines.length * 4 + 1;
+        awards.forEach(a => {
+            checkBreak(11);
+            doc.setFontSize(8.5); doc.setFont(undefined, 'bold'); doc.setTextColor(180, 120, 30);
+            doc.text('* ' + a.title, ml, y);
+            doc.setFont(undefined, 'normal'); doc.setTextColor(100, 116, 139);
+            doc.text(a.co + '  |  ' + a.date, ml + 4, y + 3.8);
+            y += 9;
         });
-        currentY += 6;
+        y += 3;
 
-        // EDUCACIÓN & CERTIFICACIONES (específicas)
-        doc.setFontSize(12);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0, 100, 200);
-        doc.text('EDUCACIÓN & CERTIFICACIONES', margin, currentY);
-        currentY += 6;
+        // ── IDIOMAS ───────────────────────────────────────────────────────────
+        checkBreak(18);
+        addSection('IDIOMAS');
+        doc.setFontSize(8.5); doc.setFont(undefined, 'normal'); doc.setTextColor(30, 41, 59);
+        doc.text('- Espanol: Nativo', ml, y); y += 4.5;
+        doc.text('- Ingles: Intermedio-Avanzado (lectura tecnica avanzada, comunicacion profesional)', ml, y); y += 4.5;
 
-        doc.setFontSize(9);
-        doc.setFont(undefined, 'normal');
-        doc.setTextColor(0, 0, 0);
-        doc.text('• Tecnologo en Analisis y Desarrollo de Software - SENA', margin, currentY);
-        currentY += 4;
-        doc.text('• Spring Professional Certification (Pivotal/VMware)', margin, currentY);
-        currentY += 4;
-        doc.text('• Certificaciones en Java, Spring Boot y AWS Solutions Architect', margin, currentY);
-        currentY += 4;
-        doc.text('• Formacion continua en IA Generativa, LLMs y arquitecturas cloud modernas', margin, currentY);
-        currentY += 8;
+        // ── FOOTER EN CADA PAGINA ─────────────────────────────────────────────
+        const totalPages = doc.internal.getNumberOfPages();
+        for (let p = 1; p <= totalPages; p++) {
+            doc.setPage(p);
+            doc.setFontSize(7); doc.setTextColor(160, 160, 160);
+            doc.setDrawColor(210, 210, 210); doc.setLineWidth(0.2);
+            doc.line(ml, pageHeight - 10, pageWidth - ml, pageHeight - 10);
+            const fecha = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+            doc.text('Yamid Cueto Mazo  |  yamicueto.github.io', ml, pageHeight - 6);
+            doc.text('Actualizado: ' + fecha + '  |  Pagina ' + p + '/' + totalPages, pageWidth - ml, pageHeight - 6, { align: 'right' });
+        }
 
-        // IDIOMAS (nueva sección)
-        doc.setFontSize(12);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0, 100, 200);
-        doc.text('IDIOMAS', margin, currentY);
-        currentY += 6;
-
-        doc.setFontSize(9);
-        doc.setFont(undefined, 'normal');
-        doc.setTextColor(0, 0, 0);
-        doc.text('• Español: Nativo', margin, currentY);
-        currentY += 4;
-        doc.text('• Ingles: Intermedio (lectura tecnica avanzada)', margin, currentY);
-        currentY += 8;
-
-        // Footer
-        currentY = pageHeight - 15;
-        doc.setFontSize(8);
-        doc.setTextColor(100, 100, 100);
-        doc.text('CV generado desde yamicueto.github.io', margin, currentY);
-        const fecha = new Date().toLocaleDateString('es-ES', {
-            year: 'numeric', month: 'long', day: 'numeric'
-        });
-        doc.text(`Actualizado: ${fecha}`, pageWidth - margin - 50, currentY);
-
-        doc.save(`Yamid_Cueto_CV_${new Date().getFullYear()}.pdf`);
-        showNotification('✅ CV profesional descargado!', 'success');
+        doc.save('Yamid_Cueto_CV_' + new Date().getFullYear() + '.pdf');
+        showNotification('CV profesional descargado!', 'success');
 
     } catch (error) {
         console.error('Error generando PDF:', error);
-        showNotification('❌ Error generando PDF. Inténtalo de nuevo.', 'error');
+        showNotification('Error generando PDF. Intentalo de nuevo.', 'error');
     }
 
     trackEvent('pdf_download');
