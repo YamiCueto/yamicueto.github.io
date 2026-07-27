@@ -532,7 +532,7 @@ async function generatePDF() {
         // ── PERFIL PROFESIONAL ────────────────────────────────────────────────
         addSection('PERFIL PROFESIONAL');
         doc.setFontSize(8.5); doc.setFont(undefined, 'normal'); doc.setTextColor(30, 41, 59);
-        const resumen = 'Senior Software Engineer con mas de 10 anos liderando transformaciones digitales en empresas enterprise. Especialista en migracion de sistemas legacy criticos, habiendo liderado la migracion de un sistema bancario de VB6 a Java/Spring sirviendo 500K+ usuarios con 99.9% uptime. Expert en arquitecturas escalables con Java (E3), Spring Boot (E1) y Generative AI (E2) segun evaluacion TCS iEvolve. Reconocido con 5 premios en Tata Consultancy Services incluyendo "Star of the Month" (x2), "Best Team Award" y "Beyond Performance Xcelerate Awards" (x2). Actualmente desarrollando herramientas de IA generativa que automatizan 40% del trabajo repetitivo en equipos enterprise.';
+        const resumen = 'Senior Software Engineer con mas de 10 anos liderando transformaciones digitales en empresas enterprise. Actualmente en Bancolombia S.A. (via TCS) desarrollando soluciones criticas para uno de los bancos mas grandes de Colombia. Especialista en migracion de sistemas legacy, habiendo liderado la migracion VB6 -> Java/Spring sirviendo 500K+ usuarios con 99.9% uptime. Expert en Java (E3), Spring Boot (E1), Angular (E2) y Generative AI (E2). Reconocido con 5 premios en TCS: "Star of the Month" (x2), "Best Team Award" y "Beyond Performance Xcelerate Awards" (x2). Desarrolla herramientas de IA generativa que automatizan 40% del trabajo repetitivo en equipos enterprise.';
         const resLines = doc.splitTextToSize(resumen, pageWidth - 2 * ml);
         doc.text(resLines, ml, y);
         y += resLines.length * 3.8 + 8;
@@ -540,11 +540,18 @@ async function generatePDF() {
         // ── EXPERIENCIA PROFESIONAL ───────────────────────────────────────────
         addSection('EXPERIENCIA PROFESIONAL');
 
-        addJob('Senior Software Engineering', 'Tata Consultancy Services', 'Nov 2023 - Presente', [
+        addJob('Senior Software Engineering', 'Bancolombia S.A. (via TCS)', 'Jul 2026 - Presente', [
+            '- Desarrollo de soluciones enterprise para uno de los bancos mas grandes de Colombia',
+            '- Implementacion de arquitecturas modernas y optimizacion de sistemas criticos para servicios financieros',
+            '- Mejora continua de performance y calidad en plataformas de banca digital de alto trafico'
+        ]);
+
+        addJob('Senior Software Engineering', 'Tata Consultancy Services', 'Nov 2023 - Jul 2026', [
             '- Lidere migracion de sistema bancario legacy (VB6 -> Java/Spring) sirviendo 500K+ usuarios con 99.9% uptime',
             '- Desarrolle 8+ microservicios con Spring Boot procesando 2M+ transacciones/dia en entorno Kubernetes',
             '- Implemente soluciones de IA Generativa (LLMs/RAG) automatizando 40% del trabajo repetitivo del equipo',
-            '- Reduci costos de infraestructura en 35% mediante optimizacion de arquitectura cloud con Kubernetes'
+            '- Reduci costos de infraestructura en 35% mediante optimizacion de arquitectura cloud con Kubernetes',
+            '- Clientes atendidos: Banistmo S.A. (Ene 2026 - Jul 2026) y Bancolombia S.A. (Nov 2023 - May 2024)'
         ], 'Reconocimientos TCS: Star of the Month (Dic 2025, Jun 2024)  |  Best Team Award (Ago 2024)  |  Beyond Performance Xcelerate Warrior & Victor (Oct 2024)');
 
         addJob('Senior Software Development Engineer', 'Intergrupo', 'Mar 2021 - Nov 2023', [
