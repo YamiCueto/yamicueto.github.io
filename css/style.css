@@ -2015,6 +2015,167 @@ EXPERIENCE SECTION
   font-weight: 500;
 }
 
+/* Via label (ej: "via Tata Consultancy Services") */
+
+.timeline-via {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: #e2e8f0;
+  color: var(--text-secondary, #94a3b8);
+  margin-left: 0.35rem;
+}
+
+/* ==========================================================================
+   AWARDS SECTION
+   ========================================================================== */
+
+.awards-section {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #334155;
+  border-top: 1px solid var(--bg-tertiary, rgba(255,255,255,0.08));
+}
+
+.awards-header {
+  margin-bottom: 1.5rem;
+}
+
+.awards-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  color: var(--text-primary, #e2e8f0);
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.awards-title i {
+  color: #f59e0b;
+  filter: drop-shadow(0 0 6px rgba(245,158,11,0.5));
+}
+
+.awards-subtitle {
+  color: #e2e8f0;
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.awards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.award-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #1e293b;
+  background: var(--bg-secondary, #1e293b);
+  border: 1px solid #334155;
+  border: 1px solid var(--bg-tertiary, #334155);
+  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.award-row:hover {
+  transform: translateX(4px);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.12);
+}
+
+.award-row__icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
+}
+
+.award-row__icon--medal {
+  background: linear-gradient(135deg, #92400e, #b45309);
+  box-shadow: 0 3px 10px rgba(180, 83, 9, 0.3);
+}
+
+.award-row__icon--team {
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+  box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3);
+}
+
+.award-row__icon i {
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.award-row__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.award-row__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  color: var(--text-primary, #e2e8f0);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.award-row__category {
+  font-size: 0.775rem;
+  color: #e2e8f0;
+  color: var(--text-secondary, #94a3b8);
+}
+
+.award-row__badge {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+
+.award-row__badge--star {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.award-row__badge--medal {
+  background: rgba(180, 83, 9, 0.12);
+  color: #d97706;
+  border: 1px solid rgba(180, 83, 9, 0.3);
+}
+
+.award-row__badge--team {
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+@media (max-width: 500px) {
+  .award-row {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .award-row__badge {
+    margin-left: auto;
+  }
+}
+
 /*
 ==========================================================================
    CONTACT SECTION - REDESIGNED
