@@ -691,7 +691,7 @@ async function generatePDF() {
         addSection('IDIOMAS');
         doc.setFontSize(8.5); doc.setFont(undefined, 'normal'); doc.setTextColor(30, 41, 59);
         doc.text('- Espanol: Nativo', ml, y); y += 4.5;
-        doc.text('- Ingles: Intermedio-Avanzado (lectura tecnica avanzada, comunicacion profesional)', ml, y); y += 4.5;
+        doc.text('- Ingles: Intermedio-Avanzado (lectura tecnica avanzada)', ml, y); y += 4.5;
 
         // ── FOOTER EN CADA PAGINA ─────────────────────────────────────────────
         const totalPages = doc.internal.getNumberOfPages();
