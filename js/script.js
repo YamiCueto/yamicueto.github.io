@@ -9,6 +9,143 @@ let isMenuOpen = false;
 let observerInstances = [];
 
 // ==========================================================================
+// PROJECT GALLERY DATA & LOGIC
+// ==========================================================================
+const projectGallery = {
+    'case-os': [
+        { file: 'case-os-01.webp', title: 'Dashboard Principal', description: 'Visión general del workspace y herramientas AI.' },
+        { file: 'case-os-02.webp', title: 'Terminal Interactiva', description: 'Ejecución de agentes y gestión del contexto.' }
+    ],
+    'code-agent-arena': [
+        { file: 'code-agent-arena-01.webp', title: 'Leaderboard', description: 'Tabla principal de puntuación de agentes.' },
+        { file: 'code-agent-arena-02.webp', title: 'Arena de Batalla', description: 'Entorno interactivo de evaluación.' }
+    ],
+    'flowly': [
+        { file: 'flowly-01.webp', title: 'Lienzo de Diagramación', description: 'Espacio de trabajo visual interactivo.' },
+        { file: 'flowly-02.webp', title: 'Edición de Nodos', description: 'Configuración y conexión de componentes.' }
+    ],
+    'academy-ia': [
+        { file: 'academy-ia-01.webp', title: 'Plataforma LMS', description: 'Vista principal de cursos y progreso.' },
+        { file: 'academy-ia-02.webp', title: 'Reproductor', description: 'Módulo de lecciones interactivas.' }
+    ],
+    'cloud-cheatsheet': [
+        { file: 'cloud-cheatsheet-01.webp', title: 'Arquitectura Cloud', description: 'Catálogo de servicios y patrones.' },
+        { file: 'cloud-cheatsheet-02.webp', title: 'Detalle de Componente', description: 'Exploración de la configuración de un servicio.' }
+    ],
+    'fotomultaslab': [
+        { file: 'fotomultaslab-01.webp', title: 'Mapa Interactivo', description: 'Geolocalización principal de marcadores.' },
+        { file: 'fotomultaslab-02.webp', title: 'Explorador de Filtros', description: 'Búsqueda e interacción con el dataset.' }
+    ]
+};
+
+let currentGallery = [];
+let currentGalleryIndex = 0;
+let lastFocusedElement = null;
+
+function setupProjectGallery() {
+    const modal = document.getElementById('gallery-modal');
+    if (!modal) return;
+    
+    const closeBtn = document.getElementById('gallery-close');
+    const prevBtn = document.getElementById('gallery-prev');
+    const nextBtn = document.getElementById('gallery-next');
+    const imgEl = document.getElementById('gallery-image');
+    const titleEl = document.getElementById('gallery-title');
+    const descEl = document.getElementById('gallery-desc');
+    const counterEl = document.getElementById('gallery-counter');
+
+    // Make project images interactive
+    document.querySelectorAll('.projects-grid .project-card').forEach(card => {
+        const dataId = card.getAttribute('data-id');
+        if (!dataId || !projectGallery[dataId]) return;
+        
+        const pic = card.querySelector('picture');
+        if (pic) {
+            pic.style.cursor = 'pointer';
+            pic.addEventListener('click', (e) => {
+                e.preventDefault();
+                openGallery(dataId, pic);
+            });
+        }
+    });
+
+    function openGallery(id, triggerElement) {
+        currentGallery = projectGallery[id];
+        currentGalleryIndex = 0;
+        lastFocusedElement = triggerElement;
+        updateGalleryView();
+        modal.showModal();
+        closeBtn.focus();
+    }
+
+    function updateGalleryView() {
+        if (!currentGallery || currentGallery.length === 0) return;
+        const view = currentGallery[currentGalleryIndex];
+        imgEl.src = 'assets/project-captures/' + view.file;
+        titleEl.textContent = view.title;
+        descEl.textContent = view.description;
+        counterEl.textContent = `${currentGalleryIndex + 1} / ${currentGallery.length}`;
+        
+        // Handle extremities logic (no circular navigation based on requirements unless documented, let's disable buttons)
+        prevBtn.disabled = currentGalleryIndex === 0;
+        nextBtn.disabled = currentGalleryIndex === currentGallery.length - 1;
+        
+        // Ensure image fits without stretching
+        imgEl.style.objectFit = 'contain';
+    }
+
+    function nextImage() {
+        if (currentGalleryIndex < currentGallery.length - 1) {
+            currentGalleryIndex++;
+            updateGalleryView();
+        }
+    }
+
+    function prevImage() {
+        if (currentGalleryIndex > 0) {
+            currentGalleryIndex--;
+            updateGalleryView();
+        }
+    }
+
+    function closeGallery() {
+        modal.close();
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+        }
+    }
+
+    closeBtn.addEventListener('click', closeGallery);
+    nextBtn.addEventListener('click', nextImage);
+    prevBtn.addEventListener('click', prevImage);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (modal.open) {
+            if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            }
+        }
+    });
+
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+        const dialogDimensions = modal.getBoundingClientRect();
+        if (
+            e.clientX < dialogDimensions.left ||
+            e.clientX > dialogDimensions.right ||
+            e.clientY < dialogDimensions.top ||
+            e.clientY > dialogDimensions.bottom
+        ) {
+            closeGallery();
+        }
+    });
+}
+
+
+// ==========================================================================
 // INICIALIZACIÓN HÍBRIDA
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', function () {
@@ -28,6 +165,7 @@ function initializeApp() {
 
     // Core features (legacy y estables)
     setupNavigation();
+    setupProjectGallery();
     setupTypingEffectLegacy(); // Usar versión legacy directa
     setupShareButton();
     setupSmoothScrolling();

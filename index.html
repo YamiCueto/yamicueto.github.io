@@ -455,9 +455,10 @@
 			<!-- Projects Grid -->
 			<div class="projects-grid">
 <!-- CASE OS -->
-				<div class="project-card" data-category="ai">
+				<div class="project-card" data-category="ai" data-id="case-os">
 					<div class="project-image">
-						<picture>
+						<picture tabindex="0" role="button" aria-label="Abrir galería de capturas">
+							<span class="zoom-indicator" aria-hidden="true"><i class="fas fa-search-plus"></i> Ver galería</span>
 							<source srcset="assets/project-captures/case-os-demo.webp" type="image/webp">
 							<img class="project-image-real" src="assets/project-captures/case-os-demo.webp" alt="CASE OS Engineering Workspace" loading="lazy" width="1024" height="1024">
 						</picture>
@@ -491,9 +492,10 @@
 				
 
 <!-- Code Agent Arena -->
-				<div class="project-card" data-category="ai">
+				<div class="project-card" data-category="ai" data-id="code-agent-arena">
 					<div class="project-image">
-						<picture>
+						<picture tabindex="0" role="button" aria-label="Abrir galería de capturas">
+							<span class="zoom-indicator" aria-hidden="true"><i class="fas fa-search-plus"></i> Ver galería</span>
 							<source srcset="assets/project-captures/code-agent-arena-demo.webp" type="image/webp">
 							<img class="project-image-real" src="assets/code-agent-arena.png" alt="Code Agent Arena Dashboard" loading="lazy" width="1024" height="1024">
 						</picture>
@@ -531,9 +533,10 @@
 
 				
 <!-- Flowly -->
-				<div class="project-card" data-category="web">
+				<div class="project-card" data-category="web" data-id="flowly">
 					<div class="project-image">
-						<picture>
+						<picture tabindex="0" role="button" aria-label="Abrir galería de capturas">
+							<span class="zoom-indicator" aria-hidden="true"><i class="fas fa-search-plus"></i> Ver galería</span>
 							<source srcset="assets/project-captures/flowly-demo.webp" type="image/webp">
 							<img class="project-image-real" src="assets/flowly.png" alt="Flowly Diagram Tool" loading="lazy" width="1024" height="1024">
 						</picture>
@@ -568,9 +571,10 @@
 
 				
 <!-- Academy.IA -->
-				<div class="project-card" data-category="education ai web">
+				<div class="project-card" data-category="education ai web" data-id="academy-ia">
 					<div class="project-image">
-						<picture>
+						<picture tabindex="0" role="button" aria-label="Abrir galería de capturas">
+							<span class="zoom-indicator" aria-hidden="true"><i class="fas fa-search-plus"></i> Ver galería</span>
 							<source srcset="assets/project-captures/academy-ia-demo.webp" type="image/webp">
 							<img class="project-image-real" src="assets/academy-ia.png" alt="Academy.IA Platform" loading="lazy" width="1024" height="1024">
 						</picture>
@@ -606,9 +610,10 @@
 
 			
 <!-- Cloud Cheatsheet -->
-				<div class="project-card" data-category="web">
+				<div class="project-card" data-category="web" data-id="cloud-cheatsheet">
 					<div class="project-image">
-						<picture>
+						<picture tabindex="0" role="button" aria-label="Abrir galería de capturas">
+							<span class="zoom-indicator" aria-hidden="true"><i class="fas fa-search-plus"></i> Ver galería</span>
 							<source srcset="assets/project-captures/cloud-cheatsheet-demo.webp" type="image/webp">
 							<img class="project-image-real" src="assets/cloud-cheatsheet.png" alt="Cloud Cheatsheet Dashboard" loading="lazy" width="1024" height="1024">
 						</picture>
@@ -644,9 +649,10 @@
 
 				
 <!-- FotoMultasLab -->
-				<div class="project-card" data-category="web">
+				<div class="project-card" data-category="web" data-id="fotomultaslab">
 					<div class="project-image">
-						<picture>
+						<picture tabindex="0" role="button" aria-label="Abrir galería de capturas">
+							<span class="zoom-indicator" aria-hidden="true"><i class="fas fa-search-plus"></i> Ver galería</span>
 							<source srcset="assets/project-captures/fotomultaslab-demo.webp" type="image/webp">
 							<img class="project-image-real" src="assets/fotomultaslab.png" alt="FotoMultasLab Map Interface" loading="lazy" width="1024" height="1024">
 						</picture>
@@ -1287,6 +1293,24 @@
 			setTimeout(loadJsPDF, 2000);
 		});
 	</script>
+
+	<!-- PROJECT GALLERY MODAL -->
+	<dialog id="gallery-modal" aria-modal="true" aria-labelledby="gallery-title">
+		<div class="gallery-content">
+			<button id="gallery-close" aria-label="Cerrar galería"><i class="fas fa-times"></i></button>
+			<div class="gallery-image-container">
+				<button id="gallery-prev" aria-label="Anterior captura"><i class="fas fa-chevron-left"></i></button>
+				<img id="gallery-image" src="" alt="Captura del proyecto">
+				<button id="gallery-next" aria-label="Siguiente captura"><i class="fas fa-chevron-right"></i></button>
+			</div>
+			<div class="gallery-info">
+				<span id="gallery-counter"></span>
+				<h4 id="gallery-title"></h4>
+				<p id="gallery-desc"></p>
+			</div>
+		</div>
+	</dialog>
+
 </body>
 
 </html>
