@@ -66,6 +66,12 @@ function setupProjectGallery() {
                 e.preventDefault();
                 openGallery(dataId, pic);
             });
+            pic.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openGallery(dataId, pic);
+                }
+            });
         }
     });
 
