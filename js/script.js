@@ -961,12 +961,12 @@ function setupLoadMoreProjects() {
 
     // Nombres de los proyectos destacados (ya en el HTML)
     const featuredRepos = [
+        'case-os',
         'code-agent-arena',
-        'fotomultaslab',
         'Flowly',
-        'promptly',
+        'academy.ia',
         'cloud-cheatsheet',
-        'academy.ia'
+        'fotomultaslab'
     ];
 
     // Fetch de repos adicionales desde GitHub
