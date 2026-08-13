@@ -13,6 +13,7 @@ module.exports = {
           'animate-out',
           'loading',
           'loaded',
+          'is-hovering',
           /data-theme/,
           /^animate-/,
           /^fade-/,

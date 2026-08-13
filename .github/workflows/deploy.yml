@@ -56,7 +56,7 @@ jobs:
         [ -f sitemap.xml ] && cp sitemap.xml dist/ || true
         [ -f CNAME ] && cp CNAME dist/ || true
 
-    - name: � Upload build artifacts
+    - name: 📤 Upload build artifacts
       uses: actions/upload-pages-artifact@v3
       with:
         path: 'dist'

@@ -4,20 +4,14 @@
   "description": "Yamid Cueto - Senior Software Engineer Portfolio",
   "main": "index.html",
   "scripts": {
-    "dev": "npm run build:css && npm run build:js:hybrid && npm run serve",
-    "build": "npm run build:css && npm run build:js:hybrid && npm run minify",
+    "dev": "npm run build:css && npm run serve",
+    "build": "npm run build:css:prod",
     "build:css": "postcss src/css/main.css -o css/style.css --watch",
     "build:css:prod": "postcss src/css/main.css -o css/style.css --env production",
-    "build:js": "rollup -c rollup.config.mjs",
-    "build:js:hybrid": "rollup -c rollup.hybrid.config.mjs",
-    "build:js:watch": "rollup -c rollup.config.mjs --watch",
-    "minify": "npm run minify:css && npm run minify:js",
-    "minify:css": "cleancss -o css/style.min.css css/style.css",
-    "minify:js": "terser js/script.hybrid.js -c -m -o js/script.min.js",
     "serve": "live-server --port=3000 --open=/",
     "lint:css": "stylelint src/css/**/*.css --fix",
-    "deploy": "npm run build:css:prod && npm run build:js:hybrid && npm run minify",
-    "clean": "rimraf css/style.css css/style.min.css js/script.*.js js/script.min.js"
+    "deploy": "npm run build:css:prod",
+    "clean": "rimraf css/style.css css/style.min.css"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",

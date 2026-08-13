@@ -3,7 +3,7 @@
 <div align="center">
 
 ![Portfolio Preview](https://img.shields.io/badge/Portfolio-Live-success?style=for-the-badge&logo=github-pages&logoColor=white)
-![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-2.0.0-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 **🌐 [Ver Portfolio en Vivo](https://yamicueto.github.io/)**
@@ -26,7 +26,6 @@ Portfolio personal y profesional de **Yamid Cueto**, Full Stack Developer con m�
 ## ✨ Características Principales
 
 ### 🎨 **Diseño y UX**
-- **🌓 Tema Dual**: Modo claro y oscuro con persistencia en localStorage
 - **📱 Responsive Design**: Optimizado para todos los dispositivos
 - **🎭 Cursor Personalizado**: Efectos interactivos únicos
 - **✨ Animaciones Fluidas**: Transiciones suaves y profesionales
@@ -48,13 +47,16 @@ Portfolio personal y profesional de **Yamid Cueto**, Full Stack Developer con m�
 
 ```
 yamicueto.github.io/
-├── 📄 index.html          # Página principal
+├── 📄 index.html          # Página principal (single-page)
 ├── 📁 css/
-│   └── 🎨 style.css       # Estilos principales con variables CSS
+│   └── 🎨 style.css       # Estilos compilados (PostCSS)
 ├── 📁 js/
-│   └── ⚡ script.js       # Funcionalidad interactiva
-├── 📁 assets/             # Recursos multimedia (futuro)
-├── 📄 user_stats.json     # Estadísticas de GitHub API
+│   └── ⚡ script.js       # Toda la funcionalidad JS
+├── 📁 assets/            # Imágenes y recursos multimedia
+├── 📁 src/               # Fuentes para compilación (PostCSS)
+├── 📁 .github/workflows/ # CI/CD con build + deploy + Lighthouse
+├── 📄 sitemap.xml        # SEO
+├── 📄 robots.txt         # SEO
 └── 📖 README.md          # Documentación del proyecto
 ```
 
@@ -153,14 +155,14 @@ yamicueto.github.io/
 - Reducción de fatiga visual
 - Perfect para uso nocturno
 
-**Persistencia**: El tema seleccionado se guarda en localStorage
+**Persistencia**: El tema seleccionado se guardará en localStorage (próximamente)
 
 ## ⚡ Performance
 
-- **📊 Lighthouse Score**: 95+ en todas las métricas
+- **📊 Lighthouse Score**: Auditado automáticamente en cada deploy vía CI/CD
 - **🚀 Carga Rápida**: < 2 segundos en conexiones estándar
 - **📦 Tamaño Optimizado**: CSS y JS minificables
-- **🖼️ Lazy Loading**: Carga diferida de imágenes
+- **🖼️ Lazy Loading**: Carga diferida de imágenes (`loading="lazy"` nativo)
 
 ## 🛠️ Instalación y Desarrollo Local
 
@@ -171,8 +173,13 @@ git clone https://github.com/YamiCueto/yamicueto.github.io.git
 # 2. Navegar al directorio
 cd yamicueto.github.io
 
-# 3. Abrir con Live Server (VS Code) o servidor local
-# O simplemente abrir index.html en el navegador
+# 3. Instalar dependencias
+npm install
+
+# 4. Modo desarrollo (CSS watch + servidor local)
+npm run dev
+
+# O simplemente abrir index.html en el navegador (sin build)
 ```
 
 ### 📋 **Requisitos**

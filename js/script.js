@@ -42,7 +42,6 @@ function initializeApp() {
     setupScrollAnimationsLegacy();
 
     // Legacy features
-    setupLazyLoading();
     setupAnalytics();
     setupProjectFilters();
     setupLoadMoreProjects();
@@ -85,17 +84,16 @@ function setupCursor() {
         rafId = requestAnimationFrame(animateFollower);
     }
 
-    // Efectos hover optimizados
+    // Efectos hover: solo clase CSS, el scale lo maneja style.css (.is-hovering)
     const hoverElements = document.querySelectorAll('a, button, .project-card');
     hoverElements.forEach(element => {
         element.addEventListener('mouseenter', () => {
-            cursor.style.transform += ' scale(2)';
-            cursorFollower.style.transform += ' scale(1.5)';
+            cursor.classList.add('is-hovering');
+            cursorFollower.classList.add('is-hovering');
         });
-
         element.addEventListener('mouseleave', () => {
-            cursor.style.transform = cursor.style.transform.replace(' scale(2)', '');
-            cursorFollower.style.transform = cursorFollower.style.transform.replace(' scale(1.5)', '');
+            cursor.classList.remove('is-hovering');
+            cursorFollower.classList.remove('is-hovering');
         });
     });
 }
@@ -317,27 +315,9 @@ function setupScrollToTop() {
 }
 
 // ==========================================================================
-// LAZY LOADING REAL
+// LAZY LOADING
+// Nota: Las imágenes usan loading="lazy" nativo. Esta función ya no es necesaria.
 // ==========================================================================
-function setupLazyLoading() {
-    const images = document.querySelectorAll('img[data-src]');
-
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                imageObserver.unobserve(img);
-            }
-        });
-    }, {
-        rootMargin: '50px'
-    });
-
-    images.forEach(img => imageObserver.observe(img));
-    observerInstances.push(imageObserver);
-}
 
 // ==========================================================================
 // ANALYTICS SIMPLIFICADO
@@ -561,7 +541,7 @@ async function generatePDF() {
             '- Lidere adopcion de metodologias agiles (Scrum E2) en equipo de 12 personas'
         ]);
 
-        addJob('Software Development Engineer', 'SoftwareONE Colombia', 'Ago 2020 - Mar 2021', [
+        addJob('Software Development Engineer', 'SoftwareONE Colombia', 'Feb 2021 - Nov 2023', [
             '- Implemente soluciones cloud con AWS (EC2, S3, Lambda) mejorando escalabilidad de plataforma',
             '- Desarrolle APIs RESTful con Spring Boot siguiendo principios de Clean Architecture',
             '- Integre sistemas legacy con arquitecturas modernas usando patrones de diseno'
@@ -958,8 +938,12 @@ function setupContactForm() {
     });
 }
 
-// Add to initialization
-setupContactForm();
+// Add to initialization (wrapped to ensure DOM is ready)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupContactForm);
+} else {
+    setupContactForm();
+}
 
 console.log('🚀 Portfolio de Yamid Cueto cargado exitosamente!');
 

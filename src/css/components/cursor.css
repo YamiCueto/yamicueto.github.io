@@ -1,1 +1,14 @@
-/* Cursor component - placeholder */
+/* Cursor component
+   El JS gestiona la posición vía transform: translate3d(x, y, 0).
+   El efecto hover se aplica con .is-hovering usando `scale` como propiedad
+   independiente (no sobreescribe el translate del RAF).
+   Soporte: Chrome 104+, Firefox 103+, Safari 16+. */
+
+.cursor.is-hovering {
+  scale: 2;
+}
+
+.cursor-follower.is-hovering {
+  scale: 1.5;
+  opacity: 0.8;
+}
