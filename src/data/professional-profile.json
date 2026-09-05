@@ -40,6 +40,7 @@
   },
   "summary": {
     "en": "Full Stack Engineer specializing in enterprise and banking applications built with Java, Spring Boot, Angular and TypeScript. Experience in legacy modernization, REST and SOAP integrations, CI/CD and cloud application delivery. Additional experience developing generative AI tools.",
+    "es": "Full Stack Engineer especializado en aplicaciones empresariales y bancarias desarrolladas con Java, Spring Boot, Angular y TypeScript. Experiencia en modernización de sistemas legacy, integraciones REST y SOAP, CI/CD y entrega de aplicaciones en la nube. Experiencia adicional en el desarrollo de herramientas de IA generativa.",
     "status": "pending-editorial-review",
     "sources": ["sprint-1-confirmation", "portfolio-baseline", "cv-baseline"]
   },
@@ -99,10 +100,10 @@
         { "id": "banistmo-transition-2026", "kind": "client-transition", "organizationId": "banistmo", "start": "2026-08", "end": "2026-08", "public": false }
       ],
       "highlights": [
-        { "id": "banking-applications", "en": "Develop full stack enterprise banking applications using Java, Spring Boot, Angular and TypeScript across TCS client assignments.", "status": "repository-only", "source": "portfolio-baseline", "editorialStatus": "pending-review" },
-        { "id": "legacy-modernization", "en": "Contributed to the migration of a legacy banking system from VB6 to Java and Spring.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" },
-        { "id": "sonarqube-pipelines", "en": "Contributed to CI/CD and code-quality workflows using SonarQube during the Banistmo assignment.", "status": "verified", "source": "sprint-1-confirmation", "editorialStatus": "pending-review" },
-        { "id": "generative-ai-tools", "en": "Developed generative AI tools using LLMs and retrieval-augmented generation to support team workflows.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" }
+        { "id": "banking-applications", "en": "Develop full stack enterprise banking applications using Java, Spring Boot, Angular and TypeScript across TCS client assignments.", "es": "Desarrollo aplicaciones bancarias empresariales full stack con Java, Spring Boot, Angular y TypeScript en asignaciones de cliente de TCS.", "status": "repository-only", "source": "portfolio-baseline", "editorialStatus": "pending-review" },
+        { "id": "legacy-modernization", "en": "Contributed to the migration of a legacy banking system from VB6 to Java and Spring.", "es": "Contribuí a la migración de un sistema bancario legacy de VB6 a Java y Spring.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" },
+        { "id": "sonarqube-pipelines", "en": "Contributed to CI/CD and code-quality workflows using SonarQube during the Banistmo assignment.", "es": "Contribuí a flujos de CI/CD y calidad de código con SonarQube durante la asignación de Banistmo.", "status": "verified", "source": "sprint-1-confirmation", "editorialStatus": "pending-review" },
+        { "id": "generative-ai-tools", "en": "Developed generative AI tools using LLMs and retrieval-augmented generation to support team workflows.", "es": "Desarrollé herramientas de IA generativa con LLMs y generación aumentada por recuperación para apoyar los flujos de trabajo del equipo.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" }
       ]
     },
     {
@@ -111,9 +112,9 @@
       "title": { "value": "Senior Software Development Engineer", "status": "repository-only", "source": "cv-baseline" },
       "parallelGroupId": "parallel-consulting-2021",
       "highlights": [
-        { "id": "distributed-applications", "en": "Developed distributed enterprise applications with Java, Spring Boot and REST APIs.", "status": "repository-only", "source": "portfolio-baseline", "editorialStatus": "pending-review" },
-        { "id": "delivery-pipelines", "en": "Implemented CI/CD pipelines with Jenkins, Docker and Kubernetes.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" },
-        { "id": "scrum-delivery", "en": "Worked in Scrum teams developing enterprise software.", "status": "repository-only", "source": "portfolio-baseline", "editorialStatus": "pending-review" }
+        { "id": "distributed-applications", "en": "Developed distributed enterprise applications with Java, Spring Boot and REST APIs.", "es": "Desarrollé aplicaciones empresariales distribuidas con Java, Spring Boot y APIs REST.", "status": "repository-only", "source": "portfolio-baseline", "editorialStatus": "pending-review" },
+        { "id": "delivery-pipelines", "en": "Implemented CI/CD pipelines with Jenkins, Docker and Kubernetes.", "es": "Implementé pipelines de CI/CD con Jenkins, Docker y Kubernetes.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" },
+        { "id": "scrum-delivery", "en": "Worked in Scrum teams developing enterprise software.", "es": "Trabajé en equipos Scrum desarrollando software empresarial.", "status": "repository-only", "source": "portfolio-baseline", "editorialStatus": "pending-review" }
       ]
     },
     {
@@ -129,10 +130,11 @@
           "applicationSkillIds": ["java-ee"], "serviceSkillIds": ["soap"], "deploymentSkillIds": ["websphere"],
           "serviceDevelopment": false, "serviceMaintenance": false,
           "en": "Consumed SOAP web services for RUES queries in work related to Cámara de Comercio de Bogotá, using Java EE applications deployed on IBM WebSphere Application Server.",
+          "es": "Consumí servicios web SOAP para consultas RUES en trabajo relacionado con la Cámara de Comercio de Bogotá, desde aplicaciones Java EE desplegadas en IBM WebSphere Application Server.",
           "editorialStatus": "pending-review"
         },
-        { "id": "rest-integration", "en": "Developed REST APIs with Spring Boot and integrated legacy systems with modern applications.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" },
-        { "id": "aws-applications", "en": "Implemented cloud application solutions using AWS EC2, S3 and Lambda.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" }
+        { "id": "rest-integration", "en": "Developed REST APIs with Spring Boot and integrated legacy systems with modern applications.", "es": "Desarrollé APIs REST con Spring Boot e integré sistemas legacy con aplicaciones modernas.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" },
+        { "id": "aws-applications", "en": "Implemented cloud application solutions using AWS EC2, S3 and Lambda.", "es": "Implementé soluciones de aplicaciones en la nube con AWS EC2, S3 y Lambda.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" }
       ]
     },
     {
@@ -150,7 +152,7 @@
       "start": "2019-01", "end": "2020-03", "status": "verified", "source": "sprint-1-confirmation",
       "title": { "value": "Full Stack Engineer", "status": "repository-only", "source": "cv-baseline" },
       "highlights": [
-        { "id": "full-stack-tax-applications", "en": "Developed full stack applications for tax services using Java, Spring Boot and Angular.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" }
+        { "id": "full-stack-tax-applications", "en": "Developed full stack applications for tax services using Java, Spring Boot and Angular.", "es": "Desarrollé aplicaciones full stack para servicios tributarios con Java, Spring Boot y Angular.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" }
       ]
     },
     {
@@ -177,7 +179,7 @@
     }
   ],
   "parallelGroups": [
-    { "id": "parallel-consulting-2021", "description": "Parallel consulting engagements", "status": "verified", "source": "sprint-1-confirmation" }
+    { "id": "parallel-consulting-2021", "description": "Parallel consulting engagements", "descriptionEs": "Consultorías realizadas en paralelo", "status": "verified", "source": "sprint-1-confirmation" }
   ],
   "education": [
     { "id": "sena-software-2015", "organizationId": "sena", "credentialOriginal": "Tecnólogo en Análisis y Desarrollo de Software", "credentialEn": "Software Analysis and Development Technologist", "year": 2015, "status": "verified", "source": "sprint-1-confirmation", "editorialStatus": "pending-review" }

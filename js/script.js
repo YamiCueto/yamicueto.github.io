@@ -379,11 +379,11 @@ function showNotification(message, type = 'info') {
 // ==========================================================================
 function setupProjectFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const filter = button.getAttribute('data-filter');
+            const projectCards = document.querySelectorAll('.project-card');
 
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
@@ -505,45 +505,7 @@ function trackEvent(eventName, data = {}) {
 function setupTypingEffectLegacy() {
     const typingElement = document.getElementById('typing-text');
     if (!typingElement) return;
-
-    const roles = [
-        'Full Stack Developer',
-        'Legacy System Transformer',
-        'Java/Spring Expert',
-        'Cloud Architect',
-        'Problem Solver'
-    ];
-
-    let currentRoleIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-
-    function type() {
-        const currentRole = roles[currentRoleIndex];
-
-        if (isDeleting) {
-            typingElement.textContent = currentRole.substring(0, currentCharIndex - 1);
-            currentCharIndex--;
-        } else {
-            typingElement.textContent = currentRole.substring(0, currentCharIndex + 1);
-            currentCharIndex++;
-        }
-
-        let typingSpeed = isDeleting ? 50 : 100;
-
-        if (!isDeleting && currentCharIndex === currentRole.length) {
-            typingSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && currentCharIndex === 0) {
-            isDeleting = false;
-            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-            typingSpeed = 500;
-        }
-
-        setTimeout(type, typingSpeed);
-    }
-
-    type();
+    typingElement.textContent = window.professionalProfile?.headline || 'Full Stack Engineer';
 }
 
 function setupScrollAnimationsLegacy() {
@@ -809,7 +771,13 @@ function setupLoadMoreProjects() {
     function createProjectCard(repo) {
         const card = document.createElement('div');
         card.className = 'project-card fade-in-up';
-        card.setAttribute('data-category', 'web'); // Categoría por defecto
+        const searchable = [repo.name, repo.description, repo.language, ...(repo.topics || [])]
+            .filter(Boolean).join(' ').toLowerCase();
+        const categories = new Set(['web']);
+        if (/\b(java|spring|spring-boot)\b/.test(searchable)) categories.add('java');
+        if (/\b(angular|angularjs|rxjs)\b/.test(searchable)) categories.add('angular');
+        if (/\b(ai|ia|llm|rag|openai|ollama|agentic)\b/.test(searchable)) categories.add('ai');
+        card.setAttribute('data-category', [...categories].join(' '));
 
         // Detectar tecnologías principales
         const language = repo.language || 'Code';

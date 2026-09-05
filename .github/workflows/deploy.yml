@@ -50,6 +50,8 @@ jobs:
         # Copy built/source assets
         cp css/style.css dist/css/
         cp js/script.js dist/js/
+        cp js/professional-profile-data.js dist/js/
+        cp js/portfolio-profile.js dist/js/
         cp output/pdf/Yamid_Cueto_Amadeus_R35120.pdf dist/cv/
         
         # Copy optional SEO files if they exist

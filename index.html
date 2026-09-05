@@ -4,23 +4,23 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Yamid Cueto Mazo | Senior Full Stack Developer - 10+ años</title>
+	<title>Yamid Cueto Mazo | Full Stack Engineer</title>
 	<meta name="description"
-		content="Senior Full Stack Developer con 10+ años transformando sistemas legacy. Migré sistema bancario de 500K+ usuarios. Experto en Java, Spring Boot, Angular y AWS.">
+		content="Portfolio profesional de Yamid Cueto Mazo, Full Stack Engineer.">
 	<meta name="keywords"
-		content="Full Stack Developer Colombia, Java Spring Boot Expert, Angular Developer, AWS Solutions Architect, Migración Sistemas Legacy, Barranquilla Developer">
+		content="Full Stack Engineer Colombia, Java, Spring Boot, Angular, TypeScript, Enterprise Software, Legacy Modernization">
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website">
 	<meta property="og:title"
-		content="Yamid Cueto | Senior Full Stack Developer - 10+ años transformando sistemas legacy">
+		content="Yamid Cueto Mazo | Full Stack Engineer">
 	<meta property="og:description"
-		content="Migré sistema bancario VB6→Java/Spring sirviendo 500K+ usuarios con 99.9% uptime. Desarrollando soluciones de IA generativa en TCS. Experto en Java, Spring Boot, Angular y AWS.">
+		content="Portfolio profesional de Yamid Cueto Mazo, Full Stack Engineer.">
 	<meta property="og:url" content="https://yamicueto.github.io/">
 	<meta property="og:site_name" content="Yamid Cueto - Portfolio">
 	<meta property="og:image" content="https://yamicueto.github.io/assets/og-image.png">
 	<meta property="og:image:secure_url" content="https://yamicueto.github.io/assets/og-image.png">
-	<meta property="og:image:alt" content="Yamid Cueto - Senior Full Stack Developer con 10+ años de experiencia">
+	<meta property="og:image:alt" content="Portfolio profesional de Yamid Cueto Mazo">
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="630">
@@ -31,9 +31,9 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@YamiDev">
 	<meta name="twitter:creator" content="@YamiDev">
-	<meta name="twitter:title" content="Yamid Cueto | Full Stack Developer">
+	<meta name="twitter:title" content="Yamid Cueto Mazo | Full Stack Engineer">
 	<meta name="twitter:description"
-		content="10+ años transformando sistemas legacy. Experto en Java, Spring Boot, Angular.">
+		content="Portfolio profesional de Yamid Cueto Mazo, Full Stack Engineer.">
 	<meta name="twitter:image" content="https://yamicueto.github.io/assets/og-image.png">
 	<meta name="twitter:image:alt" content="Yamid Cueto - Full Stack Developer">
 
@@ -91,8 +91,8 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Yamid Cueto Mazo",
-        "jobTitle": "Senior Full Stack Developer",
-        "description": "Senior Full Stack Developer con más de 10 años de experiencia especializado en transformación digital y migración de sistemas legacy.",
+	        "jobTitle": "Full Stack Engineer",
+	        "description": "Full Stack Engineer especializado en Java, Spring Boot, Angular y TypeScript.",
         "worksFor": {
             "@type": "Organization",
             "name": "Tata Consultancy Services"
@@ -113,7 +113,7 @@
             "AWS",
             "Docker",
             "Full Stack Development",
-            "Cloud Architecture"
+	            "Legacy Modernization"
         ],
         "alumniOf": {
             "@type": "Organization",
@@ -180,32 +180,14 @@
 				<div class="hero-text">
 					<h1 class="hero-title">
 						<span class="greeting">Hola, soy</span>
-						<span class="name">Yamid Cueto</span>
+						<span class="name" id="profile-name">Yamid Cueto Mazo</span>
 						<span class="role" id="typing-text"></span>
 					</h1>
-					<p class="hero-description">
-						<strong>Transformo sistemas legacy en arquitecturas modernas.</strong><br>
-						Migré un sistema bancario crítico de <strong>VB6 a Java/Spring</strong>,
-						sirviendo a <strong>500K+ usuarios</strong> con <strong>99.9% uptime</strong>.<br>
-						<strong>Actualmente:</strong> Desarrollando soluciones de IA generativa en TCS
-						que automatizan <strong>40% del trabajo repetitivo</strong> de equipos enterprise.
-					</p>
+					<p class="hero-description" id="profile-summary">Perfil profesional cargado desde el modelo verificado.</p>
+					<p class="hero-location" id="profile-location">Barranquilla, Colombia</p>
 
 					<!-- Métricas visuales -->
-					<div class="hero-metrics">
-						<div class="metric">
-							<span class="metric-number">500K+</span>
-							<span class="metric-label">Usuarios Impactados</span>
-						</div>
-						<div class="metric">
-							<span class="metric-number">99.9%</span>
-							<span class="metric-label">Uptime Crítico</span>
-						</div>
-						<div class="metric">
-							<span class="metric-number">60%</span>
-							<span class="metric-label">Mejora Performance</span>
-						</div>
-					</div>
+					<div class="hero-metrics" id="profile-themes"></div>
 
 					<div class="hero-buttons">
 						<a href="#projects" class="btn btn-primary glow-on-hover">
@@ -240,10 +222,9 @@
 						<div class="code-content">
 							<pre><code><span class="keyword">const</span> <span class="variable">developer</span> = {
   <span class="property">name</span>: <span class="string">"Yamid Cueto"</span>,
-  <span class="property">role</span>: <span class="string">"Full Stack Developer"</span>,
-  <span class="property">experience</span>: <span class="string">"10+ años"</span>,
-  <span class="property">company</span>: <span class="string">"Tata Consultancy Services"</span>,
-  <span class="property">location</span>: <span class="string">"Colombia 🇨🇴"</span>,
+	  <span class="property">role</span>: <span class="string" id="profile-role">"Full Stack Engineer"</span>,
+	  <span class="property">company</span>: <span class="string" id="profile-employer">"Tata Consultancy Services (TCS)"</span>,
+	  <span class="property">location</span>: <span class="string">"Barranquilla, Colombia"</span>,
   
   <span class="property">technologies</span>: {
     <span class="property">frontend</span>: [<span class="string">"Angular"</span>, <span class="string">"TypeScript"</span>],
@@ -273,111 +254,20 @@
 			<div class="about-content">
 				<div class="about-text">
 					<div class="intro-highlight">
-						<h3 class="role-title">Senior Software Engineer</h3>
-						<p class="role-subtitle">Especialista en desarrollo enterprise y arquitecturas escalables</p>
+					<h3 class="role-title">Full Stack Engineer</h3>
+					<p class="role-subtitle">Java / Spring Boot + Angular / TypeScript</p>
 					</div>
 
-					<div class="about-description">
-						<p>
-							Soy un Senior Software Engineer con <strong>más de 10 años de experiencia</strong> en el
-							desarrollo de aplicaciones enterprise escalables y robustas. Mi especialidad se centra en
-							tecnologías como Java, Spring Boot, Angular y IA generativa, complementadas con
-							arquitecturas cloud en Kubernetes.
-						</p>
-
-						<p>
-							Actualmente trabajo en Tata Consultancy Services como Senior Software Engineering, donde
-							desarrollo soluciones enterprise con enfoque en herramientas de IA generativa y optimización
-							de experiencia de usuario. He trabajado en empresas reconocidas como Intergrupo y
-							SoftwareONE, liderando proyectos de arquitectura de sistemas distribuidos.
-						</p>
-					</div>
+					<div class="about-description"><p>El resumen profesional se mantiene sincronizado con el modelo verificado.</p></div>
 
 					<div class="experience-highlights">
 						<h4>Experiencia Clave:</h4>
 						<ul class="highlight-list">
 							<li><i class="fas fa-rocket"></i> Desarrollo de aplicaciones enterprise escalables</li>
-							<li><i class="fas fa-brain"></i> Implementación de soluciones de IA generativa</li>
-							<li><i class="fas fa-cloud"></i> Arquitecturas cloud con Kubernetes y microservicios</li>
-							<li><i class="fas fa-users"></i> Liderazgo técnico en equipos multidisciplinarios</li>
+						<li><i class="fas fa-code"></i> Java, Spring Boot, Angular y TypeScript</li>
+						<li><i class="fas fa-exchange-alt"></i> APIs REST e integraciones SOAP</li>
+						<li><i class="fas fa-tools"></i> Modernización de sistemas legacy</li>
 						</ul>
-					</div>
-
-					<div class="personal-touch">
-						<h4>🎯 Mi Filosofía</h4>
-						<p>
-							No solo escribo código, resuelvo problemas de negocio. Mi fortaleza es traducir
-							requisitos complejos en arquitecturas elegantes que escalan y generan valor real.
-						</p>
-
-						<h4>💡 Actualmente Explorando</h4>
-						<ul class="highlight-list">
-							<li><i class="fas fa-robot"></i> LLMs y RAG systems con Ollama/OpenAI</li>
-							<li><i class="fas fa-bolt"></i> Optimización de performance con Java 21 Virtual Threads</li>
-							<li><i class="fas fa-puzzle-piece"></i> Micro-frontends con Module Federation</li>
-							<li><i class="fas fa-code-branch"></i> Event-Driven Architecture con Kafka</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="about-sidebar">
-					<div class="about-stats">
-						<div class="stat">
-							<span class="stat-number">10+</span>
-							<span class="stat-label">Años de Experiencia</span>
-						</div>
-						<div class="stat">
-							<span class="stat-number">15+</span>
-							<span class="stat-label">Tecnologías</span>
-						</div>
-						<div class="stat">
-							<span class="stat-number">10</span>
-							<span class="stat-label">Proyectos Públicos</span>
-						</div>
-					</div>
-
-					<div class="companies-worked">
-						<h4>He trabajado en:</h4>
-						<div class="company-list">
-							<div class="company-item">
-								<i class="fas fa-building"></i>
-								<span>Tata Consultancy Services</span>
-							</div>
-							<div class="company-item">
-								<i class="fas fa-building"></i>
-								<span>Intergrupo</span>
-							</div>
-							<div class="company-item">
-								<i class="fas fa-building"></i>
-								<span>SoftwareONE</span>
-							</div>
-							<div class="company-item">
-								<i class="fas fa-building"></i>
-								<span>GTS</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="certifications">
-						<h4>🎓 Certificaciones & Formación</h4>
-						<div class="cert-list">
-							<div class="cert-item">
-								<i class="fas fa-certificate"></i>
-								<span>Generative AI Foundation — TCS iEvolve</span>
-							</div>
-							<div class="cert-item">
-								<i class="fas fa-certificate"></i>
-								<span>DevOps Foundation — TCS iEvolve</span>
-							</div>
-							<div class="cert-item">
-								<i class="fas fa-graduation-cap"></i>
-								<span>Análisis y Desarrollo de Software — SENA</span>
-							</div>
-							<div class="cert-item">
-								<i class="fas fa-trophy"></i>
-								<span>10+ años de experiencia enterprise</span>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -391,49 +281,7 @@
 				<h2 class="section-title">Tecnologías & Skills</h2>
 				<p class="section-subtitle">Herramientas y tecnologías que domino</p>
 			</div>
-			<div class="skills-unified">
-				<!-- Frontend -->
-				<div class="skills-group">
-					<h3><i class="fas fa-desktop"></i> Frontend</h3>
-					<div class="skills-tags">
-						<span class="skill-tag expert" title="Expert"><i class="fab fa-angular"></i> Angular</span>
-						<span class="skill-tag advanced" title="Advanced"><i class="fab fa-react"></i> React</span>
-						<span class="skill-tag expert" title="Expert"><i class="fab fa-js"></i> JavaScript</span>
-						<span class="skill-tag advanced" title="Advanced"><i class="fab fa-microsoft"></i>
-							TypeScript</span>
-						<span class="skill-tag expert" title="Expert"><i class="fab fa-html5"></i> HTML5/CSS3</span>
-					</div>
-				</div>
-
-				<!-- Backend -->
-				<div class="skills-group">
-					<h3><i class="fas fa-server"></i> Backend</h3>
-					<div class="skills-tags">
-						<span class="skill-tag expert" title="Expert"><i class="fab fa-java"></i> Java</span>
-						<span class="skill-tag expert" title="Expert"><i class="fas fa-leaf"></i> Spring Boot</span>
-						<span class="skill-tag intermediate" title="Intermediate"><i class="fab fa-node-js"></i>
-							Node.js</span>
-						<span class="skill-tag intermediate" title="Intermediate"><i class="fab fa-python"></i>
-							Python</span>
-						<span class="skill-tag advanced" title="Advanced"><i class="fas fa-database"></i>
-							SQL/NoSQL</span>
-					</div>
-				</div>
-
-				<!-- Cloud & DevOps -->
-				<div class="skills-group">
-					<h3><i class="fas fa-cloud"></i> Cloud & DevOps</h3>
-					<div class="skills-tags">
-						<span class="skill-tag advanced" title="Advanced"><i class="fab fa-aws"></i> AWS</span>
-						<span class="skill-tag intermediate" title="Intermediate"><i class="fab fa-docker"></i>
-							Docker</span>
-						<span class="skill-tag expert" title="Expert"><i class="fab fa-git-alt"></i> Git</span>
-						<span class="skill-tag intermediate" title="Intermediate"><i class="fas fa-cubes"></i>
-							Kubernetes</span>
-						<span class="skill-tag advanced" title="Advanced"><i class="fas fa-infinity"></i> CI/CD</span>
-					</div>
-				</div>
-			</div>
+			<div class="skills-unified" id="profile-skills"></div>
 		</div>
 	</section>
 
@@ -455,7 +303,7 @@
 			<!-- Projects Grid -->
 			<div class="projects-grid">
 <!-- CASE OS -->
-				<div class="project-card" data-category="ai" data-id="case-os">
+				<div class="project-card" data-category="java angular ai" data-id="case-os">
 					<div class="project-image">
 						<picture tabindex="0" role="button" aria-label="Abrir galería de capturas">
 							<span class="zoom-indicator" aria-hidden="true"><i class="fas fa-search-plus"></i> Ver galería</span>
@@ -492,7 +340,7 @@
 				
 
 <!-- Code Agent Arena -->
-				<div class="project-card" data-category="ai" data-id="code-agent-arena">
+				<div class="project-card" data-category="ai web" data-id="code-agent-arena">
 					<div class="project-image">
 						<picture tabindex="0" role="button" aria-label="Abrir galería de capturas">
 							<span class="zoom-indicator" aria-hidden="true"><i class="fas fa-search-plus"></i> Ver galería</span>
@@ -748,149 +596,7 @@
 				</div>
 			</div>
 
-			<div class="timeline">
-				<!-- Bancolombia - actual -->
-				<div class="timeline-item">
-					<div class="timeline-date">Jul 2026 - Presente</div>
-					<div class="timeline-content">
-						<h3 class="timeline-title">Senior Software Engineering</h3>
-						<h4 class="timeline-company">Bancolombia S.A. <span class="timeline-via">vía Tata Consultancy Services</span></h4>
-						<p class="timeline-description">
-							Desarrollo de soluciones enterprise para uno de los bancos más grandes de Colombia.
-							Implementación de arquitecturas modernas, optimización de performance y
-							mejora continua de sistemas críticos para servicios financieros.
-						</p>
-						<div class="timeline-skills">
-							<span class="skill-badge">Java</span>
-							<span class="skill-badge">Spring Boot</span>
-							<span class="skill-badge">Angular</span>
-							<span class="skill-badge">RESTful APIs</span>
-							<span class="skill-badge">Banca Digital</span>
-						</div>
-					</div>
-				</div>
-
-				<!-- TCS - experiencia completa -->
-				<div class="timeline-item">
-					<div class="timeline-date">Nov 2023 - Jul 2026</div>
-					<div class="timeline-content">
-						<h3 class="timeline-title">Senior Software Engineering</h3>
-						<h4 class="timeline-company">Tata Consultancy Services</h4>
-						<p class="timeline-description">
-							Desarrollo y arquitectura de soluciones enterprise para clientes bancarios (Banistmo, Bancolombia)
-							en tecnologías Java e IA generativa. Migración de sistemas legacy críticos,
-							desarrollo de microservicios y herramientas de automatización inteligente.
-						</p>
-						<div class="timeline-skills">
-							<span class="skill-badge">Java</span>
-							<span class="skill-badge">AngularJS</span>
-							<span class="skill-badge">IA Generativa</span>
-							<span class="skill-badge">Kubernetes</span>
-							<span class="skill-badge">RESTful APIs</span>
-							<span class="skill-badge">Arquitectura</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="timeline-item">
-					<div class="timeline-date">Mar 2021 - Nov 2023</div>
-					<div class="timeline-content">
-						<h3 class="timeline-title">Senior Software Development Engineer</h3>
-						<h4 class="timeline-company">Intergrupo</h4>
-						<p class="timeline-description">
-							Desarrollo de sistemas distribuidos y aplicaciones enterprise utilizando Spring Framework.
-							Implementación de arquitecturas escalables con enfoque en metodologías ágiles (Scrum)
-							y mejores prácticas de desarrollo de software.
-						</p>
-						<div class="timeline-skills">
-							<span class="skill-badge">Spring Boot</span>
-							<span class="skill-badge">Java</span>
-							<span class="skill-badge">REST APIs</span>
-							<span class="skill-badge">Kubernetes</span>
-							<span class="skill-badge">Git</span>
-							<span class="skill-badge">Scrum</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="timeline-item">
-					<div class="timeline-date">Feb 2021 - Nov 2023</div>
-					<div class="timeline-content">
-						<h3 class="timeline-title">Software Development Engineer</h3>
-						<h4 class="timeline-company">SoftwareONE Colombia</h4>
-						<p class="timeline-description">
-							Desarrollo de soluciones cloud y aplicaciones web con enfoque en arquitectura
-							escalable y seguridad de aplicaciones. Optimización de rendimiento y
-							implementación de mejores prácticas en el desarrollo.
-						</p>
-						<div class="timeline-skills">
-							<span class="skill-badge">Java</span>
-							<span class="skill-badge">Kubernetes</span>
-							<span class="skill-badge">RESTful APIs</span>
-							<span class="skill-badge">Arquitectura</span>
-							<span class="skill-badge">JVM</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="timeline-item">
-					<div class="timeline-date">Ene 2019 - Mar 2020</div>
-					<div class="timeline-content">
-						<h3 class="timeline-title">Full Stack Engineer</h3>
-						<h4 class="timeline-company">GTS Global Tax Services</h4>
-						<p class="timeline-description">
-							Desarrollo full stack utilizando el stack Java - Angular (Spring Boot + Angular 8+).
-							Implementación de soluciones completas desde el backend hasta la interfaz de usuario
-							con enfoque en aplicaciones de servicios fiscales globales.
-						</p>
-						<div class="timeline-skills">
-							<span class="skill-badge">Spring Boot</span>
-							<span class="skill-badge">Angular 8+</span>
-							<span class="skill-badge">Java</span>
-							<span class="skill-badge">RESTful APIs</span>
-							<span class="skill-badge">Full Stack</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="timeline-item">
-					<div class="timeline-date">May 2017 - Oct 2018</div>
-					<div class="timeline-content">
-						<h3 class="timeline-title">Desarrollador Web</h3>
-						<h4 class="timeline-company">SENA (Servicio Nacional de Aprendizaje)</h4>
-						<p class="timeline-description">
-							Desarrollo de aplicaciones web institucionales con enfoque en servicios web
-							RESTful y optimización de rendimiento. Implementación de soluciones seguras
-							para plataformas educativas.
-						</p>
-						<div class="timeline-skills">
-							<span class="skill-badge">Desarrollo Web</span>
-							<span class="skill-badge">RESTful APIs</span>
-							<span class="skill-badge">Seguridad Web</span>
-							<span class="skill-badge">Kubernetes</span>
-						</div>
-					</div>
-				</div>
-
-				<div class="timeline-item">
-					<div class="timeline-date">Feb 2015 - Mar 2018</div>
-					<div class="timeline-content">
-						<h3 class="timeline-title">Desarrollador de Software</h3>
-						<h4 class="timeline-company">SENA (Servicio Nacional de Aprendizaje)</h4>
-						<p class="timeline-description">
-							Desarrollo de software con tecnologías Java y control de versiones.
-							Implementación de sistemas seguros con enfoque en la optimización
-							de rendimiento y revisión de código.
-						</p>
-						<div class="timeline-skills">
-							<span class="skill-badge">Java</span>
-							<span class="skill-badge">JVM</span>
-							<span class="skill-badge">Git</span>
-							<span class="skill-badge">RESTful APIs</span>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div class="timeline" id="profile-experience"></div>
 
 			<!-- Awards & Recognition -->
 			<div class="awards-section">
@@ -962,81 +668,6 @@
 			</div>
 
 		</div>
-	</section>
-
-	<!-- Testimonials Section -->
-	<section id="testimonials" class="testimonials section-animate">
-		<div class="container">
-			<div class="section-header">
-				<h2 class="section-title">Lo Que Dicen de Mí</h2>
-				<p class="section-subtitle">Testimonios de colegas y líderes técnicos</p>
-			</div>
-
-			<div class="testimonials-grid">
-				<!-- Testimonial 1 -->
-				<div class="testimonial-card">
-					<div class="quote-icon">
-						<i class="fas fa-quote-left"></i>
-					</div>
-					<p class="quote">
-						"Yamid transformó nuestro sistema legacy reduciendo el tiempo de respuesta en 60% y mejorando
-						significativamente la experiencia del usuario. Su capacidad para traducir requisitos complejos
-						en soluciones elegantes es excepcional."
-					</p>
-					<div class="author">
-						<div class="author-avatar">
-							<i class="fas fa-user-tie"></i>
-						</div>
-						<div class="author-info">
-							<strong>Oscar Guacaneme</strong>
-							<span>Intergrupo - Proyecto Bancario</span>
-						</div>
-					</div>
-				</div>
-
-				<!-- Testimonial 2 -->
-				<div class="testimonial-card">
-					<div class="quote-icon">
-						<i class="fas fa-quote-left"></i>
-					</div>
-					<p class="quote">
-						"Su expertise en arquitecturas cloud y microservicios fue fundamental para escalar nuestra
-						plataforma. Yamid no solo es un excelente desarrollador, sino también un mentor que eleva el
-						nivel del equipo completo."
-					</p>
-					<div class="author">
-						<div class="author-avatar">
-							<i class="fas fa-user-tie"></i>
-						</div>
-						<div class="author-info">
-							<strong>Angela Buitrago</strong>
-							<span>SoftwareONE Colombia</span>
-						</div>
-					</div>
-				</div>
-
-				<!-- Testimonial 3 -->
-				<div class="testimonial-card">
-					<div class="quote-icon">
-						<i class="fas fa-quote-left"></i>
-					</div>
-					<p class="quote">
-						"Trabajar con Yamid en la implementación de soluciones de IA generativa fue increíble. Su visión
-						técnica y compromiso con la calidad del código hacen que cada proyecto sea un éxito
-						garantizado."
-					</p>
-					<div class="author">
-						<div class="author-avatar">
-							<i class="fas fa-user-tie"></i>
-						</div>
-						<div class="author-info">
-							<strong>Juan Roldan David</strong>
-							<span>Tata Consultancy Services</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
 	</section>
 
 	<!-- Contact Section -->
@@ -1276,7 +907,9 @@
 
 
 	<!-- Scripts -->
-	<script src="js/script.js"></script>
+		<script src="js/professional-profile-data.js"></script>
+		<script src="js/portfolio-profile.js"></script>
+		<script src="js/script.js"></script>
 
 
 

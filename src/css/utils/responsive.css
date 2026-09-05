@@ -32,6 +32,35 @@ body {
   max-width: 1200px;
 }
 
+/* Tablet landscape: allow both hero columns to shrink and keep timeline dates visible. */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .hero-content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .hero-content > *,
+  .hero-visual,
+  .code-window {
+    min-width: 0;
+  }
+
+  .hero-metrics {
+    gap: var(--space-4);
+  }
+
+  .metric-number {
+    font-size: var(--font-xl);
+    overflow-wrap: anywhere;
+  }
+
+  .timeline {
+    max-width: 680px;
+  }
+}
+
 /* Tablet y Mobile - 768px y menor */
 @media (max-width: 768px) {
   /* DESHABILITAR SOLO LAS ANIMACIONES PROBLEMÁTICAS */
@@ -79,7 +108,16 @@ body {
     grid-template-columns: 1fr;
     text-align: center;
     gap: var(--space-8);
+    width: 100%;
     max-width: 100%;
+  }
+
+  .hero-content > *,
+  .hero-text,
+  .hero-visual,
+  .code-window {
+    min-width: 0;
+    width: 100%;
   }
 
   .hero-metrics {
