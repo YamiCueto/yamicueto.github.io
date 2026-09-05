@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "amadeus-r35120",
+  "profileId": "yamid-cueto",
+  "locale": "en",
+  "role": "Fullstack Engineer (Java/Angular)",
+  "company": "Amadeus",
+  "jobId": "R35120",
+  "jobLocation": "Bogotá",
+  "workModel": "hybrid",
+  "headlineRef": "positioning.headline",
+  "summaryRef": "summary.en",
+  "sectionOrder": ["identity", "contact", "summary", "skills", "experience", "education", "training", "awards", "projects", "languages"],
+  "skillGroups": [
+    { "label": "Backend & APIs", "ids": ["java", "spring-boot", "java-ee", "rest", "soap"] },
+    { "label": "Frontend", "ids": ["angular", "typescript", "javascript", "html", "css", "rxjs", "bootstrap"] },
+    { "label": "Delivery & Cloud", "ids": ["git", "ci-cd", "jenkins", "sonarqube", "docker", "aws", "kubernetes", "websphere"] },
+    { "label": "Ways of Working", "ids": ["scrum"] }
+  ],
+  "experience": [
+    { "id": "tcs", "detail": "primary", "assignmentIds": ["bancolombia-2023", "banistmo-2024", "banistmo-2026", "bancolombia-2026"] },
+    { "id": "intergrupo", "detail": "primary" },
+    { "id": "softwareone", "detail": "primary", "highlightIds": ["soap-rues"] },
+    { "id": "personal-soft", "detail": "chronology-only" },
+    { "id": "extreme-technologies", "detail": "chronology-only" },
+    { "id": "global-tax-services", "detail": "primary" },
+    { "id": "sena", "detail": "chronology-only" }
+  ],
+  "educationIds": ["sena-software-2015"],
+  "trainingIds": [],
+  "awardIds": [],
+  "projectIds": [],
+  "languageIds": ["es", "en"],
+  "reviewCandidates": {
+    "trainingIds": ["devops-foundation", "genai-foundation"],
+    "awardIds": ["star-2025", "warrior-2024", "victor-2024", "team-2024", "star-2024"],
+    "projectIds": ["case-os", "flowly"]
+  },
+  "presentation": {
+    "paper": "A4",
+    "maxPages": 2,
+    "columns": 1,
+    "bodyFontPt": 10.5,
+    "marginMm": 16,
+    "background": "white",
+    "photo": false,
+    "showInternalSkillLevels": false,
+    "showRelocation": true,
+    "showParallelConsultingNote": true,
+    "groupAssignmentsUnderEmployer": true
+  }
+}

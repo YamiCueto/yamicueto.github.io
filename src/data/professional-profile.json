@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "id": "yamid-cueto",
+  "sources": {
+    "sprint-1-confirmation": { "kind": "user-confirmation", "reference": "Approved Sprint 1 professional facts, September 2026" },
+    "portfolio-baseline": { "kind": "repository", "reference": "381841b:index.html" },
+    "cv-baseline": { "kind": "repository", "reference": "381841b:js/script.js" },
+    "digital-profile-baseline": { "kind": "repository", "reference": "381841b:resume-digital-profile.txt" }
+  },
+  "identity": {
+    "name": "Yamid Cueto Mazo",
+    "status": "repository-only",
+    "source": "portfolio-baseline"
+  },
+  "contact": {
+    "email": "yamidcuetomazo@gmail.com",
+    "phone": "+57 300 279 2493",
+    "links": {
+      "portfolio": "https://yamicueto.github.io/",
+      "linkedin": "https://linkedin.com/in/yamid-cueto-mazo",
+      "github": "https://github.com/YamiCueto"
+    },
+    "status": "repository-only",
+    "source": "portfolio-baseline"
+  },
+  "location": {
+    "city": "Barranquilla",
+    "country": "Colombia",
+    "openToRelocationTo": ["Bogotá"],
+    "status": "verified",
+    "source": "sprint-1-confirmation"
+  },
+  "positioning": {
+    "headline": "Full Stack Engineer | Java · Spring Boot · Angular",
+    "primaryThemes": ["Full Stack Engineering", "Java / Spring Boot", "Angular / TypeScript", "Enterprise Software", "Legacy Modernization"],
+    "secondaryThemes": ["Generative AI"],
+    "status": "verified",
+    "source": "sprint-1-confirmation"
+  },
+  "summary": { "en": null, "status": "pending-editorial-review" },
+  "skills": [
+    { "id": "java", "name": "Java", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "spring-boot", "name": "Spring Boot", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "angular", "name": "Angular", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "typescript", "name": "TypeScript", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "javascript", "name": "JavaScript", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "html", "name": "HTML", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "css", "name": "CSS", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "rest", "name": "REST APIs", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "soap", "name": "SOAP", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "rxjs", "name": "RxJS", "context": "Used subscribe, pipe and operators in Angular projects.", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "bootstrap", "name": "Bootstrap", "context": "Used in projects since SENA.", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "git", "name": "Git", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "ci-cd", "name": "CI/CD", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "jenkins", "name": "Jenkins", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "sonarqube", "name": "SonarQube", "context": "Used in CI/CD pipelines at Banistmo and in recent professional experience.", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "docker", "name": "Docker", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "kubernetes", "name": "Kubernetes", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "aws", "name": "AWS", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "scrum", "name": "Scrum", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "websphere", "name": "IBM WebSphere Application Server", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "java-ee", "name": "Java EE", "status": "verified", "source": "sprint-1-confirmation" }
+  ],
+  "organizations": [
+    { "id": "tcs", "name": "Tata Consultancy Services (TCS)" },
+    { "id": "bancolombia", "name": "Bancolombia S.A." },
+    { "id": "banistmo", "name": "Banistmo S.A." },
+    { "id": "summa", "name": "SUMMA" },
+    { "id": "intergrupo", "name": "Intergrupo" },
+    { "id": "softwareone", "name": "SoftwareONE Colombia" },
+    { "id": "ccb", "name": "Cámara de Comercio de Bogotá" },
+    { "id": "personal-soft", "name": "Personal Soft S.A.S." },
+    { "id": "extreme-technologies", "name": "Extreme Technologies S.A." },
+    { "id": "global-tax-services", "name": "Global Tax Services SAS" },
+    { "id": "sena", "name": "SENA" },
+    { "id": "el-heraldo", "name": "El Heraldo Ltda." },
+    { "id": "casa-herramienta", "name": "La Casa de la Herramienta" }
+  ],
+  "experience": [
+    {
+      "id": "tcs", "kind": "employment", "organizationId": "tcs",
+      "start": "2023-11", "end": null, "status": "verified", "source": "sprint-1-confirmation",
+      "title": {
+        "value": null, "status": "needs-validation",
+        "candidates": [
+          { "value": "Developer I.T. Analyst", "source": "digital-profile-baseline" },
+          { "value": "Senior Software Engineering", "source": "cv-baseline" }
+        ]
+      },
+      "assignments": [
+        { "id": "bancolombia-2023", "kind": "client-assignment", "organizationId": "bancolombia", "start": "2023-11", "end": "2024-05", "public": true },
+        { "id": "banistmo-2024", "kind": "client-assignment", "organizationId": "banistmo", "start": "2024-05", "end": "2026-01", "public": true },
+        { "id": "summa-2026", "kind": "internal-assignment", "organizationId": "summa", "start": "2026-01", "end": "2026-01", "approximateDurationDays": 17, "public": false },
+        { "id": "banistmo-2026", "kind": "client-assignment", "organizationId": "banistmo", "start": "2026-01", "end": "2026-07", "public": true },
+        { "id": "bancolombia-2026", "kind": "client-assignment", "organizationId": "bancolombia", "start": "2026-07", "end": null, "public": true },
+        { "id": "banistmo-transition-2026", "kind": "client-transition", "organizationId": "banistmo", "start": "2026-08", "end": "2026-08", "public": false }
+      ],
+      "highlights": []
+    },
+    {
+      "id": "intergrupo", "kind": "consulting-engagement", "organizationId": "intergrupo",
+      "start": "2021-03", "end": "2023-11", "status": "verified", "source": "sprint-1-confirmation",
+      "title": { "value": "Senior Software Development Engineer", "status": "repository-only", "source": "cv-baseline" },
+      "parallelGroupId": "parallel-consulting-2021", "highlights": []
+    },
+    {
+      "id": "softwareone", "kind": "consulting-engagement", "organizationId": "softwareone",
+      "start": "2021-03", "end": "2023-10", "status": "verified", "source": "sprint-1-confirmation",
+      "title": { "value": "Software Development Engineer", "status": "repository-only", "source": "cv-baseline" },
+      "parallelGroupId": "parallel-consulting-2021",
+      "highlights": [
+        {
+          "id": "soap-rues", "status": "verified", "source": "sprint-1-confirmation",
+          "relatedOrganizationId": "ccb",
+          "operation": "Consumed SOAP web services for RUES queries from the client/application side.",
+          "applicationSkillIds": ["java-ee"], "serviceSkillIds": ["soap"], "deploymentSkillIds": ["websphere"],
+          "serviceDevelopment": false, "serviceMaintenance": false, "en": null
+        }
+      ]
+    },
+    {
+      "id": "personal-soft", "kind": "professional-experience", "organizationId": "personal-soft",
+      "start": "2020-08", "end": "2021-02", "status": "verified", "source": "sprint-1-confirmation",
+      "title": { "value": null, "status": "not-provided" }, "highlights": []
+    },
+    {
+      "id": "extreme-technologies", "kind": "professional-experience", "organizationId": "extreme-technologies",
+      "start": "2020-03", "end": "2020-08", "status": "verified", "source": "sprint-1-confirmation",
+      "title": { "value": null, "status": "not-provided" }, "highlights": []
+    },
+    {
+      "id": "global-tax-services", "kind": "professional-experience", "organizationId": "global-tax-services",
+      "start": "2019-01", "end": "2020-03", "status": "verified", "source": "sprint-1-confirmation",
+      "title": { "value": "Full Stack Engineer", "status": "repository-only", "source": "cv-baseline" }, "highlights": []
+    },
+    {
+      "id": "sena", "kind": "professional-experience", "organizationId": "sena",
+      "start": "2015-02", "end": "2018-10", "status": "verified", "source": "sprint-1-confirmation",
+      "title": {
+        "value": null, "status": "needs-validation",
+        "candidates": [
+          { "value": "Desarrollador de Software", "source": "portfolio-baseline" },
+          { "value": "Desarrollador Web", "source": "portfolio-baseline" }
+        ]
+      },
+      "highlights": []
+    },
+    {
+      "id": "el-heraldo", "kind": "professional-experience", "organizationId": "el-heraldo",
+      "start": "2014-06", "end": "2014-12", "status": "verified", "source": "sprint-1-confirmation",
+      "title": { "value": null, "status": "not-provided" }, "highlights": []
+    },
+    {
+      "id": "casa-herramienta", "kind": "professional-experience", "organizationId": "casa-herramienta",
+      "start": "2011-10", "end": "2013-11", "status": "verified", "source": "sprint-1-confirmation",
+      "title": { "value": null, "status": "not-provided" }, "highlights": []
+    }
+  ],
+  "parallelGroups": [
+    { "id": "parallel-consulting-2021", "description": "Parallel consulting engagements", "status": "verified", "source": "sprint-1-confirmation" }
+  ],
+  "education": [
+    { "id": "sena-software-2015", "organizationId": "sena", "credentialOriginal": "Tecnólogo en Análisis y Desarrollo de Software", "credentialEn": null, "year": 2015, "status": "verified", "source": "sprint-1-confirmation" }
+  ],
+  "training": [
+    { "id": "genai-foundation", "name": "Generative AI Foundation Curriculum", "provider": "TCS iEvolve", "date": "2025-09", "kind": "training", "status": "repository-only", "source": "cv-baseline" },
+    { "id": "genai-domain", "name": "Domain Advisory: Foundation Generative AI", "provider": "TCS iEvolve", "date": "2025-09", "kind": "training", "status": "repository-only", "source": "cv-baseline" },
+    { "id": "devops-foundation", "name": "Tech Foundation: DevOps Foundation Curriculum", "provider": "TCS iEvolve", "date": "2026-03", "kind": "training", "status": "repository-only", "source": "cv-baseline" },
+    { "id": "design-thinking-foundation", "name": "Tech Foundation: Design Thinking Foundation", "provider": "TCS iEvolve", "date": "2026-04", "kind": "training", "status": "repository-only", "source": "cv-baseline" },
+    { "id": "oracle-dba-foundation", "name": "Oracle DBA Foundation", "provider": "TCS iEvolve", "date": "2026-04", "kind": "needs-validation", "status": "repository-only", "source": "cv-baseline" },
+    { "id": "frescoplay-oss", "name": "TCS FrescoPlay OSS Intermediate", "provider": "TCS FrescoPlay", "date": "2025-07", "kind": "needs-validation", "status": "repository-only", "source": "cv-baseline" }
+  ],
+  "awards": [
+    { "id": "star-2025", "name": "Star of the Month", "organizationId": "tcs", "date": "2025-12", "status": "repository-only", "source": "cv-baseline" },
+    { "id": "warrior-2024", "name": "Beyond Performance Awards - Xcelerate Warrior", "organizationId": "tcs", "date": "2024-10", "status": "repository-only", "source": "cv-baseline" },
+    { "id": "victor-2024", "name": "Beyond Performance Awards - Xcelerate Victor", "organizationId": "tcs", "date": "2024-10", "status": "repository-only", "source": "cv-baseline" },
+    { "id": "team-2024", "name": "Best Team Award", "organizationId": "tcs", "date": "2024-08", "status": "repository-only", "source": "cv-baseline" },
+    { "id": "star-2024", "name": "Star of the Month", "organizationId": "tcs", "date": "2024-06", "status": "repository-only", "source": "cv-baseline" }
+  ],
+  "projects": [
+    { "id": "case-os", "name": "CASE OS", "status": "repository-only", "source": "portfolio-baseline" },
+    { "id": "code-agent-arena", "name": "Code Agent Arena", "status": "repository-only", "source": "portfolio-baseline" },
+    { "id": "flowly", "name": "Flowly", "status": "repository-only", "source": "portfolio-baseline" },
+    { "id": "academy-ia", "name": "Academy.IA", "status": "repository-only", "source": "portfolio-baseline" },
+    { "id": "cloud-cheatsheet", "name": "Cloud Cheatsheet", "status": "repository-only", "source": "portfolio-baseline" },
+    { "id": "fotomultaslab", "name": "FotoMultasLab", "status": "repository-only", "source": "portfolio-baseline" },
+    { "id": "promptly", "name": "Promptly", "status": "repository-only", "source": "cv-baseline" }
+  ],
+  "languages": [
+    { "id": "es", "name": "Spanish", "proficiency": "Native", "status": "repository-only", "source": "cv-baseline" },
+    { "id": "en", "name": "English", "proficiency": null, "status": "needs-validation", "source": "sprint-1-confirmation" }
+  ]
+}
