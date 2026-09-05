@@ -1,6 +1,7 @@
 # Professional profile data
 
-This first migration unit adds data and target selection only. The existing HTML
+The first two migration units add data, target selection and English content.
+The existing HTML
 and PDF generator do not consume these files yet; they remain unchanged until
 their separately approved migration units. No new runtime dependency is needed.
 
@@ -13,15 +14,21 @@ their separately approved migration units. No new runtime dependency is needed.
   presentation. It must not copy dates, employer names, skill facts or bullets.
 - `schemaVersion` versions the data contract. IDs are stable within a collection.
   `profileId` links the target to its source profile.
-- `headlineRef` and `summaryRef` resolve profile fields. The summary, translated
-  credential and English experience bullets are reserved for the content unit.
+- `headlineRef` and `summaryRef` resolve profile fields. English wording lives in
+  the profile; the target selects highlight IDs and provides English section labels.
 
 ## Evidence and publication
 
 `verified` means explicitly confirmed by the user. `repository-only` preserves
 existing content and its Git source; it is not a new user confirmation.
-`needs-validation` means unresolved evidence, `not-provided` means missing data,
-and `pending-editorial-review` means English wording has not been prepared.
+`needs-validation` means unresolved evidence and `not-provided` means missing data.
+
+For content, `pending-editorial-review` means wording awaits user approval;
+`editorialStatus: pending-review` serves the same purpose on individual records.
+Editorial approval and factual provenance are separate: approving English wording
+does not turn a repository-only claim into a newly user-verified fact. Summary
+`sources` lists the evidence used to compose its text. Target `contentStatus`
+remains pending until the content commit gate is approved.
 
 An experience's status covers its organization, dates, kind and assignments.
 Nested titles and highlights have their own status and source. A parent marked
@@ -71,8 +78,12 @@ selected. Assignment IDs may be summarized by client within TCS for the CV.
 
 ## Pending content decisions
 
-- TCS title: the Digital Profile says `Developer I.T. Analyst`; the old CV says
-  `Senior Software Engineering`. Neither is silently chosen or rewritten.
+- The user confirmed `Developer I.T. Analyst` as the official TCS designation.
+  `title.kind: official` preserves that fact. `functionalRole` separately proposes
+  `Full Stack Engineer`; it does not rename the official designation. The target's
+  `functional-only` presentation renders only the functional role, as explicitly
+  requested for Amadeus. The official title remains verified in the model and is
+  not rendered by this target. The previous conflicting CV title is not used.
 - SENA's confirmed period is consolidated; the two old role labels do not prove
   a single title or the dates of promotions. Chronology-only rendering needs no
   guessed title.
@@ -97,6 +108,34 @@ parallel consulting dates, SOAP consumption exclusions, verified education,
 relocation and the lack of inferred language/internal skill levels. Selected
 assignments must belong to their employment and be public. Candidate lists must
 not be rendered as selected lists. The target must select only verified skills.
+
+## English content review
+
+The summary and selected highlights now provide the proposed English CV text.
+They omit numerical achievements, internal proficiency codes and unsupported
+leadership language. The baseline still supplies technical scope for several
+bullets; their `repository-only` status is retained. RxJS and Bootstrap are in
+Technical Skills, without inventing a particular employer/project attribution.
+The confirmed SonarQube and SOAP contributions have their own experience bullets.
+
+The original SENA credential is preserved alongside a descriptive English
+translation. This does not assert equivalence to a bachelor's or associate degree.
+Organization names remain proper names. Dates must be formatted in the target's
+English locale using only the confirmed month precision.
+
+Public content should derive city, country and relocation from `location`, and
+the parallel consulting note from `parallelGroups`. Client names are derived from
+the selected TCS assignments and can be deduplicated when summarized. Do not
+repeat employment entries for those clients or render nonpublic assignments.
+
+No title candidate or placeholder should be printed in the final CV.
+Chronology-only entries may omit unknown titles.
+Language names may be rendered without a proficiency descriptor where it is null;
+the English prose itself is not evidence of spoken English proficiency.
+
+Training, awards and projects remain unselected review candidates. Their absence
+does not block a concise experience-first CV; adding them requires a separate
+selection decision based on relevance, evidence and available page space.
 
 This unit does not claim that an actual two-page PDF has been generated or
 validated. Visual layout, extraction, English content, metadata and deterministic

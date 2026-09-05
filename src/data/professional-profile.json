@@ -3,6 +3,7 @@
   "id": "yamid-cueto",
   "sources": {
     "sprint-1-confirmation": { "kind": "user-confirmation", "reference": "Approved Sprint 1 professional facts, September 2026" },
+    "tcs-title-confirmation": { "kind": "user-confirmation", "reference": "Commit 2 clarification: Developer I.T. Analyst is the official TCS designation; keep any functional role distinct." },
     "portfolio-baseline": { "kind": "repository", "reference": "381841b:index.html" },
     "cv-baseline": { "kind": "repository", "reference": "381841b:js/script.js" },
     "digital-profile-baseline": { "kind": "repository", "reference": "381841b:resume-digital-profile.txt" }
@@ -37,7 +38,11 @@
     "status": "verified",
     "source": "sprint-1-confirmation"
   },
-  "summary": { "en": null, "status": "pending-editorial-review" },
+  "summary": {
+    "en": "Full Stack Engineer specializing in enterprise and banking applications built with Java, Spring Boot, Angular and TypeScript. Experience in legacy modernization, REST and SOAP integrations, CI/CD and cloud application delivery. Additional experience developing generative AI tools.",
+    "status": "pending-editorial-review",
+    "sources": ["sprint-1-confirmation", "portfolio-baseline", "cv-baseline"]
+  },
   "skills": [
     { "id": "java", "name": "Java", "status": "verified", "source": "sprint-1-confirmation" },
     { "id": "spring-boot", "name": "Spring Boot", "status": "verified", "source": "sprint-1-confirmation" },
@@ -81,12 +86,10 @@
       "id": "tcs", "kind": "employment", "organizationId": "tcs",
       "start": "2023-11", "end": null, "status": "verified", "source": "sprint-1-confirmation",
       "title": {
-        "value": null, "status": "needs-validation",
-        "candidates": [
-          { "value": "Developer I.T. Analyst", "source": "digital-profile-baseline" },
-          { "value": "Senior Software Engineering", "source": "cv-baseline" }
-        ]
+        "value": "Developer I.T. Analyst", "kind": "official",
+        "status": "verified", "source": "tcs-title-confirmation"
       },
+      "functionalRole": { "value": "Full Stack Engineer", "status": "pending-editorial-review", "source": "tcs-title-confirmation" },
       "assignments": [
         { "id": "bancolombia-2023", "kind": "client-assignment", "organizationId": "bancolombia", "start": "2023-11", "end": "2024-05", "public": true },
         { "id": "banistmo-2024", "kind": "client-assignment", "organizationId": "banistmo", "start": "2024-05", "end": "2026-01", "public": true },
@@ -95,13 +98,23 @@
         { "id": "bancolombia-2026", "kind": "client-assignment", "organizationId": "bancolombia", "start": "2026-07", "end": null, "public": true },
         { "id": "banistmo-transition-2026", "kind": "client-transition", "organizationId": "banistmo", "start": "2026-08", "end": "2026-08", "public": false }
       ],
-      "highlights": []
+      "highlights": [
+        { "id": "banking-applications", "en": "Develop full stack enterprise banking applications using Java, Spring Boot, Angular and TypeScript across TCS client assignments.", "status": "repository-only", "source": "portfolio-baseline", "editorialStatus": "pending-review" },
+        { "id": "legacy-modernization", "en": "Contributed to the migration of a legacy banking system from VB6 to Java and Spring.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" },
+        { "id": "sonarqube-pipelines", "en": "Contributed to CI/CD and code-quality workflows using SonarQube during the Banistmo assignment.", "status": "verified", "source": "sprint-1-confirmation", "editorialStatus": "pending-review" },
+        { "id": "generative-ai-tools", "en": "Developed generative AI tools using LLMs and retrieval-augmented generation to support team workflows.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" }
+      ]
     },
     {
       "id": "intergrupo", "kind": "consulting-engagement", "organizationId": "intergrupo",
       "start": "2021-03", "end": "2023-11", "status": "verified", "source": "sprint-1-confirmation",
       "title": { "value": "Senior Software Development Engineer", "status": "repository-only", "source": "cv-baseline" },
-      "parallelGroupId": "parallel-consulting-2021", "highlights": []
+      "parallelGroupId": "parallel-consulting-2021",
+      "highlights": [
+        { "id": "distributed-applications", "en": "Developed distributed enterprise applications with Java, Spring Boot and REST APIs.", "status": "repository-only", "source": "portfolio-baseline", "editorialStatus": "pending-review" },
+        { "id": "delivery-pipelines", "en": "Implemented CI/CD pipelines with Jenkins, Docker and Kubernetes.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" },
+        { "id": "scrum-delivery", "en": "Worked in Scrum teams developing enterprise software.", "status": "repository-only", "source": "portfolio-baseline", "editorialStatus": "pending-review" }
+      ]
     },
     {
       "id": "softwareone", "kind": "consulting-engagement", "organizationId": "softwareone",
@@ -114,8 +127,12 @@
           "relatedOrganizationId": "ccb",
           "operation": "Consumed SOAP web services for RUES queries from the client/application side.",
           "applicationSkillIds": ["java-ee"], "serviceSkillIds": ["soap"], "deploymentSkillIds": ["websphere"],
-          "serviceDevelopment": false, "serviceMaintenance": false, "en": null
-        }
+          "serviceDevelopment": false, "serviceMaintenance": false,
+          "en": "Consumed SOAP web services for RUES queries in work related to Cámara de Comercio de Bogotá, using Java EE applications deployed on IBM WebSphere Application Server.",
+          "editorialStatus": "pending-review"
+        },
+        { "id": "rest-integration", "en": "Developed REST APIs with Spring Boot and integrated legacy systems with modern applications.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" },
+        { "id": "aws-applications", "en": "Implemented cloud application solutions using AWS EC2, S3 and Lambda.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" }
       ]
     },
     {
@@ -131,7 +148,10 @@
     {
       "id": "global-tax-services", "kind": "professional-experience", "organizationId": "global-tax-services",
       "start": "2019-01", "end": "2020-03", "status": "verified", "source": "sprint-1-confirmation",
-      "title": { "value": "Full Stack Engineer", "status": "repository-only", "source": "cv-baseline" }, "highlights": []
+      "title": { "value": "Full Stack Engineer", "status": "repository-only", "source": "cv-baseline" },
+      "highlights": [
+        { "id": "full-stack-tax-applications", "en": "Developed full stack applications for tax services using Java, Spring Boot and Angular.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" }
+      ]
     },
     {
       "id": "sena", "kind": "professional-experience", "organizationId": "sena",
@@ -160,7 +180,7 @@
     { "id": "parallel-consulting-2021", "description": "Parallel consulting engagements", "status": "verified", "source": "sprint-1-confirmation" }
   ],
   "education": [
-    { "id": "sena-software-2015", "organizationId": "sena", "credentialOriginal": "Tecnólogo en Análisis y Desarrollo de Software", "credentialEn": null, "year": 2015, "status": "verified", "source": "sprint-1-confirmation" }
+    { "id": "sena-software-2015", "organizationId": "sena", "credentialOriginal": "Tecnólogo en Análisis y Desarrollo de Software", "credentialEn": "Software Analysis and Development Technologist", "year": 2015, "status": "verified", "source": "sprint-1-confirmation", "editorialStatus": "pending-review" }
   ],
   "training": [
     { "id": "genai-foundation", "name": "Generative AI Foundation Curriculum", "provider": "TCS iEvolve", "date": "2025-09", "kind": "training", "status": "repository-only", "source": "cv-baseline" },

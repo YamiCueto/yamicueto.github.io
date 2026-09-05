@@ -10,6 +10,21 @@
   "workModel": "hybrid",
   "headlineRef": "positioning.headline",
   "summaryRef": "summary.en",
+  "contentStatus": "pending-editorial-review",
+  "labels": {
+    "summary": "Professional Summary",
+    "skills": "Technical Skills",
+    "experience": "Professional Experience",
+    "education": "Education",
+    "training": "Relevant Training",
+    "awards": "Awards & Recognition",
+    "projects": "Selected Projects",
+    "languages": "Languages",
+    "assignments": "Selected client assignments",
+    "earlierExperience": "Earlier Experience",
+    "present": "Present",
+    "relocation": "Open to relocation to {city}"
+  },
   "sectionOrder": ["identity", "contact", "summary", "skills", "experience", "education", "training", "awards", "projects", "languages"],
   "skillGroups": [
     { "label": "Backend & APIs", "ids": ["java", "spring-boot", "java-ee", "rest", "soap"] },
@@ -18,12 +33,12 @@
     { "label": "Ways of Working", "ids": ["scrum"] }
   ],
   "experience": [
-    { "id": "tcs", "detail": "primary", "assignmentIds": ["bancolombia-2023", "banistmo-2024", "banistmo-2026", "bancolombia-2026"] },
-    { "id": "intergrupo", "detail": "primary" },
-    { "id": "softwareone", "detail": "primary", "highlightIds": ["soap-rues"] },
+    { "id": "tcs", "detail": "primary", "titlePresentation": "functional-only", "assignmentIds": ["bancolombia-2023", "banistmo-2024", "banistmo-2026", "bancolombia-2026"], "highlightIds": ["banking-applications", "legacy-modernization", "sonarqube-pipelines", "generative-ai-tools"] },
+    { "id": "intergrupo", "detail": "primary", "highlightIds": ["distributed-applications", "delivery-pipelines", "scrum-delivery"] },
+    { "id": "softwareone", "detail": "primary", "highlightIds": ["soap-rues", "rest-integration", "aws-applications"] },
     { "id": "personal-soft", "detail": "chronology-only" },
     { "id": "extreme-technologies", "detail": "chronology-only" },
-    { "id": "global-tax-services", "detail": "primary" },
+    { "id": "global-tax-services", "detail": "primary", "highlightIds": ["full-stack-tax-applications"] },
     { "id": "sena", "detail": "chronology-only" }
   ],
   "educationIds": ["sena-software-2015"],
