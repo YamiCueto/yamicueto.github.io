@@ -9,6 +9,9 @@ css/style.css
 css/style.min.css
 js/script.min.js
 dist/
+/output/pdf/*.pdf
+/output/pdf/layout.json
+/tmp/pdfs/
 
 # OS generated files
 .DS_Store

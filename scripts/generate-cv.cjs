@@ -1,0 +1,15 @@
+'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
+const { createCv } = require('../js/cv-pdf');
+const root = path.resolve(__dirname, '..');
+const profile = JSON.parse(fs.readFileSync(path.join(root, 'src/data/professional-profile.json'), 'utf8'));
+const target = JSON.parse(fs.readFileSync(path.join(root, 'src/data/targets/amadeus-r35120.json'), 'utf8'));
+const result = createCv(profile, target);
+const repeated = createCv(profile, target);
+if (!result.bytes.equals(repeated.bytes)) throw new Error('PDF generation is not deterministic');
+const output = path.join(root, 'output/pdf');
+fs.mkdirSync(output, { recursive: true });
+fs.writeFileSync(path.join(output, 'Yamid_Cueto_Amadeus_R35120.pdf'), result.bytes);
+fs.writeFileSync(path.join(output, 'layout.json'), JSON.stringify(result.layout, null, 2) + '\n');
+console.log(`Amadeus CV: ${result.pages} A4 pages, ${result.bytes.length} bytes; repeat generation identical.`);

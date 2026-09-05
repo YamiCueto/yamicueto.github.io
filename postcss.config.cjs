@@ -6,7 +6,7 @@ module.exports = {
     require('autoprefixer'),
     ...(process.env.NODE_ENV === 'production' ? [
       require('@fullhuman/postcss-purgecss')({
-        content: ['./**/*.html', './**/*.js'],
+        content: ['./index.html', './js/**/*.js'],
         defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
         safelist: [
           'animate-in',

@@ -33,15 +33,15 @@ jobs:
     - name: 📥 Install dependencies
       run: npm ci
     
-    - name: 🎨 Build CSS
-      # Generates css/style.css from src/css/main.css (including our custom fixes)
-      run: npm run build:css:prod
+    - name: 🎨 Build site and CV
+      run: npm run build
       
     - name: 🧹 Prepare Distribution Folder
       run: |
         mkdir -p dist/css
         mkdir -p dist/js
         mkdir -p dist/assets
+        mkdir -p dist/cv
         
         # Copy critical files
         cp index.html dist/
@@ -50,6 +50,7 @@ jobs:
         # Copy built/source assets
         cp css/style.css dist/css/
         cp js/script.js dist/js/
+        cp output/pdf/Yamid_Cueto_Amadeus_R35120.pdf dist/cv/
         
         # Copy optional SEO files if they exist
         [ -f robots.txt ] && cp robots.txt dist/ || true
