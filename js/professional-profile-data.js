@@ -102,6 +102,19 @@ window.professionalProfile = {
       ]
     },
     {
+      "id": "personal-soft",
+      "organization": "Personal Soft S.A.S.",
+      "dates": "Ago 2020 - Feb 2021",
+      "role": "Full Stack Java / Frontend",
+      "parallel": null,
+      "assignments": [
+        "PACTIA"
+      ],
+      "highlights": [
+        "Desarrollo Full Stack para la solución digital de PACTIA, trabajando con Java y Liferay CMS en la plataforma y con HTML, CSS y JavaScript en frontend."
+      ]
+    },
+    {
       "id": "global-tax-services",
       "organization": "Global Tax Services SAS",
       "dates": "Ene 2019 - Mar 2020",

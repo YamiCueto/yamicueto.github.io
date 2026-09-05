@@ -37,7 +37,7 @@
     { "id": "tcs", "detail": "primary", "titlePresentation": "functional-only", "assignmentIds": ["bancolombia-2023", "banistmo-2024", "banistmo-2026", "bancolombia-2026"], "highlightIds": ["banking-applications", "legacy-modernization", "sonarqube-pipelines", "generative-ai-tools"] },
     { "id": "intergrupo", "detail": "primary", "highlightIds": ["distributed-applications", "delivery-pipelines", "scrum-delivery"] },
     { "id": "softwareone", "detail": "primary", "highlightIds": ["soap-rues", "rest-integration", "aws-applications"] },
-    { "id": "personal-soft", "detail": "chronology-only" },
+    { "id": "personal-soft", "detail": "primary", "assignmentIds": ["pactia-2020"], "highlightIds": ["pactia-digital-solution"] },
     { "id": "extreme-technologies", "detail": "chronology-only" },
     { "id": "global-tax-services", "detail": "primary", "highlightIds": ["full-stack-tax-applications"] },
     { "id": "sena", "detail": "chronology-only" }

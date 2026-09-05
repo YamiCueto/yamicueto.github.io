@@ -65,7 +65,8 @@
     { "id": "aws", "name": "AWS", "status": "verified", "source": "sprint-1-confirmation" },
     { "id": "scrum", "name": "Scrum", "status": "verified", "source": "sprint-1-confirmation" },
     { "id": "websphere", "name": "IBM WebSphere Application Server", "status": "verified", "source": "sprint-1-confirmation" },
-    { "id": "java-ee", "name": "Java EE", "status": "verified", "source": "sprint-1-confirmation" }
+    { "id": "java-ee", "name": "Java EE", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "liferay", "name": "Liferay CMS", "status": "verified", "source": "sprint-1-confirmation" }
   ],
   "organizations": [
     { "id": "tcs", "name": "Tata Consultancy Services (TCS)" },
@@ -76,6 +77,7 @@
     { "id": "softwareone", "name": "SoftwareONE Colombia" },
     { "id": "ccb", "name": "Cámara de Comercio de Bogotá" },
     { "id": "personal-soft", "name": "Personal Soft S.A.S." },
+    { "id": "pactia", "name": "PACTIA" },
     { "id": "extreme-technologies", "name": "Extreme Technologies S.A." },
     { "id": "global-tax-services", "name": "Global Tax Services SAS" },
     { "id": "sena", "name": "SENA" },
@@ -138,9 +140,22 @@
       ]
     },
     {
-      "id": "personal-soft", "kind": "professional-experience", "organizationId": "personal-soft",
+      "id": "personal-soft", "kind": "employment", "organizationId": "personal-soft",
       "start": "2020-08", "end": "2021-02", "status": "verified", "source": "sprint-1-confirmation",
-      "title": { "value": null, "status": "not-provided" }, "highlights": []
+      "title": { "value": "Full Stack Java / Frontend", "status": "verified", "source": "sprint-1-confirmation" },
+      "assignments": [
+        { "id": "pactia-2020", "kind": "client-assignment", "organizationId": "pactia", "start": "2020-08", "end": "2021-02", "public": true }
+      ],
+      "highlights": [
+        {
+          "id": "pactia-digital-solution",
+          "en": "Full stack development for PACTIA's digital solution, working with Java and Liferay CMS on the platform and HTML, CSS and JavaScript on the frontend.",
+          "es": "Desarrollo Full Stack para la solución digital de PACTIA, trabajando con Java y Liferay CMS en la plataforma y con HTML, CSS y JavaScript en frontend.",
+          "status": "verified",
+          "source": "sprint-1-confirmation",
+          "editorialStatus": "verified"
+        }
+      ]
     },
     {
       "id": "extreme-technologies", "kind": "professional-experience", "organizationId": "extreme-technologies",
