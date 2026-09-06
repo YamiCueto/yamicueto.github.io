@@ -52,7 +52,7 @@ jobs:
         cp js/script.js dist/js/
         cp js/professional-profile-data.js dist/js/
         cp js/portfolio-profile.js dist/js/
-        cp output/pdf/Yamid_Cueto_Amadeus_R35120.pdf dist/cv/
+        cp output/pdf/*.pdf dist/cv/
         
         # Copy optional SEO files if they exist
         [ -f robots.txt ] && cp robots.txt dist/ || true

@@ -27,7 +27,8 @@
   "location": {
     "city": "Barranquilla",
     "country": "Colombia",
-    "openToRelocationTo": ["Bogotá"],
+    "openToRelocation": true,
+    "openToRelocationTo": [],
     "status": "verified",
     "source": "sprint-1-confirmation"
   },
@@ -66,7 +67,9 @@
     { "id": "scrum", "name": "Scrum", "status": "verified", "source": "sprint-1-confirmation" },
     { "id": "websphere", "name": "IBM WebSphere Application Server", "status": "verified", "source": "sprint-1-confirmation" },
     { "id": "java-ee", "name": "Java EE", "status": "verified", "source": "sprint-1-confirmation" },
-    { "id": "liferay", "name": "Liferay CMS", "status": "verified", "source": "sprint-1-confirmation" }
+    { "id": "liferay", "name": "Liferay CMS", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "php", "name": "PHP", "status": "verified", "source": "sprint-1-confirmation" },
+    { "id": "mysql", "name": "MySQL", "status": "verified", "source": "sprint-1-confirmation" }
   ],
   "organizations": [
     { "id": "tcs", "name": "Tata Consultancy Services (TCS)" },
@@ -74,13 +77,14 @@
     { "id": "banistmo", "name": "Banistmo S.A." },
     { "id": "summa", "name": "SUMMA" },
     { "id": "intergrupo", "name": "Intergrupo" },
-    { "id": "softwareone", "name": "SoftwareONE Colombia" },
+    { "id": "softwareone", "name": "SoftwareONE (Intergrupo)" },
     { "id": "ccb", "name": "Cámara de Comercio de Bogotá" },
     { "id": "personal-soft", "name": "Personal Soft S.A.S." },
     { "id": "pactia", "name": "PACTIA" },
     { "id": "extreme-technologies", "name": "Extreme Technologies S.A." },
     { "id": "global-tax-services", "name": "Global Tax Services SAS" },
     { "id": "sena", "name": "SENA" },
+    { "id": "sennova", "name": "SENA - SENNOVA" },
     { "id": "el-heraldo", "name": "El Heraldo Ltda." },
     { "id": "casa-herramienta", "name": "La Casa de la Herramienta" }
   ],
@@ -109,22 +113,11 @@
       ]
     },
     {
-      "id": "intergrupo", "kind": "consulting-engagement", "organizationId": "intergrupo",
+      "id": "softwareone", "kind": "employment", "organizationId": "softwareone",
       "start": "2021-03", "end": "2023-11", "status": "verified", "source": "sprint-1-confirmation",
-      "title": { "value": "Senior Software Development Engineer", "status": "repository-only", "source": "cv-baseline" },
-      "parallelGroupId": "parallel-consulting-2021",
+      "title": { "value": "Senior Software Development Engineer", "status": "verified", "source": "sprint-1-confirmation" },
       "highlights": [
-        { "id": "distributed-applications", "en": "Developed distributed enterprise applications with Java, Spring Boot and REST APIs.", "es": "Desarrollé aplicaciones empresariales distribuidas con Java, Spring Boot y APIs REST.", "status": "repository-only", "source": "portfolio-baseline", "editorialStatus": "pending-review" },
-        { "id": "delivery-pipelines", "en": "Implemented CI/CD pipelines with Jenkins, Docker and Kubernetes.", "es": "Implementé pipelines de CI/CD con Jenkins, Docker y Kubernetes.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" },
-        { "id": "scrum-delivery", "en": "Worked in Scrum teams developing enterprise software.", "es": "Trabajé en equipos Scrum desarrollando software empresarial.", "status": "repository-only", "source": "portfolio-baseline", "editorialStatus": "pending-review" }
-      ]
-    },
-    {
-      "id": "softwareone", "kind": "consulting-engagement", "organizationId": "softwareone",
-      "start": "2021-03", "end": "2023-10", "status": "verified", "source": "sprint-1-confirmation",
-      "title": { "value": "Software Development Engineer", "status": "repository-only", "source": "cv-baseline" },
-      "parallelGroupId": "parallel-consulting-2021",
-      "highlights": [
+        { "id": "distributed-applications", "en": "Developed distributed enterprise applications with Java, Spring Boot and REST APIs.", "es": "Desarrollé aplicaciones empresariales distribuidas con Java, Spring Boot y APIs REST.", "status": "verified", "source": "sprint-1-confirmation", "editorialStatus": "verified" },
         {
           "id": "soap-rues", "status": "verified", "source": "sprint-1-confirmation",
           "relatedOrganizationId": "ccb",
@@ -133,10 +126,11 @@
           "serviceDevelopment": false, "serviceMaintenance": false,
           "en": "Consumed SOAP web services for RUES queries in work related to Cámara de Comercio de Bogotá, using Java EE applications deployed on IBM WebSphere Application Server.",
           "es": "Consumí servicios web SOAP para consultas RUES en trabajo relacionado con la Cámara de Comercio de Bogotá, desde aplicaciones Java EE desplegadas en IBM WebSphere Application Server.",
-          "editorialStatus": "pending-review"
+          "editorialStatus": "verified"
         },
-        { "id": "rest-integration", "en": "Developed REST APIs with Spring Boot and integrated legacy systems with modern applications.", "es": "Desarrollé APIs REST con Spring Boot e integré sistemas legacy con aplicaciones modernas.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" },
-        { "id": "aws-applications", "en": "Implemented cloud application solutions using AWS EC2, S3 and Lambda.", "es": "Implementé soluciones de aplicaciones en la nube con AWS EC2, S3 y Lambda.", "status": "repository-only", "source": "cv-baseline", "editorialStatus": "pending-review" }
+        { "id": "delivery-pipelines", "en": "Implemented CI/CD pipelines with Jenkins, Docker and Kubernetes.", "es": "Implementé pipelines de CI/CD con Jenkins, Docker y Kubernetes.", "status": "verified", "source": "sprint-1-confirmation", "editorialStatus": "verified" },
+        { "id": "aws-applications", "en": "Implemented cloud application solutions using AWS EC2, S3 and Lambda.", "es": "Implementé soluciones de aplicaciones en la nube con AWS EC2, S3 y Lambda.", "status": "verified", "source": "sprint-1-confirmation", "editorialStatus": "verified" },
+        { "id": "scrum-delivery", "en": "Collaborated in Agile/Scrum teams delivering enterprise software solutions.", "es": "Colaboré en equipos ágiles con Scrum entregando soluciones de software empresarial.", "status": "verified", "source": "sprint-1-confirmation", "editorialStatus": "verified" }
       ]
     },
     {
@@ -158,9 +152,19 @@
       ]
     },
     {
-      "id": "extreme-technologies", "kind": "professional-experience", "organizationId": "extreme-technologies",
+      "id": "extreme-technologies", "kind": "employment", "organizationId": "extreme-technologies",
       "start": "2020-03", "end": "2020-08", "status": "verified", "source": "sprint-1-confirmation",
-      "title": { "value": null, "status": "not-provided" }, "highlights": []
+      "title": { "value": "Java Software Engineer", "status": "verified", "source": "sprint-1-confirmation" },
+      "highlights": [
+        {
+          "id": "xtracking-fleet-logistics",
+          "en": "Analyzed, designed and developed information systems and GPS fleet tracking platforms (Xtracking) using Java and Angular as core technologies.",
+          "es": "Análisis, diseño y desarrollo de sistemas de información y plataformas de rastreo satelital GPS para flotas de camiones (Xtracking), utilizando Java y Angular como tecnologías principales.",
+          "status": "verified",
+          "source": "sprint-1-confirmation",
+          "editorialStatus": "verified"
+        }
+      ]
     },
     {
       "id": "global-tax-services", "kind": "professional-experience", "organizationId": "global-tax-services",
@@ -171,16 +175,27 @@
       ]
     },
     {
-      "id": "sena", "kind": "professional-experience", "organizationId": "sena",
+      "id": "sena", "kind": "contract", "organizationId": "sennova",
       "start": "2015-02", "end": "2018-10", "status": "verified", "source": "sprint-1-confirmation",
-      "title": {
-        "value": null, "status": "needs-validation",
-        "candidates": [
-          { "value": "Desarrollador de Software", "source": "portfolio-baseline" },
-          { "value": "Desarrollador Web", "source": "portfolio-baseline" }
-        ]
-      },
-      "highlights": []
+      "title": { "value": "Software Developer", "status": "verified", "source": "sprint-1-confirmation" },
+      "highlights": [
+        {
+          "id": "sennova-architecture",
+          "en": "Designed software architecture and system requirements using UML modeling, including use cases, class diagrams, and activity diagrams for SENNOVA research projects.",
+          "es": "Diseñé la arquitectura de software y especificación de requerimientos con modelado UML (casos de uso, diagramas de clases y de actividades) para proyectos de investigación e innovación en SENNOVA.",
+          "status": "verified",
+          "source": "sprint-1-confirmation",
+          "editorialStatus": "verified"
+        },
+        {
+          "id": "sennova-web-apps",
+          "en": "Developed web applications for applied research and technological innovation using PHP, MySQL, HTML5, CSS3, Bootstrap, and Vanilla JavaScript.",
+          "es": "Desarrollé e implementé aplicativos web para investigación aplicada e innovación tecnológica con PHP, MySQL, HTML5, CSS3, Bootstrap y Vanilla JavaScript.",
+          "status": "verified",
+          "source": "sprint-1-confirmation",
+          "editorialStatus": "verified"
+        }
+      ]
     },
     {
       "id": "el-heraldo", "kind": "professional-experience", "organizationId": "el-heraldo",
@@ -193,9 +208,7 @@
       "title": { "value": null, "status": "not-provided" }, "highlights": []
     }
   ],
-  "parallelGroups": [
-    { "id": "parallel-consulting-2021", "description": "Parallel consulting engagements", "descriptionEs": "Consultorías realizadas en paralelo", "status": "verified", "source": "sprint-1-confirmation" }
-  ],
+  "parallelGroups": [],
   "education": [
     { "id": "sena-software-2015", "organizationId": "sena", "credentialOriginal": "Tecnólogo en Análisis y Desarrollo de Software", "credentialEn": "Software Analysis and Development Technologist", "year": 2015, "status": "verified", "source": "sprint-1-confirmation", "editorialStatus": "pending-review" }
   ],
@@ -225,6 +238,6 @@
   ],
   "languages": [
     { "id": "es", "name": "Spanish", "proficiency": "Native", "status": "repository-only", "source": "cv-baseline" },
-    { "id": "en", "name": "English", "proficiency": null, "status": "needs-validation", "source": "sprint-1-confirmation" }
+    { "id": "en", "name": "English", "proficiency": "Professional Working Proficiency", "status": "verified", "source": "sprint-1-confirmation" }
   ]
 }

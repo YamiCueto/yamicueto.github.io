@@ -106,8 +106,9 @@ function createCv(profile, target) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(revision)) throw new Error('Missing fixed PDF revision date');
     doc.setCreationDate(`D:${revision.replace(/-/g, '')}000000+00'00'`);
     doc.setFileId(createHash('sha256').update(JSON.stringify({ profile, target })).digest('hex').slice(0, 32).toUpperCase());
+    const pdfTitle = target.pdfTitle || (target.company ? `${profile.identity.name} - ${target.company} ${target.jobId || ''} CV`.trim() : `${profile.identity.name} - ${target.role} CV`);
     doc.setProperties({
-        title: required(`${profile.identity.name} - ${target.company} ${target.jobId} CV`, 'PDF title'),
+        title: required(pdfTitle, 'PDF title'),
         author: required(profile.identity.name, 'PDF author'),
         subject: required(`${field(target.headlineRef)} - ${target.role}`, 'PDF subject'),
         creator: 'Professional Profile CV Generator',

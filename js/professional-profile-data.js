@@ -5,7 +5,7 @@ window.professionalProfile = {
   "headline": "Full Stack Engineer | Java · Spring Boot · Angular",
   "summary": "Full Stack Engineer especializado en aplicaciones empresariales y bancarias desarrolladas con Java, Spring Boot, Angular y TypeScript. Experiencia en modernización de sistemas legacy, integraciones REST y SOAP, CI/CD y entrega de aplicaciones en la nube. Experiencia adicional en el desarrollo de herramientas de IA generativa.",
   "location": "Barranquilla, Colombia",
-  "relocation": "Disponible para reubicación en Bogotá",
+  "relocation": "Disponible para reubicación",
   "themes": [
     "Full Stack Engineering",
     "Java / Spring Boot",
@@ -76,29 +76,18 @@ window.professionalProfile = {
       ]
     },
     {
-      "id": "intergrupo",
-      "organization": "Intergrupo",
+      "id": "softwareone",
+      "organization": "SoftwareONE (Intergrupo)",
       "dates": "Mar 2021 - Nov 2023",
       "role": "Senior Software Development Engineer",
-      "parallel": "Consultorías realizadas en paralelo",
+      "parallel": null,
       "assignments": [],
       "highlights": [
         "Desarrollé aplicaciones empresariales distribuidas con Java, Spring Boot y APIs REST.",
-        "Implementé pipelines de CI/CD con Jenkins, Docker y Kubernetes.",
-        "Trabajé en equipos Scrum desarrollando software empresarial."
-      ]
-    },
-    {
-      "id": "softwareone",
-      "organization": "SoftwareONE Colombia",
-      "dates": "Mar 2021 - Oct 2023",
-      "role": "Software Development Engineer",
-      "parallel": "Consultorías realizadas en paralelo",
-      "assignments": [],
-      "highlights": [
         "Consumí servicios web SOAP para consultas RUES en trabajo relacionado con la Cámara de Comercio de Bogotá, desde aplicaciones Java EE desplegadas en IBM WebSphere Application Server.",
-        "Desarrollé APIs REST con Spring Boot e integré sistemas legacy con aplicaciones modernas.",
-        "Implementé soluciones de aplicaciones en la nube con AWS EC2, S3 y Lambda."
+        "Implementé pipelines de CI/CD con Jenkins, Docker y Kubernetes.",
+        "Implementé soluciones de aplicaciones en la nube con AWS EC2, S3 y Lambda.",
+        "Colaboré en equipos ágiles con Scrum entregando soluciones de software empresarial."
       ]
     },
     {
@@ -115,6 +104,17 @@ window.professionalProfile = {
       ]
     },
     {
+      "id": "extreme-technologies",
+      "organization": "Extreme Technologies S.A.",
+      "dates": "Mar 2020 - Ago 2020",
+      "role": "Java Software Engineer",
+      "parallel": null,
+      "assignments": [],
+      "highlights": [
+        "Análisis, diseño y desarrollo de sistemas de información y plataformas de rastreo satelital GPS para flotas de camiones (Xtracking), utilizando Java y Angular como tecnologías principales."
+      ]
+    },
+    {
       "id": "global-tax-services",
       "organization": "Global Tax Services SAS",
       "dates": "Ene 2019 - Mar 2020",
@@ -123,6 +123,18 @@ window.professionalProfile = {
       "assignments": [],
       "highlights": [
         "Desarrollé aplicaciones full stack para servicios tributarios con Java, Spring Boot y Angular."
+      ]
+    },
+    {
+      "id": "sena",
+      "organization": "SENA - SENNOVA",
+      "dates": "Feb 2015 - Oct 2018",
+      "role": "Software Developer",
+      "parallel": null,
+      "assignments": [],
+      "highlights": [
+        "Diseñé la arquitectura de software y especificación de requerimientos con modelado UML (casos de uso, diagramas de clases y de actividades) para proyectos de investigación e innovación en SENNOVA.",
+        "Desarrollé e implementé aplicativos web para investigación aplicada e innovación tecnológica con PHP, MySQL, HTML5, CSS3, Bootstrap y Vanilla JavaScript."
       ]
     }
   ],

@@ -4,7 +4,7 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const profile = JSON.parse(fs.readFileSync(path.join(root, 'src/data/professional-profile.json'), 'utf8'));
-const target = JSON.parse(fs.readFileSync(path.join(root, 'src/data/targets/amadeus-r35120.json'), 'utf8'));
+const target = JSON.parse(fs.readFileSync(path.join(root, 'src/data/targets/fullstack-engineer.json'), 'utf8'));
 const resolve = (items, id) => {
     const matches = items.filter(item => item.id === id);
     if (matches.length !== 1) throw new Error(`Invalid portfolio reference: ${id}`);
@@ -50,7 +50,7 @@ const data = {
     headline: profile.positioning.headline,
     summary: profile.summary.es,
     location: `${profile.location.city}, ${profile.location.country}`,
-    relocation: `Disponible para reubicación en ${profile.location.openToRelocationTo.join(', ')}`,
+    relocation: 'Disponible para reubicación',
     themes: profile.positioning.primaryThemes.slice(0, 3),
     secondaryThemes: profile.positioning.secondaryThemes,
     skillGroups: target.skillGroups.map(group => ({
