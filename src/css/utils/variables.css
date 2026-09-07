@@ -58,11 +58,21 @@
   --space-16: 4rem;
   --space-20: 5rem;
 
-  /* Sombras */
+  /* Sombras y Glows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --glow-primary: 0 0 25px -5px rgba(59, 130, 246, 0.35);
+  --glow-accent: 0 0 25px -5px rgba(6, 182, 212, 0.35);
+  --glow-emerald: 0 0 25px -5px rgba(16, 185, 129, 0.35);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --glass-bg-subtle: rgba(15, 23, 42, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(59, 130, 246, 0.4);
+  --glass-border-accent: rgba(6, 182, 212, 0.4);
 
   /* Bordes */
   --radius-sm: 0.25rem;
@@ -70,9 +80,10 @@
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
   --radius-2xl: 1rem;
+  --radius-full: 9999px;
 
-  /* Transiciones - Disabled for cleaner look */
-  --transition-fast: none;
-  --transition-normal: none;
-  --transition-slow: none;
+  /* Transiciones fluidas */
+  --transition-fast: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }

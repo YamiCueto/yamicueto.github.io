@@ -7,8 +7,11 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 70px;
-  background: var(--bg-primary);
+  padding-top: 80px;
+  background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(59, 130, 246, 0.18), transparent 70%),
+              radial-gradient(circle at 10% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 90% 40%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+              var(--bg-primary);
   position: relative;
   overflow: hidden;
 }
@@ -20,8 +23,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -34,90 +37,179 @@
 
 .hero-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-16);
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--space-12);
   align-items: center;
-  padding: 2rem;
+  padding: 2rem 0;
 }
 
 .hero-text {
   z-index: 2;
 }
 
+/* Status Badge */
+.status-badge-container {
+  margin-bottom: var(--space-4);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: var(--transition-normal);
+}
+
+.status-badge:hover {
+  background: rgba(16, 185, 129, 0.14);
+  border-color: rgba(16, 185, 129, 0.45);
+  transform: translateY(-1px);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.status-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid #10b981;
+  animation: pulse-ring 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.status-text {
+  font-size: var(--font-xs);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #34d399;
+  text-transform: uppercase;
+}
+
 .greeting {
   display: block;
-  font-size: var(--font-lg);
-  color: var(--text-secondary);
+  font-size: var(--font-base);
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   margin-bottom: var(--space-2);
 }
 
 .name {
   display: block;
-  font-size: var(--font-5xl);
-  font-weight: 700;
-  color: var(--text-primary);
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #ffffff 30%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: var(--space-2);
+  line-height: 1.1;
 }
 
 .role {
   display: block;
-  font-size: var(--font-2xl);
-  color: var(--primary-color);
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
   font-weight: 600;
+  background: linear-gradient(135deg, #60a5fa 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   min-height: 40px;
 }
 
 .hero-description {
-  font-size: var(--font-lg);
+  font-size: var(--font-base);
   color: var(--text-secondary);
-  margin: var(--space-8) 0;
-  line-height: 1.7;
+  margin: var(--space-6) 0 var(--space-4) 0;
+  line-height: 1.75;
+  max-width: 600px;
+}
+
+.hero-location {
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: var(--space-4);
 }
 
 .hero-buttons {
   display: flex;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: var(--space-6);
+}
+
+/* Hero Metrics - Glassmorphism Pills */
+.hero-metrics {
+  display: flex;
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+  padding: 0;
+  border: none;
   flex-wrap: wrap;
 }
 
-/*
-==========================================================================
-   HERO METRICS - NUEVO
-  
-==========================================================================
-*/
-.hero-metrics {
-  display: flex;
-  gap: var(--space-8);
-  margin: var(--space-8) 0;
-  padding: var(--space-6) 0;
-  border-top: 1px solid var(--bg-tertiary);
-  border-bottom: 1px solid var(--bg-tertiary);
-}
-
-.metric {
-  display: flex;
+.hero-metrics .metric {
+  display: inline-flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  min-width: 100px;
+  align-items: flex-start;
+  text-align: left;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-xl);
+  transition: var(--transition-normal);
+  min-width: auto;
 }
 
-.metric-number {
-  font-size: var(--font-3xl);
+.hero-metrics .metric:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-primary);
+}
+
+.hero-metrics .metric-number {
+  font-size: var(--font-sm);
   font-weight: 700;
-  background: var(--gradient-primary);
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #ffffff 0%, #93c5fd 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
-.metric-label {
-  font-size: var(--font-sm);
-  color: var(--text-secondary);
+.hero-metrics .metric-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
   font-weight: 500;
-  margin-top: var(--space-2);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /*
@@ -132,56 +224,72 @@
 }
 
 .code-window {
-  background: var(--bg-code);
-  border-radius: var(--radius-xl);
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-2xl);
   overflow: hidden;
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6), 0 0 30px -10px rgba(59, 130, 246, 0.2);
   width: 100%;
   max-width: 500px;
+  transition: var(--transition-normal);
+}
+
+.code-window:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.7), 0 0 40px -5px rgba(59, 130, 246, 0.3);
+  transform: translateY(-3px);
 }
 
 .code-header {
-  background: #2d3748;
-  padding: var(--space-4);
+  background: rgba(30, 41, 59, 0.65);
+  padding: 0.75rem 1.25rem;
   display: flex;
   align-items: center;
   gap: var(--space-4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .code-dots {
   display: flex;
-  gap: var(--space-2);
+  gap: 6px;
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
+  opacity: 0.9;
 }
 
 .dot.red {
-  background: #ef4444;
+  background: #f87171;
+  box-shadow: 0 0 8px rgba(248, 113, 113, 0.4);
 }
 
 .dot.yellow {
-  background: #f59e0b;
+  background: #fbbf24;
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
 }
 
 .dot.green {
-  background: #10b981;
+  background: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.4);
 }
 
 .code-title {
-  color: #e2e8f0;
+  color: var(--text-muted);
   font-family: var(--font-mono);
-  font-size: var(--font-sm);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
 }
 
 .code-content {
-  padding: var(--space-6);
+  padding: 1.5rem 1.75rem;
   font-family: var(--font-mono);
-  font-size: var(--font-sm);
-  line-height: 1.6;
+  font-size: 0.85rem;
+  line-height: 1.75;
   overflow-x: auto;
 }
 
@@ -190,19 +298,20 @@
 }
 
 .keyword {
-  color: #c084fc;
+  color: #f472b6;
+  font-weight: 500;
 }
 
 .variable {
-  color: #60a5fa;
+  color: #38bdf8;
 }
 
 .property {
-  color: #34d399;
+  color: #a78bfa;
 }
 
 .string {
-  color: #fbbf24;
+  color: #34d399;
 }
 
 /*
