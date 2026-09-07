@@ -29,7 +29,7 @@
 }
 
 .hero-container {
-  max-width: 1260px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-6);
   position: relative;
@@ -37,14 +37,15 @@
 
 .hero-content {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: var(--space-8);
+  grid-template-columns: 1fr 1fr;
+  gap: 2.25rem;
   align-items: center;
   padding: 2rem 0;
 }
 
 .hero-text {
   z-index: 2;
+  max-width: 560px;
 }
 
 /* Status Badge */
@@ -159,6 +160,7 @@
   gap: var(--space-3);
   flex-wrap: wrap;
   margin-top: var(--space-6);
+  max-width: 440px;
 }
 
 /* Hero Metrics - Glassmorphism Pills */
@@ -221,6 +223,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .code-window {
@@ -232,7 +235,7 @@
   overflow: hidden;
   box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6), 0 0 30px -10px rgba(59, 130, 246, 0.2);
   width: 100%;
-  max-width: 530px;
+  max-width: 550px;
   transition: var(--transition-normal);
 }
 
