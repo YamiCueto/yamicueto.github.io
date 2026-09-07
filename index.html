@@ -130,6 +130,9 @@
 </head>
 
 <body data-theme="dark">
+	<!-- Barra de progreso de lectura (Scroll Progress) -->
+	<div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
+
 	<!-- Cursor personalizado -->
 	<div class="cursor"></div>
 	<div class="cursor-follower"></div>
@@ -223,10 +226,19 @@
 								<span class="dot yellow"></span>
 								<span class="dot green"></span>
 							</div>
-							<span class="code-title">developer.ts</span>
+							<div class="code-tabs" role="tablist" aria-label="Archivos de código">
+								<button class="code-tab active" data-tab="ts" role="tab" aria-selected="true" id="tab-ts"><i class="fab fa-js-square"></i> developer.ts</button>
+								<button class="code-tab" data-tab="java" role="tab" aria-selected="false" id="tab-java"><i class="fab fa-java"></i> BackendService.java</button>
+								<button class="code-tab" data-tab="json" role="tab" aria-selected="false" id="tab-json"><i class="fas fa-layer-group"></i> stack.json</button>
+							</div>
+							<button class="code-copy-btn" id="code-copy-btn" title="Copiar código" aria-label="Copiar código al portapapeles">
+								<i class="far fa-copy"></i>
+								<span class="copy-tooltip">Copiar</span>
+							</button>
 						</div>
 						<div class="code-content">
-							<pre><code><span class="keyword">const</span> <span class="variable">developer</span> = {
+							<div class="code-tab-panel active" id="panel-ts" data-tab="ts" role="tabpanel" aria-labelledby="tab-ts">
+								<pre><code><span class="keyword">const</span> <span class="variable">developer</span> = {
   <span class="property">name</span>: <span class="string">"Yamid Cueto"</span>,
   <span class="property">role</span>: <span class="string" id="profile-role">"Full Stack Engineer"</span>,
   <span class="property">company</span>: <span class="string" id="profile-employer">"Tata Consultancy Services (TCS)"</span>,
@@ -240,6 +252,34 @@
   
   <span class="property">passion</span>: <span class="string">"Building scalable solutions"</span>
 };</code></pre>
+							</div>
+							<div class="code-tab-panel" id="panel-java" data-tab="java" role="tabpanel" aria-labelledby="tab-java" style="display: none;">
+								<pre><code><span class="keyword">@RestController</span>
+<span class="keyword">@RequestMapping</span>(<span class="string">"/api/v1/engineer"</span>)
+<span class="keyword">public class</span> <span class="variable">ProfileController</span> {
+
+  <span class="keyword">private final</span> <span class="property">ArchitectureService</span> <span class="variable">service</span>;
+
+  <span class="keyword">@GetMapping</span>(<span class="string">"/status"</span>)
+  <span class="keyword">public</span> <span class="property">ResponseEntity</span>&lt;<span class="property">EngineerState</span>&gt; <span class="variable">getStatus</span>() {
+    <span class="keyword">return</span> <span class="property">ResponseEntity</span>.<span class="variable">ok</span>(<span class="keyword">new</span> <span class="property">EngineerState</span>(
+      <span class="string">"Yamid Cueto"</span>,
+      <span class="property">List</span>.<span class="variable">of</span>(<span class="string">"Java 17+"</span>, <span class="string">"Spring Boot 3"</span>, <span class="string">"Angular Signals"</span>),
+      <span class="string">"Enterprise Production Ready"</span>
+    ));
+  }
+}</code></pre>
+							</div>
+							<div class="code-tab-panel" id="panel-json" data-tab="json" role="tabpanel" aria-labelledby="tab-json" style="display: none;">
+								<pre><code>{
+  <span class="property">"profile"</span>: <span class="string">"Full Stack Senior Engineer"</span>,
+  <span class="property">"backend"</span>: [<span class="string">"Java 17+"</span>, <span class="string">"Spring Boot"</span>, <span class="string">"REST"</span>, <span class="string">"SOAP"</span>, <span class="string">"Hibernate"</span>],
+  <span class="property">"frontend"</span>: [<span class="string">"Angular"</span>, <span class="string">"TypeScript"</span>, <span class="string">"RxJS"</span>, <span class="string">"Signals"</span>],
+  <span class="property">"cloudDevOps"</span>: [<span class="string">"AWS"</span>, <span class="string">"Docker"</span>, <span class="string">"Kubernetes"</span>, <span class="string">"CI/CD Jenkins"</span>],
+  <span class="property">"databases"</span>: [<span class="string">"Oracle"</span>, <span class="string">"PostgreSQL"</span>, <span class="string">"MySQL"</span>, <span class="string">"SQL Server"</span>],
+  <span class="property">"practices"</span>: <span class="string">"Clean Architecture, Hexagonal & Scrum"</span>
+}</code></pre>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -338,12 +378,16 @@
 							<span class="tech-tag">Spring Boot</span>
 							<span class="tech-tag">Angular</span>
 						</div>
-						<div class="project-meta">
+						<div class="project-actions">
+							<a rel="noopener noreferrer" href="https://yamicueto.github.io/case-os/" target="_blank" class="btn-card-action btn-card-primary">
+								<span>Ver Demo</span> <i class="fas fa-external-link-alt"></i>
+							</a>
+							<a rel="noopener noreferrer" href="https://github.com/YamiCueto/case-os" target="_blank" class="btn-card-action btn-card-secondary">
+								<span>Código</span> <i class="fab fa-github"></i>
+							</a>
 						</div>
 					</div>
 				</div>
-
-				
 
 <!-- Code Agent Arena -->
 				<div class="project-card" data-category="ai web" data-id="code-agent-arena">
@@ -370,22 +414,24 @@
 					</div>
 					<div class="project-content">
 						<h3 class="project-title">Code Agent Arena 🎮</h3>
-						<p class="project-description">Plataforma interactiva de aprendizaje sobre Agentes de IA. 7
-							módulos, 15+ juegos, 16 semanas de contenido gamificado - Aprende AI Agents de forma
-							divertida</p>
+						<p class="project-description">Plataforma interactiva de aprendizaje sobre Agentes de IA. 7 módulos, 15+ juegos, 16 semanas de contenido gamificado.</p>
 						<div class="project-tech">
 							<span class="tech-tag">HTML5</span>
 							<span class="tech-tag">AI Agents</span>
 							<span class="tech-tag">Gamification</span>
 							<span class="tech-tag">Interactive</span>
 						</div>
-						<div class="project-meta">
-							<span class="project-date">Dic 2025</span>
+						<div class="project-actions">
+							<a rel="noopener noreferrer" href="https://yamicueto.github.io/code-agent-arena/" target="_blank" class="btn-card-action btn-card-primary">
+								<span>Ver Demo</span> <i class="fas fa-external-link-alt"></i>
+							</a>
+							<a rel="noopener noreferrer" href="https://github.com/YamiCueto/code-agent-arena" target="_blank" class="btn-card-action btn-card-secondary">
+								<span>Código</span> <i class="fab fa-github"></i>
+							</a>
 						</div>
 					</div>
 				</div>
 
-				
 <!-- Flowly -->
 				<div class="project-card" data-category="web" data-id="flowly">
 					<div class="project-image">
@@ -409,21 +455,23 @@
 					</div>
 					<div class="project-content">
 						<h3 class="project-title">Flowly</h3>
-						<p class="project-description">Herramienta web ligera para crear diagramas ER, UML y
-							flowcharts. Construida con vanilla JS y Konva.js. Exporta a SVG, PNG, JPG y PDF</p>
+						<p class="project-description">Herramienta web ligera para crear diagramas ER, UML y flowcharts. Construida con vanilla JS y Konva.js.</p>
 						<div class="project-tech">
 							<span class="tech-tag">JavaScript</span>
 							<span class="tech-tag">Konva.js</span>
 							<span class="tech-tag">SVG</span>
 						</div>
-						<div class="project-meta">
-							<span class="project-date">Oct 2025</span>
-							<span class="project-license">MIT</span>
+						<div class="project-actions">
+							<a rel="noopener noreferrer" href="https://yamicueto.github.io/Flowly/" target="_blank" class="btn-card-action btn-card-primary">
+								<span>Ver Demo</span> <i class="fas fa-external-link-alt"></i>
+							</a>
+							<a rel="noopener noreferrer" href="https://github.com/YamiCueto/Flowly" target="_blank" class="btn-card-action btn-card-secondary">
+								<span>Código</span> <i class="fab fa-github"></i>
+							</a>
 						</div>
 					</div>
 				</div>
 
-				
 <!-- Academy.IA -->
 				<div class="project-card" data-category="education ai web" data-id="academy-ia">
 					<div class="project-image">
@@ -448,21 +496,23 @@
 					</div>
 					<div class="project-content">
 						<h3 class="project-title">Academy.IA</h3>
-						<p class="project-description">Plataforma educativa inteligente con generación de cursos
-							mediante IA
-						</p>
+						<p class="project-description">Plataforma educativa inteligente con generación de cursos interactivos mediante modelos de IA.</p>
 						<div class="project-tech">
 							<span class="tech-tag">React</span>
 							<span class="tech-tag">Python</span>
 							<span class="tech-tag">AI</span>
 						</div>
-						<div class="project-meta">
-							<span class="project-date">Sep 2025</span>
+						<div class="project-actions">
+							<a rel="noopener noreferrer" href="https://yamicueto.github.io/academy.ia/#dashboard" target="_blank" class="btn-card-action btn-card-primary">
+								<span>Ver Demo</span> <i class="fas fa-external-link-alt"></i>
+							</a>
+							<a rel="noopener noreferrer" href="https://github.com/YamiCueto/academy.ia" target="_blank" class="btn-card-action btn-card-secondary">
+								<span>Código</span> <i class="fab fa-github"></i>
+							</a>
 						</div>
 					</div>
 				</div>
 
-			
 <!-- Cloud Cheatsheet -->
 				<div class="project-card" data-category="web" data-id="cloud-cheatsheet">
 					<div class="project-image">
@@ -488,20 +538,23 @@
 					</div>
 					<div class="project-content">
 						<h3 class="project-title">Cloud Cheatsheet</h3>
-						<p class="project-description">Dashboard interactivo como cuaderno de aprendizaje visual de
-							servicios AWS</p>
+						<p class="project-description">Dashboard interactivo como cuaderno de aprendizaje visual de servicios AWS y patrones arquitecturales.</p>
 						<div class="project-tech">
 							<span class="tech-tag">TypeScript</span>
 							<span class="tech-tag">AWS</span>
 							<span class="tech-tag">Dashboard</span>
 						</div>
-						<div class="project-meta">
-							<span class="project-date">Oct 2025</span>
+						<div class="project-actions">
+							<a rel="noopener noreferrer" href="https://yamicueto.github.io/cloud-cheatsheet/" target="_blank" class="btn-card-action btn-card-primary">
+								<span>Ver Demo</span> <i class="fas fa-external-link-alt"></i>
+							</a>
+							<a rel="noopener noreferrer" href="https://github.com/YamiCueto/cloud-cheatsheet" target="_blank" class="btn-card-action btn-card-secondary">
+								<span>Código</span> <i class="fab fa-github"></i>
+							</a>
 						</div>
 					</div>
 				</div>
 
-				
 <!-- FotoMultasLab -->
 				<div class="project-card" data-category="web" data-id="fotomultaslab">
 					<div class="project-image">
@@ -527,16 +580,19 @@
 					</div>
 					<div class="project-content">
 						<h3 class="project-title">FotoMultasLab</h3>
-						<p class="project-description">🚦 Mapa interactivo de cámaras de fotodetección en
-							Barranquilla, Colombia - MVP funcional para ubicar fotomultas</p>
+						<p class="project-description">🚦 Mapa interactivo de cámaras de fotodetección en Barranquilla, Colombia - MVP funcional geolocalizado.</p>
 						<div class="project-tech">
 							<span class="tech-tag">JavaScript</span>
 							<span class="tech-tag">Maps API</span>
 							<span class="tech-tag">Geolocation</span>
 						</div>
-						<div class="project-meta">
-							<span class="project-date">Nov 2025</span>
-							<span class="project-license">MIT</span>
+						<div class="project-actions">
+							<a rel="noopener noreferrer" href="https://yamicueto.github.io/fotomultaslab/" target="_blank" class="btn-card-action btn-card-primary">
+								<span>Ver Demo</span> <i class="fas fa-external-link-alt"></i>
+							</a>
+							<a rel="noopener noreferrer" href="https://github.com/YamiCueto/fotomultaslab" target="_blank" class="btn-card-action btn-card-secondary">
+								<span>Código</span> <i class="fab fa-github"></i>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -732,6 +788,16 @@
 			</div>
 
 			<div class="contact-content">
+				<!-- Availability & Timezone Card -->
+				<div class="availability-card">
+					<div class="avail-badge"><span class="status-dot"></span> Disponible para Nuevas Oportunidades</div>
+					<div class="avail-grid">
+						<div class="avail-item"><i class="fas fa-clock"></i> <span><strong>Zona Horaria:</strong> UTC-5 (Colombia / Américas)</span></div>
+						<div class="avail-item"><i class="fas fa-laptop-code"></i> <span><strong>Modalidad:</strong> Remoto / Híbrido / Reubicación</span></div>
+						<div class="avail-item"><i class="fas fa-bolt"></i> <span><strong>Tiempo de Respuesta:</strong> &lt; 24 horas</span></div>
+					</div>
+				</div>
+
 				<div class="contact-methods">
 					<div class="contact-primary">
 						<h3>¿Cómo prefieres conectar?</h3>
@@ -771,6 +837,17 @@
 									<span class="method-note">Ideal para networking y oportunidades</span>
 								</div>
 							</a>
+
+							<button type="button" class="contact-method copy-email-card" id="copy-email-btn" aria-label="Copiar email yamidcuetomazo@gmail.com">
+								<div class="method-icon copy-icon">
+									<i class="far fa-copy"></i>
+								</div>
+								<div class="method-content">
+									<h4>Copiar Email al Portapapeles</h4>
+									<p id="copy-email-text">yamidcuetomazo@gmail.com</p>
+									<span class="method-note">1-clic para copiar con confirmación instantánea</span>
+								</div>
+							</button>
 						</div>
 
 						<!-- Contact Form Button -->
@@ -911,6 +988,9 @@
 
 
 
+
+	<!-- Toast Notification Container -->
+	<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 	<!-- Scripts -->
 		<script src="js/professional-profile-data.js"></script>

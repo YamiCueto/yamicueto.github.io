@@ -13,6 +13,7 @@
     "serve": "live-server --port=3000 --open=/",
     "lint:css": "stylelint src/css/**/*.css --fix",
     "test:e2e": "node scripts/validate-portfolio.cjs",
+    "test:interactive": "node scripts/verify-interactive-features.cjs",
     "deploy": "npm run build",
     "clean": "rimraf css/style.css css/style.min.css"
   },

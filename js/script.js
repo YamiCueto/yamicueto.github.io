@@ -189,6 +189,13 @@ function initializeApp() {
     setupAnalytics();
     setupProjectFilters();
     setupLoadMoreProjects();
+
+    // Enhanced UX & Interactivity
+    setupCodeWindow();
+    setupScrollProgress();
+    setupScrollSpy();
+    setupTagFiltering();
+    setupCopyEmail();
 }
 
 // ==========================================================================
@@ -848,4 +855,175 @@ function setupLoadMoreProjects() {
             loadMoreBtn.style.display = 'none';
         }
     };
+}
+
+// ==========================================================================
+// TOAST NOTIFICATION UTILITY
+// ==========================================================================
+function showToast(message) {
+    let toast = document.getElementById('toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast';
+        toast.className = 'toast';
+        document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3500);
+}
+
+// ==========================================================================
+// CODE WINDOW TABS & COPY
+// ==========================================================================
+function setupCodeWindow() {
+    const tabs = document.querySelectorAll('.code-tab');
+    const panels = document.querySelectorAll('.code-tab-panel');
+    const copyBtn = document.getElementById('code-copy-btn');
+    const tooltip = copyBtn ? copyBtn.querySelector('.copy-tooltip') : null;
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetTab = tab.getAttribute('data-tab');
+            tabs.forEach(t => {
+                const isSelected = t === tab;
+                t.classList.toggle('active', isSelected);
+                t.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+            });
+            panels.forEach(p => {
+                const isActive = p.getAttribute('data-tab') === targetTab;
+                p.classList.toggle('active', isActive);
+                p.style.display = isActive ? 'block' : 'none';
+            });
+        });
+    });
+
+    if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+            const activePanel = document.querySelector('.code-tab-panel.active') || panels[0];
+            const textToCopy = activePanel ? activePanel.textContent.trim() : '';
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(textToCopy);
+                } else {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = textToCopy;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    textarea.remove();
+                }
+                copyBtn.classList.add('copied');
+                if (tooltip) tooltip.textContent = '¡Copiado!';
+                showToast('📋 ¡Código copiado al portapapeles!');
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    if (tooltip) tooltip.textContent = 'Copiar';
+                }, 2000);
+            } catch (err) {
+                console.warn('Clipboard copy error:', err);
+            }
+        });
+    }
+}
+
+// ==========================================================================
+// SCROLL PROGRESS BAR
+// ==========================================================================
+function setupScrollProgress() {
+    const progressBar = document.getElementById('scroll-progress');
+    if (!progressBar) return;
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) : 0;
+        progressBar.style.transform = `scaleX(${progress})`;
+    }, { passive: true });
+}
+
+// ==========================================================================
+// SCROLLSPY (ACTIVE NAV LINK)
+// ==========================================================================
+function setupScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    if (!sections.length || !navLinks.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === `#${id}`) {
+                        link.classList.add('active');
+                    } else if (href && href.startsWith('#')) {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        });
+    }, {
+        rootMargin: '-20% 0px -70% 0px'
+    });
+
+    sections.forEach(sec => observer.observe(sec));
+}
+
+// ==========================================================================
+// INTERACTIVE TECH TAG FILTERING
+// ==========================================================================
+function setupTagFiltering() {
+    document.addEventListener('click', (e) => {
+        const tag = e.target.closest('.tech-tag');
+        if (!tag) return;
+        const text = tag.textContent.trim().toLowerCase();
+        let targetFilter = null;
+        if (text.includes('java') || text.includes('spring')) targetFilter = 'java';
+        else if (text.includes('angular') || text.includes('typescript')) targetFilter = 'angular';
+        else if (text.includes('ai') || text.includes('agent') || text.includes('mcp')) targetFilter = 'ai';
+        else if (text.includes('web') || text.includes('html') || text.includes('javascript') || text.includes('konva') || text.includes('react')) targetFilter = 'web';
+
+        if (targetFilter) {
+            const btn = document.querySelector(`.filter-btn[data-filter="${targetFilter}"]`);
+            if (btn) {
+                btn.click();
+                const projectsSection = document.getElementById('projects');
+                if (projectsSection) {
+                    projectsSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+    });
+}
+
+// ==========================================================================
+// COPY EMAIL TO CLIPBOARD
+// ==========================================================================
+function setupCopyEmail() {
+    const copyBtn = document.getElementById('copy-email-btn');
+    if (!copyBtn) return;
+
+    copyBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const email = 'yamidcuetomazo@gmail.com';
+        try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(email);
+            } else {
+                const textarea = document.createElement('textarea');
+                textarea.value = email;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                textarea.remove();
+            }
+            showToast('📋 ¡Email copiado al portapapeles! yamidcuetomazo@gmail.com');
+        } catch (err) {
+            showToast('Email: yamidcuetomazo@gmail.com');
+        }
+    });
 }
