@@ -48,6 +48,7 @@ const experience = target.experience
 const data = {
     identity: profile.identity.name,
     headline: profile.positioning.headline,
+    role: 'Full Stack Engineer',
     summary: profile.summary.es,
     location: `${profile.location.city}, ${profile.location.country}`,
     relocation: 'Disponible para reubicación',

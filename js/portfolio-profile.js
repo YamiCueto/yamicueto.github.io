@@ -32,7 +32,7 @@
     setText('typing-text', profile.headline);
     setText('profile-summary', profile.summary);
     setText('profile-location', `${profile.location} | ${profile.relocation}`);
-    setText('profile-role', `"${profile.headline}"`);
+    setText('profile-role', `"${profile.role || profile.headline.split(' | ')[0]}"`);
     setText('profile-employer', `"${profile.currentEmployer}"`);
     const aboutSummary = document.querySelector('.about-description p');
     if (aboutSummary) aboutSummary.textContent = profile.summary;

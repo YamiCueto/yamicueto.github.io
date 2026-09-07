@@ -3,6 +3,7 @@
 window.professionalProfile = {
   "identity": "Yamid Cueto Mazo",
   "headline": "Full Stack Engineer | Java · Spring Boot · Angular",
+  "role": "Full Stack Engineer",
   "summary": "Full Stack Engineer especializado en aplicaciones empresariales y bancarias desarrolladas con Java, Spring Boot, Angular y TypeScript. Experiencia en modernización de sistemas legacy, integraciones REST y SOAP, CI/CD y entrega de aplicaciones en la nube. Experiencia adicional en el desarrollo de herramientas de IA generativa.",
   "location": "Barranquilla, Colombia",
   "relocation": "Disponible para reubicación",
