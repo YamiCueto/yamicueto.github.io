@@ -173,22 +173,7 @@ body {
   }
   
   .about-sidebar {
-    order: -1;
-  }
-  
-  .about-stats {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-2);
-    max-width: 100%;
-  }
-  
-  .stat {
-    padding: var(--space-4);
-    max-width: 100%;
-  }
-  
-  .stat-number {
-    font-size: var(--font-xl);
+    order: initial;
   }
 
   /* Skills Section */

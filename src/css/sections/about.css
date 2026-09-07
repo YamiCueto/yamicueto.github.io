@@ -1,180 +1,348 @@
 /*
 ==========================================================================
-   ABOUT SECTION
-  
+   ABOUT SECTION (REDESIGNED DASHBOARD)
 ========================================================================== */
 .about {
   padding: var(--space-20) 0;
   background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.09) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .about-content {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: var(--space-16);
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 3rem;
   align-items: start;
 }
 
-/* About Text Section */
+/* ==========================================================================
+   Left Column: Text, Story & Pillars
+   ========================================================================== */
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
 .intro-highlight {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(6, 182, 212, 0.12));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(6, 182, 212, 0.1));
   border: 1px solid rgba(59, 130, 246, 0.25);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  padding: var(--space-8);
+  padding: 1.5rem 1.75rem;
   border-radius: var(--radius-2xl);
-  margin-bottom: var(--space-8);
-  text-align: center;
+  text-align: left;
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-highlight::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-primary);
 }
 
 .role-title {
-  font-size: var(--font-2xl);
+  font-size: 1.65rem;
   font-weight: 800;
-  margin: 0 0 var(--space-2) 0;
+  margin: 0 0 0.35rem 0;
   background: linear-gradient(135deg, #ffffff 30%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1.2;
 }
 
 .role-subtitle {
-  font-size: var(--font-md);
+  font-size: 0.95rem;
   margin: 0;
   color: #94a3b8;
   font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .about-description p {
-  font-size: var(--font-lg);
+  font-size: 1.025rem;
   color: var(--text-secondary);
-  margin-bottom: var(--space-6);
-  line-height: 1.7;
+  line-height: 1.75;
+  margin: 0 0 1rem 0;
 }
 
-.experience-highlights {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: var(--space-6) var(--space-8);
+.about-story-p {
+  color: #cbd5e1 !important;
+}
+
+/* Pillars Grid */
+.about-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+.pillar-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.15rem 1.35rem;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-xl);
-  border: 1px solid var(--glass-border);
-  border-left: 4px solid var(--primary-color);
-  margin-top: var(--space-8);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.experience-highlights h4 {
+.pillar-card:hover {
+  transform: translateY(-2px);
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 10px 25px -8px rgba(59, 130, 246, 0.25);
+}
+
+.pillar-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2));
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #38bdf8;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.15);
+}
+
+.pillar-content h4 {
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--text-primary);
-  margin: 0 0 var(--space-4) 0;
-  font-size: var(--font-lg);
-  font-weight: 600;
+  margin: 0 0 0.35rem 0;
 }
 
-.highlight-list {
-  list-style: none;
-  padding: 0;
+.pillar-content p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.55;
   margin: 0;
 }
 
-.highlight-list li {
-  display: flex;
-  align-items: center;
-  margin-bottom: var(--space-3);
-  color: var(--text-secondary);
-  font-size: var(--font-md);
-}
-
-.highlight-list li i {
-  color: var(--primary-color);
-  margin-right: var(--space-3);
-  width: 20px;
-}
-
-/* About Sidebar */
+/* ==========================================================================
+   Right Column: Sidebar of Stats, Education & Languages
+   ========================================================================== */
 .about-sidebar {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: 1.5rem;
 }
 
-.about-stats {
+/* 2x2 Stats Grid */
+.about-stats-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
 }
 
-.stat {
+.about-stat-box {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xl);
+  padding: 1.15rem 1rem;
   text-align: center;
-  padding: var(--space-6);
-  background: var(--bg-primary);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
-  border: 1px solid rgba(79, 70, 229, 0.1);
-}
-
-.stat:hover {
-  box-shadow: var(--shadow-md);
-  border-color: rgba(79, 70, 229, 0.3);
-}
-
-.stat-number {
-  display: block;
-  font-size: var(--font-2xl);
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-.stat-label {
-  font-size: var(--font-sm);
-  color: var(--text-secondary);
-  font-weight: 500;
-  margin-top: var(--space-1);
-}
-
-/* Companies Section */
-.companies-worked {
-  background: var(--bg-primary);
-  padding: var(--space-6);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(79, 70, 229, 0.1);
-}
-
-.companies-worked h4 {
-  color: var(--text-primary);
-  margin: 0 0 var(--space-4) 0;
-  font-size: var(--font-md);
-  font-weight: 600;
-}
-
-.company-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.company-item {
+.about-stat-box:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+}
+
+.about-stat-box .stat-icon {
+  font-size: 1.15rem;
+  color: #38bdf8;
+  margin-bottom: 0.4rem;
+}
+
+.about-stat-box .stat-number {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 40%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.about-stat-box .stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Info Cards (Education & Languages) */
+.about-card {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-2xl);
+  padding: 1.35rem 1.5rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  transition: all var(--transition-normal);
+}
+
+.about-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.card-header-badge {
   display: flex;
   align-items: center;
-  padding: var(--space-2);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.company-item:hover {
-  background: var(--bg-secondary);
+.card-header-badge i {
+  color: #38bdf8;
+  font-size: 1.1rem;
 }
 
-.company-item i {
-  color: var(--primary-color);
-  margin-right: var(--space-3);
-  width: 16px;
-  font-size: var(--font-sm);
+.card-header-badge h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
-.company-item span {
-  color: var(--text-secondary);
-  font-size: var(--font-sm);
-  font-weight: 500;
+/* Education Body */
+.education-body .edu-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  line-height: 1.35;
+  margin-bottom: 0.4rem;
+}
+
+.education-body .edu-institution {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.education-body .edu-period {
+  font-size: 0.77rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.65rem;
+}
+
+.education-body .edu-note {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Languages List */
+.languages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.lang-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.lang-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lang-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.lang-level-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 12px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.lang-level-badge.lang-level-tech {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+.lang-detail {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .pillar-card {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 }
