@@ -8,6 +8,7 @@
     "build": "npm run build:portfolio && npm run build:css:prod && npm run build:cv",
     "build:portfolio": "node scripts/generate-portfolio-data.cjs",
     "build:cv": "node scripts/generate-cv.cjs",
+    "test:cv": "node scripts/verify-cv-pdf.cjs",
     "build:css": "postcss src/css/main.css -o css/style.css --watch",
     "build:css:prod": "postcss src/css/main.css -o css/style.css --env production",
     "serve": "live-server --port=3000 --open=/",

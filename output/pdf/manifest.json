@@ -1,0 +1,152 @@
+{
+  "fullstack-engineer": {
+    "files": [
+      "Yamid_Cueto_Fullstack_Engineer_CV.pdf"
+    ],
+    "locale": "en",
+    "pages": 2,
+    "bytes": 5946,
+    "sha256": "97daf672bf7107209c07b8eec791a403c957abd3a78c4e74e043742202b951f7",
+    "linksCount": 7,
+    "links": [
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "yamidcuetomazo@gmail.com",
+        "url": "mailto:yamidcuetomazo@gmail.com"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "+57 300 279 2493",
+        "url": "tel:+573002792493"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "Portfolio: yamicueto.github.io",
+        "url": "https://yamicueto.github.io/"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "Linkedin: linkedin.com/in/yamid-cueto-mazo",
+        "url": "https://linkedin.com/in/yamid-cueto-mazo"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "Github: github.com/YamiCueto",
+        "url": "https://github.com/YamiCueto"
+      },
+      {
+        "page": 2,
+        "section": "projects",
+        "text": "|  yamicueto.github.io/case-os",
+        "url": "https://yamicueto.github.io/case-os/"
+      },
+      {
+        "page": 2,
+        "section": "projects",
+        "text": "github.com/YamiCueto/case-os",
+        "url": "https://github.com/YamiCueto/case-os"
+      }
+    ]
+  },
+  "amadeus-r35120": {
+    "files": [
+      "Yamid_Cueto_Amadeus_R35120.pdf"
+    ],
+    "locale": "en",
+    "pages": 2,
+    "bytes": 5386,
+    "sha256": "49230c4e70e315c1f40ae742bcbbe5b6ed1ec6eba7e7c1cbb7ce54b90984fda2",
+    "linksCount": 5,
+    "links": [
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "yamidcuetomazo@gmail.com",
+        "url": "mailto:yamidcuetomazo@gmail.com"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "+57 300 279 2493",
+        "url": "tel:+573002792493"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "Portfolio: yamicueto.github.io",
+        "url": "https://yamicueto.github.io/"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "Linkedin: linkedin.com/in/yamid-cueto-mazo",
+        "url": "https://linkedin.com/in/yamid-cueto-mazo"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "Github: github.com/YamiCueto",
+        "url": "https://github.com/YamiCueto"
+      }
+    ]
+  },
+  "fullstack-engineer-es": {
+    "files": [
+      "Yamid_Cueto_Fullstack_Engineer_CV_ES.pdf"
+    ],
+    "locale": "es",
+    "pages": 2,
+    "bytes": 6098,
+    "sha256": "cd27b088e59714d6fb30f4371b42f3cfec514b6feffe70311599691849b8a533",
+    "linksCount": 7,
+    "links": [
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "yamidcuetomazo@gmail.com",
+        "url": "mailto:yamidcuetomazo@gmail.com"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "+57 300 279 2493",
+        "url": "tel:+573002792493"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "Portfolio: yamicueto.github.io",
+        "url": "https://yamicueto.github.io/"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "Linkedin: linkedin.com/in/yamid-cueto-mazo",
+        "url": "https://linkedin.com/in/yamid-cueto-mazo"
+      },
+      {
+        "page": 1,
+        "section": "contact",
+        "text": "Github: github.com/YamiCueto",
+        "url": "https://github.com/YamiCueto"
+      },
+      {
+        "page": 2,
+        "section": "projects",
+        "text": "|  yamicueto.github.io/case-os",
+        "url": "https://yamicueto.github.io/case-os/"
+      },
+      {
+        "page": 2,
+        "section": "projects",
+        "text": "github.com/YamiCueto/case-os",
+        "url": "https://github.com/YamiCueto/case-os"
+      }
+    ]
+  }
+}

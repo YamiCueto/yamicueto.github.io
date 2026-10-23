@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "id": "fullstack-engineer-es",
+  "profileId": "yamid-cueto",
+  "locale": "es",
+  "pdfRevision": "2026-09-06",
+  "role": "Full Stack Engineer (Java / Angular)",
+  "pdfTitle": "Yamid Cueto Mazo - Full Stack Engineer CV (ES)",
+  "headlineRef": "positioning.headline",
+  "summaryRef": "summary.es",
+  "contentStatus": "verified",
+  "labels": {
+    "summary": "Resumen Profesional",
+    "skills": "Competencias Tecnicas",
+    "experience": "Experiencia Profesional",
+    "education": "Educacion",
+    "training": "Formacion Relevante",
+    "awards": "Reconocimientos",
+    "projects": "Proyecto Destacado",
+    "languages": "Idiomas",
+    "assignments": "Asignaciones de cliente",
+    "earlierExperience": "Experiencia Anterior",
+    "present": "Presente",
+    "relocation": "Disponible para reubicacion"
+  },
+  "sectionOrder": ["identity", "contact", "summary", "skills", "experience", "projects", "education", "training", "awards", "languages"],
+  "skillGroups": [
+    { "label": "Backend y APIs", "ids": ["java", "spring-boot", "java-ee", "rest", "soap"] },
+    { "label": "Frontend", "ids": ["angular", "typescript", "javascript", "html", "css", "rxjs", "bootstrap"] },
+    { "label": "Entrega y Cloud", "ids": ["git", "ci-cd", "jenkins", "sonarqube", "docker", "aws", "kubernetes", "websphere"] },
+    { "label": "Formas de Trabajo", "ids": ["scrum"] }
+  ],
+  "experience": [
+    {
+      "id": "tcs",
+      "detail": "primary",
+      "titlePresentation": "functional-only",
+      "assignmentIds": ["bancolombia-2023", "banistmo-2024", "banistmo-2026", "bancolombia-2026"],
+      "highlightIds": ["banking-applications", "legacy-modernization", "sonarqube-pipelines", "generative-ai-tools"]
+    },
+    {
+      "id": "softwareone",
+      "detail": "primary",
+      "highlightIds": ["distributed-applications", "soap-rues", "delivery-pipelines", "aws-applications", "scrum-delivery"]
+    },
+    {
+      "id": "personal-soft",
+      "detail": "primary",
+      "assignmentIds": ["pactia-2020"],
+      "highlightIds": ["pactia-digital-solution"]
+    },
+    {
+      "id": "extreme-technologies",
+      "detail": "primary",
+      "highlightIds": ["xtracking-fleet-logistics"]
+    },
+    {
+      "id": "global-tax-services",
+      "detail": "primary",
+      "highlightIds": ["full-stack-tax-applications"]
+    },
+    {
+      "id": "sena",
+      "detail": "primary",
+      "highlightIds": ["sennova-architecture", "sennova-web-apps"]
+    }
+  ],
+  "educationIds": ["sena-software-2015"],
+  "trainingIds": [],
+  "awardIds": [],
+  "projectIds": ["case-os"],
+  "languageIds": ["es", "en"],
+  "presentation": {
+    "paper": "A4",
+    "maxPages": 2,
+    "columns": 1,
+    "bodyFontPt": 10.5,
+    "marginMm": 16,
+    "background": "white",
+    "photo": false,
+    "showInternalSkillLevels": false,
+    "showRelocation": true,
+    "showParallelConsultingNote": false,
+    "groupAssignmentsUnderEmployer": true
+  }
+}
+

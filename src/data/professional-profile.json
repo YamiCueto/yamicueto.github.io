@@ -228,7 +228,16 @@
     { "id": "star-2024", "name": "Star of the Month", "organizationId": "tcs", "date": "2024-06", "status": "repository-only", "source": "cv-baseline" }
   ],
   "projects": [
-    { "id": "case-os", "name": "CASE OS", "status": "repository-only", "source": "portfolio-baseline" },
+    {
+      "id": "case-os",
+      "name": "CASE OS",
+      "url": "https://yamicueto.github.io/case-os/",
+      "repoUrl": "https://github.com/YamiCueto/case-os",
+      "en": "Engineering workspace integrating Spring Boot, Angular Signals, Model Context Protocol (MCP) and Python RAG workflows to support enterprise software delivery.",
+      "es": "Workspace de ingeniería que integra Spring Boot, Angular Signals, Model Context Protocol (MCP) y flujos RAG en Python para apoyar la entrega de software empresarial.",
+      "status": "repository-only",
+      "source": "portfolio-baseline"
+    },
     { "id": "code-agent-arena", "name": "Code Agent Arena", "status": "repository-only", "source": "portfolio-baseline" },
     { "id": "flowly", "name": "Flowly", "status": "repository-only", "source": "portfolio-baseline" },
     { "id": "academy-ia", "name": "Academy.IA", "status": "repository-only", "source": "portfolio-baseline" },
@@ -237,7 +246,7 @@
     { "id": "promptly", "name": "Promptly", "status": "repository-only", "source": "cv-baseline" }
   ],
   "languages": [
-    { "id": "es", "name": "Spanish", "proficiency": "Native", "status": "repository-only", "source": "cv-baseline" },
-    { "id": "en", "name": "English", "proficiency": "Professional Working Proficiency", "status": "verified", "source": "sprint-1-confirmation" }
+    { "id": "es", "name": "Spanish", "nameEs": "Español", "proficiency": "Native", "proficiencyEs": "Nativo", "status": "repository-only", "source": "cv-baseline" },
+    { "id": "en", "name": "English", "nameEs": "Inglés", "proficiency": "Professional Working Proficiency", "proficiencyEs": "Competencia Profesional de Trabajo", "status": "verified", "source": "sprint-1-confirmation" }
   ]
 }

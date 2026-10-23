@@ -23,7 +23,7 @@
     "present": "Present",
     "relocation": "Open to relocation"
   },
-  "sectionOrder": ["identity", "contact", "summary", "skills", "experience", "education", "training", "awards", "projects", "languages"],
+  "sectionOrder": ["identity", "contact", "summary", "skills", "experience", "projects", "education", "training", "awards", "languages"],
   "skillGroups": [
     { "label": "Backend & APIs", "ids": ["java", "spring-boot", "java-ee", "rest", "soap"] },
     { "label": "Frontend", "ids": ["angular", "typescript", "javascript", "html", "css", "rxjs", "bootstrap"] },
@@ -68,7 +68,7 @@
   "educationIds": ["sena-software-2015"],
   "trainingIds": [],
   "awardIds": [],
-  "projectIds": [],
+  "projectIds": ["case-os"],
   "languageIds": ["es", "en"],
   "reviewCandidates": {
     "trainingIds": ["devops-foundation", "genai-foundation"],
