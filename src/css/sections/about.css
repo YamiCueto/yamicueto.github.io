@@ -1,12 +1,12 @@
-/*
-==========================================================================
-   ABOUT SECTION (REDESIGNED DASHBOARD)
-========================================================================== */
+/* ==========================================================================
+   ABOUT SECTION — EXECUTIVE BENTO DASHBOARD
+   ========================================================================== */
 .about {
   padding: var(--space-20) 0;
   background: var(--bg-secondary);
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .about::before {
@@ -14,37 +14,37 @@
   position: absolute;
   top: -120px;
   right: -120px;
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.09) 0%, transparent 70%);
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
 .about-content {
   display: grid;
-  grid-template-columns: 1.18fr 0.82fr;
-  gap: 3rem;
+  grid-template-columns: 1.16fr 0.84fr;
+  gap: 2.5rem;
   align-items: start;
 }
 
 /* ==========================================================================
-   Left Column: Text, Story & Pillars
+   Left Column: Text, Story & Engineering Pillars
    ========================================================================== */
 .about-text {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 1.5rem;
 }
 
 .intro-highlight {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(6, 182, 212, 0.1));
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: 1.5rem 1.75rem;
   border-radius: var(--radius-2xl);
   text-align: left;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--bento-shadow);
   position: relative;
   overflow: hidden;
 }
@@ -60,9 +60,10 @@
 }
 
 .role-title {
-  font-size: 1.65rem;
+  font-size: 1.55rem;
   font-weight: 800;
-  margin: 0 0 0.35rem 0;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.3rem 0;
   background: linear-gradient(135deg, #ffffff 30%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -71,18 +72,31 @@
 }
 
 .role-subtitle {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
+  font-family: var(--font-mono);
   margin: 0;
-  color: #94a3b8;
+  color: #7dd3fc;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+}
+
+.about-description {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--bento-shadow);
 }
 
 .about-description p {
-  font-size: 1.025rem;
+  font-size: 0.98rem;
   color: var(--text-secondary);
   line-height: 1.75;
   margin: 0 0 1rem 0;
+}
+
+.about-description p:last-child {
+  margin-bottom: 0;
 }
 
 .about-story-p {
@@ -93,28 +107,27 @@
 .about-pillars {
   display: flex;
   flex-direction: column;
-  gap: 0.95rem;
-  margin-top: 0.5rem;
+  gap: 0.85rem;
 }
 
 .pillar-card {
   display: flex;
   align-items: flex-start;
-  gap: 1.25rem;
-  padding: 1.15rem 1.35rem;
-  background: rgba(15, 23, 42, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-xl);
+  gap: 1.15rem;
+  padding: 1.2rem 1.4rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--bento-shadow);
   transition: all var(--transition-normal);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .pillar-card:hover {
   transform: translateY(-2px);
-  background: rgba(30, 41, 59, 0.85);
-  border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 0 10px 25px -8px rgba(59, 130, 246, 0.25);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--bento-shadow-hover);
 }
 
 .pillar-icon {
@@ -122,27 +135,28 @@
   height: 44px;
   flex-shrink: 0;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2));
-  border: 1px solid rgba(59, 130, 246, 0.35);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.18), rgba(6, 182, 212, 0.15));
+  border: 1px solid rgba(56, 189, 248, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #38bdf8;
-  font-size: 1.2rem;
-  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.15);
+  font-size: 1.15rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .pillar-content h4 {
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin: 0 0 0.35rem 0;
+  margin: 0 0 0.3rem 0;
+  letter-spacing: -0.01em;
 }
 
 .pillar-content p {
-  font-size: 0.875rem;
+  font-size: 0.86rem;
   color: var(--text-muted);
-  line-height: 1.55;
+  line-height: 1.58;
   margin: 0;
 }
 
@@ -152,7 +166,7 @@
 .about-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 /* 2x2 Stats Grid */
@@ -163,35 +177,45 @@
 }
 
 .about-stat-box {
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-xl);
-  padding: 1.15rem 1rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  padding: 1.2rem 1rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: var(--bento-shadow);
   transition: all var(--transition-normal);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .about-stat-box:hover {
-  border-color: rgba(59, 130, 246, 0.35);
+  border-color: var(--glass-border-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--bento-shadow-hover);
 }
 
 .about-stat-box .stat-icon {
-  font-size: 1.15rem;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
   color: #38bdf8;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.55rem;
 }
 
 .about-stat-box .stat-number {
   font-size: 1.35rem;
   font-weight: 800;
+  letter-spacing: -0.02em;
   color: #ffffff;
   background: linear-gradient(135deg, #ffffff 40%, #93c5fd 100%);
   -webkit-background-clip: text;
@@ -201,28 +225,29 @@
 }
 
 .about-stat-box .stat-label {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
   margin-top: 0.25rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 /* Info Cards (Education & Languages) */
 .about-card {
-  background: rgba(30, 41, 59, 0.6);
+  background: var(--glass-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-2xl);
-  padding: 1.35rem 1.5rem;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  padding: 1.4rem 1.5rem;
+  box-shadow: var(--bento-shadow);
   transition: all var(--transition-normal);
 }
 
 .about-card:hover {
-  border-color: rgba(59, 130, 246, 0.3);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--bento-shadow-hover);
 }
 
 .card-header-badge {
@@ -230,29 +255,30 @@
   align-items: center;
   gap: 0.65rem;
   margin-bottom: 1rem;
-  padding-bottom: 0.65rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .card-header-badge i {
   color: #38bdf8;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .card-header-badge h4 {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 /* Education Body */
 .education-body .edu-title {
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   font-weight: 700;
-  color: #f1f5f9;
-  line-height: 1.35;
-  margin-bottom: 0.4rem;
+  color: #f8fafc;
+  line-height: 1.38;
+  margin-bottom: 0.45rem;
 }
 
 .education-body .edu-institution {
@@ -261,23 +287,24 @@
   color: #38bdf8;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   margin-bottom: 0.25rem;
 }
 
 .education-body .edu-period {
-  font-size: 0.77rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
+  font-family: var(--font-mono);
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   margin-bottom: 0.65rem;
 }
 
 .education-body .edu-note {
   font-size: 0.82rem;
   color: #94a3b8;
-  line-height: 1.5;
+  line-height: 1.55;
   margin: 0;
 }
 
@@ -285,13 +312,13 @@
 .languages-list {
   display: flex;
   flex-direction: column;
-  gap: 0.95rem;
+  gap: 1rem;
 }
 
 .lang-item {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.25rem;
 }
 
 .lang-header {
@@ -307,13 +334,13 @@
 }
 
 .lang-level-badge {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  padding: 0.15rem 0.55rem;
-  border-radius: 12px;
-  background: rgba(16, 185, 129, 0.15);
+  padding: 0.18rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.14);
   color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.35);
+  border: 1px solid rgba(16, 185, 129, 0.32);
 }
 
 .lang-level-badge.lang-level-tech {
@@ -325,7 +352,7 @@
 .lang-detail {
   font-size: 0.8rem;
   color: var(--text-muted);
-  line-height: 1.45;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -333,13 +360,13 @@
 @media (max-width: 992px) {
   .about-content {
     grid-template-columns: 1fr;
-    gap: 2.25rem;
+    gap: 2rem;
   }
 }
 
 @media (max-width: 480px) {
   .about-stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   .pillar-card {
     flex-direction: column;

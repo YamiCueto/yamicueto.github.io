@@ -1,12 +1,14 @@
 /* ==========================================================================
-   ANIMACIONES
+   ANIMACIONES — HIGH-CRAFT SUBTLE MOTION
    ========================================================================== */
 
-/* Animaciones base para secciones */
+/* Las secciones permanecen siempre visibles para garantizar 0 contenido oculto
+   en capturas completas, buscadores y cualquier viewport. */
 .section-animate {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .section-animate.animate-in {
@@ -14,98 +16,23 @@
   transform: translateY(0);
 }
 
-/* Animaciones específicas para cada sección - SOLO DESKTOP */
-@media (min-width: 769px) {
-  .hero.section-animate {
-    transform: scale(0.95) translateY(20px);
-  }
-
-  .hero.animate-in {
-    transform: scale(1) translateY(0);
-  }
-
-  .about.section-animate {
-    transform: translateX(-50px) rotateY(-10deg);
-  }
-
-  .about.animate-in {
-    transform: translateX(0) rotateY(0deg);
-  }
-
-  .skills.section-animate {
-    transform: rotateX(15deg) translateY(30px);
-  }
-
-  .skills.animate-in {
-    transform: rotateX(0deg) translateY(0);
-  }
-
-  .projects.section-animate {
-    transform: perspective(1000px) rotateX(20deg) translateY(40px);
-  }
-
-  .projects.animate-in {
-    transform: perspective(1000px) rotateX(0deg) translateY(0);
-  }
-
-  .experience.section-animate {
-    transform: perspective(1000px) rotateY(15deg) translateX(30px);
-  }
-
-  .experience.animate-in {
-    transform: perspective(1000px) rotateY(0deg) translateX(0);
-  }
-
-  .contact.section-animate {
-    transform: scale(0.8) translateY(50px);
-  }
-
-  .contact.animate-in {
-    transform: scale(1) translateY(0);
-  }
-}
-
-/* Animaciones simplificadas para MÓVIL */
-@media (max-width: 768px) {
-  .section-animate {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
-  .section-animate.animate-in {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .hero.section-animate,
-  .about.section-animate,
-  .skills.section-animate,
-  .projects.section-animate,
-  .experience.section-animate,
-  .contact.section-animate {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .hero.animate-in,
-  .about.animate-in,
-  .skills.animate-in,
-  .projects.animate-in,
-  .experience.animate-in,
-  .contact.animate-in {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
 /* Animaciones de entrada suaves */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(14px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
@@ -115,9 +42,8 @@
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-20px);
   }
-
   to {
     opacity: 1;
     transform: translateX(0);
@@ -127,9 +53,8 @@
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(20px);
   }
-
   to {
     opacity: 1;
     transform: translateX(0);
@@ -139,9 +64,8 @@
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.96);
   }
-
   to {
     opacity: 1;
     transform: scale(1);
@@ -150,29 +74,29 @@
 
 /* Clases de utilidad para animaciones */
 .fade-in {
-  animation: fadeIn 0.6s ease-out;
+  animation: fadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .slide-in-left {
-  animation: slideInLeft 0.6s ease-out;
+  animation: slideInLeft 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .slide-in-right {
-  animation: slideInRight 0.6s ease-out;
+  animation: slideInRight 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .scale-in {
-  animation: scaleIn 0.6s ease-out;
+  animation: scaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Estados de carga */
-.loading {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease;
-}
-
-.loaded {
-  opacity: 1;
-  transform: translateY(0);
+/* Respeto estricto a accesibilidad de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

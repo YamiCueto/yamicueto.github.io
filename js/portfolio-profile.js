@@ -48,11 +48,55 @@
 
     const skills = byId('profile-skills');
     if (skills) {
+        const groupMeta = {
+            'Backend y APIs': { icon: 'fas fa-server', subtitle: 'Arquitectura Empresarial & Servicios' },
+            'Frontend': { icon: 'fas fa-layer-group', subtitle: 'Interfaces Reactivas & Estado' },
+            'Entrega y nube': { icon: 'fas fa-cloud', subtitle: 'CI/CD, Contenedores & Infraestructura' },
+            'Formas de trabajo': { icon: 'fas fa-users-cog', subtitle: 'Metodologías & Cultura de Ingeniería' }
+        };
+        const skillIcons = {
+            'Java': 'fab fa-java',
+            'Spring Boot': 'fas fa-leaf',
+            'Java EE': 'fas fa-cubes',
+            'REST APIs': 'fas fa-exchange-alt',
+            'SOAP': 'fas fa-project-diagram',
+            'Angular': 'fab fa-angular',
+            'TypeScript': 'fas fa-code',
+            'JavaScript': 'fab fa-js',
+            'HTML': 'fab fa-html5',
+            'CSS': 'fab fa-css3-alt',
+            'RxJS': 'fas fa-stream',
+            'Bootstrap': 'fab fa-bootstrap',
+            'Git': 'fab fa-git-alt',
+            'CI/CD': 'fas fa-sync-alt',
+            'Jenkins': 'fab fa-jenkins',
+            'SonarQube': 'fas fa-shield-alt',
+            'Docker': 'fab fa-docker',
+            'AWS': 'fab fa-aws',
+            'Kubernetes': 'fas fa-dharmachakra',
+            'IBM WebSphere Application Server': 'fas fa-hdd',
+            'Scrum': 'fas fa-tasks'
+        };
         skills.replaceChildren(...profile.skillGroups.map(group => {
             const container = make('div', 'skills-group');
-            container.append(make('h3', '', group.label));
+            const meta = groupMeta[group.label] || { icon: 'fas fa-code', subtitle: 'Competencias Técnicas' };
+
+            const header = make('div', 'skills-group-header');
+            const iconWrap = make('div', 'skills-group-icon');
+            iconWrap.append(make('i', meta.icon));
+            const titleWrap = make('div', 'skills-group-titles');
+            titleWrap.append(make('h3', '', group.label), make('span', 'skills-group-sub', meta.subtitle));
+            const countBadge = make('span', 'skills-group-count', `${group.skills.length}`);
+            header.append(iconWrap, titleWrap, countBadge);
+            container.append(header);
+
             const tags = make('div', 'skills-tags');
-            tags.append(...group.skills.map(skill => make('span', 'skill-tag', skill)));
+            tags.append(...group.skills.map(skill => {
+                const pill = make('span', 'skill-tag');
+                const iconClass = skillIcons[skill] || 'fas fa-check-circle';
+                pill.append(make('i', iconClass), document.createTextNode(skill));
+                return pill;
+            }));
             container.append(tags);
             return container;
         }));
@@ -60,13 +104,31 @@
 
     const timeline = byId('profile-experience');
     if (timeline) {
-        timeline.replaceChildren(...profile.experience.map(job => {
-            const item = make('div', 'timeline-item');
-            item.append(make('div', 'timeline-date', job.dates));
+        timeline.replaceChildren(...profile.experience.map((job, idx) => {
+            const item = make('div', idx === 0 ? 'timeline-item timeline-item--current' : 'timeline-item');
+            const dateBadge = make('div', 'timeline-date', job.dates);
+            item.append(dateBadge);
+
             const content = make('div', 'timeline-content');
-            if (job.role) content.append(make('h3', 'timeline-title', job.role));
-            content.append(make('h4', 'timeline-company', job.organization));
-            if (job.assignments.length) content.append(make('p', 'timeline-clients', `Asignaciones de cliente: ${job.assignments.join(', ')}`));
+            const topRow = make('div', 'timeline-header-row');
+            const titleGroup = make('div', 'timeline-title-group');
+            if (job.role) titleGroup.append(make('h3', 'timeline-title', job.role));
+            titleGroup.append(make('h4', 'timeline-company', job.organization));
+            topRow.append(titleGroup);
+
+            const inlineDate = make('span', 'timeline-date-inline', job.dates);
+            topRow.append(inlineDate);
+            content.append(topRow);
+
+            if (job.assignments.length) {
+                const clientsWrap = make('div', 'timeline-clients');
+                const label = make('span', 'timeline-clients-label', 'Asignaciones de cliente:');
+                clientsWrap.append(label);
+                job.assignments.forEach(client => {
+                    clientsWrap.append(make('span', 'timeline-client-chip', client));
+                });
+                content.append(clientsWrap);
+            }
             if (job.parallel) content.append(make('p', 'timeline-parallel', job.parallel));
             const list = make('ul', 'timeline-description');
             list.append(...job.highlights.map(highlight => make('li', '', highlight)));

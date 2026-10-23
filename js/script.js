@@ -329,8 +329,8 @@ function setupShareButton() {
 
     shareBtn.addEventListener('click', async () => {
         const shareData = {
-            title: 'Yamid Cueto | Full Stack Developer',
-            text: '10+ años transformando sistemas legacy. Expert en Java, Spring Boot, Angular.',
+            title: 'Yamid Cueto Mazo | Full Stack Engineer',
+            text: '+9 años en desarrollo de software empresarial y modernización legacy. Especializado en Java, Spring Boot y Angular.',
             url: window.location.href
         };
 
@@ -517,16 +517,23 @@ function setupTypingEffectLegacy() {
 
 function setupScrollAnimationsLegacy() {
     const sections = document.querySelectorAll('.section-animate');
+    if (!sections.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+        sections.forEach(section => section.classList.add('animate-in'));
+        return;
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
+                observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+        threshold: 0.02,
+        rootMargin: '0px 0px 100px 0px'
     });
 
     sections.forEach(section => observer.observe(section));

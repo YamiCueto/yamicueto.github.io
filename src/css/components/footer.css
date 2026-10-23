@@ -1,55 +1,64 @@
-/*
-==========================================================================
-   FOOTER
-  
-==========================================================================
-*/
+/* ==========================================================================
+   FOOTER & FLOATING CONTROLS — HIGH-CRAFT DARK UI
+   ========================================================================== */
 .footer {
-  background: var(--text-primary);
-  color: var(--bg-primary);
-  padding: var(--space-8) 0;
+  background: #04060c;
+  color: var(--text-secondary);
+  padding: 2.5rem 0;
   text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .footer-content p {
-  margin-bottom: var(--space-2);
+  margin: 0;
+  font-size: 0.88rem;
 }
 
 .footer-quote {
-  font-style: italic;
-  opacity: 0.8;
+  font-family: var(--font-mono);
+  font-size: 0.78rem !important;
+  color: var(--text-muted);
+  opacity: 0.85;
 }
 
-/*
-==========================================================================
-  
-BOTÓN FLOTANTE VOLVER ARRIBA
-  
-========================================================================== */
+/* ==========================================================================
+   BOTÓN FLOTANTE VOLVER ARRIBA
+   ========================================================================== */
 .scroll-to-top {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
-  background: var(--accent-color);
-  border: none;
-  border-radius: 50%;
-  color: white;
-  font-size: 1.2rem;
+  bottom: 28px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: var(--radius-xl);
+  color: #38bdf8;
+  font-size: 1rem;
   cursor: pointer;
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px);
-  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+  transform: translateY(16px);
+  transition: all var(--transition-normal);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .scroll-to-top:hover {
   background: var(--primary-color);
-  transform: translateY(0) scale(1.1);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  border-color: #38bdf8;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(59, 130, 246, 0.45);
 }
 
 .scroll-to-top.show {
@@ -58,50 +67,23 @@ BOTÓN FLOTANTE VOLVER ARRIBA
   transform: translateY(0);
 }
 
-.scroll-to-top:active {
-  transform: translateY(0) scale(0.95);
-}
-
-/* Efecto de pulso cuando aparece */
-.scroll-to-top.show {
-  animation: pulseIn 0.6s ease-out;
-}
-
-@keyframes pulseIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.8);
-  }
-  50% {
-    transform: translateY(-5px) scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Responsive design para el botón */
 @media (max-width: 768px) {
   .scroll-to-top {
     bottom: 20px;
     right: 20px;
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
+    width: 42px;
+    height: 42px;
   }
 }
 
-/*
-==========================================================================
+/* ==========================================================================
    CURSOR PERSONALIZADO
-  
-========================================================================== */
+   ========================================================================== */
 .cursor {
   position: fixed;
   width: 8px;
   height: 8px;
-  background: var(--primary-color);
+  background: #38bdf8;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -110,12 +92,12 @@ BOTÓN FLOTANTE VOLVER ARRIBA
 
 .cursor-follower {
   position: fixed;
-  width: 32px;
-  height: 32px;
-  border: 2px solid var(--primary-color);
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid rgba(56, 189, 248, 0.55);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
   opacity: 0.5;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
